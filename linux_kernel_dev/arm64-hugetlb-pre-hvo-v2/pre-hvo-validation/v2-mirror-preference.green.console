@@ -1,0 +1,56 @@
+Image: /home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/v2-arm64/arch/arm64/boot/Image
+Command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1 cma=0
+Guest memory: 6144 MiB; CPUs: 2; NUMA nodes: 1
+RAM reserve: on
+Booting Linux on physical CPU 0x0000000000 [0x000f0510]
+Linux version 6.6.0+ (chenjun@DESKTOP-QABRF7I) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #9 SMP Mon Nov  9 11:37:57 CST 2026
+random: crng init done
+Machine model: linux,dummy-virt
+earlycon: pl11 at MMIO 0x0000000009000000 (options '')
+printk: bootconsole [pl11] enabled
+NUMA: No NUMA configuration found
+NUMA: Faking a node at [mem 0x0000000040000000-0x00000001bfffffff]
+NUMA: NODE_DATA [mem 0x1bffebb40-0x1bffecfff]
+Zone ranges:
+  Normal   [mem 0x0000000040000000-0x00000001bfffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x00000001bfffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x00000001bfffffff]
+pre-HVO QA: mirror fixture reserved=0
+pre-HVO QA: backing 0x0000000040000000 mirrored=0
+------------[ cut here ]------------
+kernel BUG at mm/sparse-vmemmap.c:368!
+Internal error: Oops - BUG: 00000000f2000800 [#1] SMP
+CPU: 0 PID: 0 Comm: swapper Not tainted 6.6.0+ #9
+Hardware name: linux,dummy-virt (DT)
+pstate: a00000c5 (NzCv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : 0xffffffc080286718
+lr : 0xffffffc080286708
+sp : ffffffc0802c3aa0
+x29: ffffffc0802c3aa0 x28: 00000000404610ac x27: 0000000000000000
+x26: ffffffc0802a7a48 x25: ffffffff00000000 x24: 0000000000000000
+x23: ffffffc0802c3b88 x22: 000000003fffffff x21: 0000000000000000
+x20: ffffff8000000000 x19: fffffffe04000000 x18: 000000000000000a
+x17: 0000000000000000 x16: 0000000000000000 x15: 0000000000000000
+x14: 0000000000000000 x13: 303d6465726f7272 x12: ffffffc0802d56b8
+x11: 0000000000000011 x10: 00000000ffffffea x9 : 000000000000000c
+x8 : ffffffc0802c38b0 x7 : 00000000ffffefff x6 : ffffffc0802c38b8
+x5 : 0000000000057fa8 x4 : 0000000000000000 x3 : 0000000000000001
+x2 : c0000000ffffefff x1 : 0000000000000011 x0 : ffffffff40000000
+Call trace:
+ 0xffffffc080286718
+ 0xffffffc08028405c
+ 0xffffffc08028468c
+ 0xffffffc0802849f8
+ 0xffffffc080284c80
+ 0xffffffc08027f120
+ 0xffffffc080275ab4
+ 0xffffffc0802730bc
+ 0xffffffc080270690
+ 0xffffffc0802752d0
+Code: f94047e0 8b190000 eb16001f 540000e9 (d4210000) 
+---[ end trace 0000000000000000 ]---
+Kernel panic - not syncing: Oops - BUG: Fatal exception
+---[ end Kernel panic - not syncing: Oops - BUG: Fatal exception ]---
+qemu-system-aarch64: terminating on signal 15 from pid 637599 (timeout)

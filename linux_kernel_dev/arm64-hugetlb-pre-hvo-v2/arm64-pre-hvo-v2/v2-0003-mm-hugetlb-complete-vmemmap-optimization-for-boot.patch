@@ -1,0 +1,72 @@
+From 52fd66e1201bd9cca90aed1ef7c489643595fc05 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Wed, 4 Nov 2026 15:53:43 +0800
+Subject: [PATCH v2 3/8] mm/hugetlb: complete vmemmap optimization for boot
+ pages
+
+Read the existing HVO setting during early parameter parsing and provide
+an internal completion helper for pages populated with shared vmemmap
+backing. Protect tail mappings only after retained descriptors have been
+initialized, then account the optimized page in the existing static key.
+
+Skip repeated optimization of a page already handed over by the boot
+path so its metadata is restored exactly once on release or demotion.
+The boot capability remains disabled until its callers are introduced.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ mm/hugetlb_vmemmap.c | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
+index 3e9c2068a7b9..fc55c099818f 100644
+--- a/mm/hugetlb_vmemmap.c
++++ b/mm/hugetlb_vmemmap.c
+@@ -482,6 +482,34 @@ EXPORT_SYMBOL(hugetlb_optimize_vmemmap_key);
+ static bool vmemmap_optimize_enabled = IS_ENABLED(CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_DEFAULT_ON);
+ core_param(hugetlb_free_vmemmap, vmemmap_optimize_enabled, bool, 0);
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++static int __init hugetlb_vmemmap_early_param(char *s)
++{
++	return kstrtobool(s ?: "1", &vmemmap_optimize_enabled);
++}
++early_param("hugetlb_free_vmemmap", hugetlb_vmemmap_early_param);
++
++bool __init hugetlb_vmemmap_boot_enabled(void)
++{
++	return vmemmap_optimize_enabled;
++}
++
++void __init hugetlb_vmemmap_boot_finish(struct hstate *h, struct page *head)
++{
++	unsigned long start = (unsigned long)head;
++	unsigned long addr, end = start + hugetlb_vmemmap_size(h);
++
++	/* All retained descriptors are initialized before aliases become RO. */
++	for (addr = start + PAGE_SIZE; addr < end; addr += PAGE_SIZE) {
++		pte_t *pte = pte_offset_kernel(pmd_off_k(addr), addr);
++
++		vmemmap_update_pte(addr, pte, pte_wrprotect(ptep_get(pte)));
++	}
++	static_branch_inc(&hugetlb_optimize_vmemmap_key);
++	SetHPageVmemmapOptimized(head);
++}
++#endif
++
+ /**
+  * hugetlb_vmemmap_restore - restore previously optimized (by
+  *			     hugetlb_vmemmap_optimize()) vmemmap pages which
+@@ -607,6 +635,8 @@ void hugetlb_vmemmap_optimize(const struct hstate *h, struct page *head)
+ 	unsigned long vmemmap_reuse;
+ 
+ 	VM_WARN_ON_ONCE(!PageHuge(head));
++	if (HPageVmemmapOptimized(head))
++		return;
+ 	if (!vmemmap_should_optimize(h, head))
+ 		return;
+ 
+-- 
+2.43.0
+

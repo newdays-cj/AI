@@ -1,0 +1,184 @@
+From dc55ffbf8c0527cb2d3adba637e9ad0df0de09d0 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Wed, 4 Nov 2026 15:57:17 +0800
+Subject: [PATCH v2 5/8] docs: document arm64 boot-time HugeTLB vmemmap
+ optimization
+
+Describe the supported boot configuration, reservation ordering, fallback
+behavior and existing HVO control. Explain the avoided backing-page
+count without presenting it as whole-system peak-memory measurement.
+
+Document the isolated QEMU regression runner, required configuration,
+NUMA and rejected-request cases, lifecycle assertions and explicit skip
+or failure results.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ Documentation/admin-guide/mm/hugetlbpage.rst | 153 +++++++++++++++++++
+ 1 file changed, 153 insertions(+)
+
+diff --git a/Documentation/admin-guide/mm/hugetlbpage.rst b/Documentation/admin-guide/mm/hugetlbpage.rst
+index e4d4b4a8dc97..6ffb804ed128 100644
+--- a/Documentation/admin-guide/mm/hugetlbpage.rst
++++ b/Documentation/admin-guide/mm/hugetlbpage.rst
+@@ -471,3 +471,156 @@ The `libhugetlbfs`_  library provides a wide range of userspace tools
+ to help with huge page usability, environment setup, and control.
+ 
+ .. _libhugetlbfs: https://github.com/libhugetlbfs/libhugetlbfs
++
++Arm64 boot-time vmemmap optimization
++===================================
++
++On arm64 with 4 KiB base pages, boot-time 1 GiB HugeTLB pages can be created
++with an already optimized vmemmap. Enable HVO with the existing
++``hugetlb_free_vmemmap=on`` parameter, for example::
++
++    hugepagesz=1G hugepages=4 hugetlb_free_vmemmap=on
++
++``CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT`` is an internal capability
++selected when the architecture and ordinary HVO configuration support this
++path. It is not available with PREEMPT_RT. Runtime allocations and other
++HugeTLB sizes continue to use the existing allocation and HVO paths.
++An active HugeTLB CMA reservation disables this boot-time optimization.
++
++The optimized path registers sparse section metadata first, then waits for
++zone boundaries, NUMA node state, and reliable-memory policy before reserving
++the gigantic pages and populating vmemmap. Existing DMA CMA, crashkernel,
++``memmap=`` and folio CMA reservations retain priority over the gigantic
++pool. Early gigantic allocations are constrained to one node and zone.
++If no suitable range exists, the actual pool may be smaller than requested;
++a cross-zone range is not added to the pool.
++
++Only the required vmemmap backing is allocated for an optimized page; the
++remaining descriptors share it. The path reserves a conservative budget for
++subsequent ordinary metadata and page tables, including when optimization
++must fall back. ``hugepage_prohibit_sz=`` continues to protect the requested
++ordinary-memory reserve. Tail mappings become read-only after descriptor
++initialization, and shrinking or demoting the pool uses the existing
++vmemmap restoration path.
++
++An early diagnostic reports how many pages were optimized and how much
++redundant vmemmap backing was not allocated. The reported saving excludes
++additional page tables and is not a measurement of the whole-system boot
++memory peak. With HVO disabled, the existing initialization path is used.
++
++Arm64 boot-time vmemmap regression test
++=====================================
++
++``tools/testing/selftests/mm/hugetlb-pre-hvo/`` provides a standalone static
++C guest init and an unprivileged QEMU runner for testing 1 GiB HugeTLB page
++lifecycle, including kernels with boot-time vmemmap optimization changes.
++It needs an arm64 Linux compiler with static libc, QEMU system-aarch64,
++``timeout``, and the kernel's host-built ``usr/gen_init_cpio``. No busybox,
++host mounts, host huge pages, host sysctl changes, or root access are needed.
++The guest is disposable: its pool is deliberately emptied before shutdown.
++Never run the guest init as a host init process.
++
++Build in a disposable source worktree or a separate output directory; do not
++overwrite an existing kernel configuration. For example, from the source
++directory, with ``OUT`` naming an absolute, empty build directory::
++
++    make O="$OUT" ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- tinyconfig
++    scripts/kconfig/merge_config.sh -m -O "$OUT" "$OUT/.config" \
++        tools/testing/selftests/mm/hugetlb-pre-hvo/config.fragment
++    make O="$OUT" ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- olddefconfig
++    make O="$OUT" ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- -j2 Image
++
++Use the same resolved configuration for baseline and candidate kernels. The
++fragment selects 4 KiB base pages, PL011 console, initramfs/ELF, proc/sysfs,
++HugeTLB, vmemmap optimization, and DEBUG_VM. It disables ``CONFIG_CMA`` for
++this isolated non-CMA scenario. Check the resulting ``.config`` because
++dependencies can differ between kernel versions. The runtime control is the existing
++``hugetlb_free_vmemmap=on|off`` parameter; no new early-boot flag is required.
++
++Run one VM at a time, with at least 3 GiB available to QEMU::
++
++    testdir=tools/testing/selftests/mm/hugetlb-pre-hvo
++    sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" baseline-on.log
++    HVO=off sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" baseline-off.log
++    CASE=nohuge EXPECTED_POOL=0 sh "$testdir/run.sh" \
++        "$OUT/arch/arm64/boot/Image" "$OUT/usr/gen_init_cpio" nohuge.log
++    CASE=demote sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" demote.log
++    EXTRA_CMDLINE='memblock=debug' MEMORY=3072 CPUS=2 \
++        sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" memblock-debug.log
++    CASE=nohuge EXPECTED_POOL=0 REQUESTED_POOL=1 \
++        EXTRA_CMDLINE='kernelcore=1536M' \
++        sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" zone-boundary.log
++    NODES=2 MEMORY=6144 EXPECTED_POOL=2 REQUESTED_POOL=0:1,1:1 \
++        sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" numa.log
++
++Each invocation compiles ``init.c`` with ``-static -Wall -Wextra -Werror``,
++creates an uncompressed initramfs using ``mktemp`` and ``gen_init_cpio``,
++and removes temporary files on exit. The raw serial log is retained at the
++supplied path. ``CC`` and ``QEMU`` can override executable names; ``TIMEOUT``
++defaults to 300 seconds. QEMU uses ``-machine virt -cpu max -m 3072 -smp 2
++-nographic -no-reboot -monitor none`` and this default kernel command line::
++
++    console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle
++
++``EXTRA_CMDLINE`` appends kernel parameters as one quoted QEMU ``-append``
++argument, without host shell evaluation or expansion of its contents. For
++example, use ``EXTRA_CMDLINE='memblock=debug kernelcore=1G'`` or a suitable
++``crashkernel=`` parameter for later reservation tests. Do not duplicate the
++runner's init, console, huge-page, or ``pre_hvo.*`` controls. Additional
++reservations can make pool allocation fail, which remains a test failure.
++``MEMORY`` (MiB, default 3072) and ``CPUS`` (default 2) accept positive
++decimal integers without leading zeros; values are passed as separate quoted
++QEMU arguments. Increase them only within host resource limits and keep one
++VM at a time. These overrides change only the guest, not host pools or
++sysctls. ``NODES=2`` creates two equal memory nodes and splits the CPUs
++equally; it requires even ``MEMORY`` and ``CPUS`` values and a NUMA-capable
++guest kernel. The guest checks that both node pool counters are available
++and that their sum equals the expected global count. Arbitrary QEMU
++arguments are not exposed.
++
++``EXPECTED_POOL`` defaults to 1 and sets the guest's expected count.
++``REQUESTED_POOL`` defaults to that count and sets the boot request; it also
++accepts the kernel's node-specific count syntax. Separate counts allow tests
++to assert a deliberately rejected request, rather than treating a short
++allocation as success. An unexpected short allocation is a failure, not a
++skip. Counts larger than the available guest RAM will fail. The lifecycle case asserts the
++initial total/free counts, maps one 1 GiB page with ``MAP_HUGETLB``, writes and
++reads distinct patterns at both ends of every 4 KiB base page across that
++mapping, checks the free count, unmaps, and shrinks the 1 GiB pool to zero.
++Final total, free, and surplus counts must all be zero. When available,
++pagemap/kpageflags must show HugeTLB compound head and tail flags, including
++tails beyond the retained descriptor page and at the end of the huge page.
++These flags do not by themselves prove vmemmap optimization was applied.
++
++The ``nohuge`` case requires a zero-sized pool and verifies that a reserved
++1 GiB mapping fails with ENOMEM. The ``demote`` case first exercises mapping
++and unmapping, explicitly selects a 2 MiB demotion size, checks that one
++1 GiB page becomes 512 additional 2 MiB pages, and empties both pools.
++Unavailable 1 GiB support, a non-4-KiB base page size, or an absent demotion
++interface produces ``PRE_HVO: SKIP`` and runner status 4, never a pass.
++Unavailable optional proc page monitoring produces ``CAPABILITY_SKIP``;
++the mandatory pool and data assertions still run.
++
++Guest success requires ``PRE_HVO: PASS <case>`` and a successful QEMU exit.
++``PRE_HVO: FAIL``, kernel warnings, BUG/Oops/panic diagnostics, missing PASS,
++or timeout cause a nonzero runner exit. The guest calls the reboot syscall
++to power off on both success and failure; PID 1 never intentionally exits.
++If firmware cannot shut down, the host timeout reports failure.
++
++For a candidate with a known optimization diagnostic, set ``EXPECT_LOG`` to
++the exact literal kernel log text that must appear. Leave it unset for an
++unmodified baseline. Do not substitute an invented optimized-page sysfs
++counter or treat a cmdline echo as evidence that the optimization ran.
++
++These tests establish functional regression coverage, not startup peak
++memory savings. Measuring startup peak requires instrumentation of boot-time
++allocation and vmemmap initialization, with comparable baseline/candidate
++configurations. Final ``/proc/meminfo`` or ``MemAvailable`` cannot establish
++the peak, nor can the generic "vmemmap can be freed" diagnostic establish
++that an early optimization path executed.
+-- 
+2.43.0
+

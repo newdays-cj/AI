@@ -1,0 +1,15 @@
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -3814,6 +3814,11 @@ static void __init gather_bootmem_prealloc(void)
+ 		VM_BUG_ON(!hstate_is_gigantic(h));
+ 		WARN_ON(folio_ref_count(folio) != 1);
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++		/* Shared fake heads must be recognized as soon as they are initialized. */
++		if (m->pre_hvo)
++			static_branch_inc(&hugetlb_optimize_vmemmap_key);
++#endif
+ 		hugetlb_folio_init_vmemmap(folio, h,
+ 					   HUGETLB_VMEMMAP_RESERVE_PAGES);
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT

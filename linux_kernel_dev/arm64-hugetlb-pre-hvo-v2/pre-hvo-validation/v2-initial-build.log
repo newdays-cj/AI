@@ -1,0 +1,20 @@
+make[1]: Entering directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/v2-arm64'
+  GEN     Makefile
+  CALL    /tmp/opencode/pre-hvo-v2-src/scripts/checksyscalls.sh
+  CC      mm/hugetlb.o
+  CC      mm/hugetlb_vmemmap.o
+  CC      mm/sparse.o
+  CC      mm/sparse-vmemmap.o
+/tmp/opencode/pre-hvo-v2-src/mm/sparse-vmemmap.c: In function ‘vmemmap_alloc_hugetlb’:
+/tmp/opencode/pre-hvo-v2-src/mm/sparse-vmemmap.c:330:24: error: implicit declaration of function ‘memblock_alloc_range_nid_flags’; did you mean ‘memblock_alloc_range_nid’? [-Werror=implicit-function-declaration]
+  330 |                 addr = memblock_alloc_range_nid_flags(PAGE_SIZE, PAGE_SIZE,
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                        memblock_alloc_range_nid
+cc1: some warnings being treated as errors
+make[4]: *** [/tmp/opencode/pre-hvo-v2-src/scripts/Makefile.build:243: mm/sparse-vmemmap.o] Error 1
+make[4]: *** Waiting for unfinished jobs....
+make[3]: *** [/tmp/opencode/pre-hvo-v2-src/scripts/Makefile.build:480: mm] Error 2
+make[2]: *** [/tmp/opencode/pre-hvo-v2-src/Makefile:1949: .] Error 2
+make[1]: *** [/tmp/opencode/pre-hvo-v2-src/Makefile:234: __sub-make] Error 2
+make[1]: Leaving directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/v2-arm64'
+make: *** [Makefile:234: __sub-make] Error 2

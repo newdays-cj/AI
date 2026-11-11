@@ -1,0 +1,110 @@
+From 0c6b2d1280bcf8d1960c6e5d3970d22054ffceb9 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Wed, 4 Nov 2026 15:51:49 +0800
+Subject: [PATCH v2 2/8] mm/sparse: prepare shared HugeTLB vmemmap backing
+ atomically
+
+Allocate one retained backing page and every required page-table path before publishing shared vmemmap PTEs. Use raw PFNs because backing-page descriptors are not initialized during this boot phase.
+
+On allocation failure, release the unused backing page and leave empty tables for ordinary population without exposing partially shared mappings. Declare the internal boot-HVO interfaces for the following patches; the capability is not enabled yet.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ mm/hugetlb_vmemmap.h |  9 ++++++++
+ mm/sparse-vmemmap.c  | 52 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 61 insertions(+)
+
+diff --git a/mm/hugetlb_vmemmap.h b/mm/hugetlb_vmemmap.h
+index 2f6950410cb2..7180eb5ec6da 100644
+--- a/mm/hugetlb_vmemmap.h
++++ b/mm/hugetlb_vmemmap.h
+@@ -17,6 +17,15 @@
+ #define HUGETLB_VMEMMAP_RESERVE_SIZE	PAGE_SIZE
+ #define HUGETLB_VMEMMAP_RESERVE_PAGES	(HUGETLB_VMEMMAP_RESERVE_SIZE / sizeof(struct page))
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++bool __init hugetlb_vmemmap_boot_enabled(void);
++void __init hugetlb_vmemmap_boot_finish(struct hstate *h, struct page *head);
++int __init vmemmap_populate_hugetlb(unsigned long start, unsigned long end,
++				  int nid);
++unsigned long __init sparse_boot_memmap_size(void);
++void __init sparse_boot_memmap_populate(void);
++#endif
++
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP
+ int hugetlb_vmemmap_restore(const struct hstate *h, struct page *head);
+ void hugetlb_vmemmap_optimize(const struct hstate *h, struct page *head);
+diff --git a/mm/sparse-vmemmap.c b/mm/sparse-vmemmap.c
+index c33dc69a26df..50e522ac183a 100644
+--- a/mm/sparse-vmemmap.c
++++ b/mm/sparse-vmemmap.c
+@@ -32,6 +32,7 @@
+ #include <asm/dma.h>
+ 
+ #include "internal.h"
++#include "hugetlb_vmemmap.h"
+ 
+ /*
+  * Allocate a block of memory to be used to back the virtual memory map
+@@ -301,6 +302,57 @@ int __meminit vmemmap_populate_basepages(unsigned long start, unsigned long end,
+ 	return vmemmap_populate_range(start, end, node, altmap, NULL);
+ }
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++int __init vmemmap_populate_hugetlb(unsigned long start, unsigned long end,
++				  int nid)
++{
++	unsigned long addr, pfn;
++	void *backing;
++
++	backing = vmemmap_alloc_block(PAGE_SIZE, nid);
++	if (!backing)
++		return -ENOMEM;
++	pfn = PHYS_PFN(__pa(backing));
++
++	/* No aliases may be installed until every fallible allocation is done. */
++	for (addr = start; addr < end; addr += PAGE_SIZE) {
++		pgd_t *pgd = vmemmap_pgd_populate(addr, nid);
++		p4d_t *p4d;
++		pud_t *pud;
++		pmd_t *pmd;
++
++		if (!pgd)
++			goto failed;
++		p4d = vmemmap_p4d_populate(pgd, addr, nid);
++		if (!p4d)
++			goto failed;
++		pud = vmemmap_pud_populate(p4d, addr, nid);
++		if (!pud)
++			goto failed;
++		if (pmd_leaf(*pmd_offset(pud, addr)))
++			panic("pre-HVO: vmemmap PMD already populated at %lx\n", addr);
++		pmd = vmemmap_pmd_populate(pud, addr, nid);
++		if (!pmd)
++			goto failed;
++		if (!pte_none(ptep_get(pte_offset_kernel(pmd, addr))))
++			panic("pre-HVO: vmemmap PTE already populated at %lx\n", addr);
++	}
++
++	/* Raw PFNs: backing-page descriptors have not been initialized yet. */
++	for (addr = start; addr < end; addr += PAGE_SIZE) {
++		pte_t *pte = pte_offset_kernel(pmd_off_k(addr), addr);
++
++		set_pte_at(&init_mm, addr, pte, pfn_pte(pfn, PAGE_KERNEL));
++	}
++	return 0;
++
++failed:
++	/* Empty page tables remain usable by ordinary sparse population. */
++	memblock_free(backing, PAGE_SIZE);
++	return -ENOMEM;
++}
++#endif
++
+ void __weak __meminit vmemmap_set_pmd(pmd_t *pmd, void *p, int node,
+ 				      unsigned long addr, unsigned long next)
+ {
+-- 
+2.43.0
+

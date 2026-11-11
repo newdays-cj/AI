@@ -1,0 +1,62 @@
+From 83a29f2d3d0cdfe54af2c48d2c851c7f35b25386 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Mon, 9 Nov 2026 12:21:25 +0800
+Subject: [PATCH v2 6/8] selftests/mm: allow unreserved RAM for pre-HVO
+ capacity tests
+
+Add a validated RAM_RESERVE=on|off override to the standalone QEMU runner. Keep reservation enabled by default and apply the selection to both NUMA memory backends. This permits the 128 GiB address-space regression on hosts with a smaller commit limit without changing pool or lifecycle assertions.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh b/tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh
+index 2233f3fc397d..362fc17f1d0b 100644
+--- a/tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh
++++ b/tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh
+@@ -6,6 +6,7 @@ if [ "$#" -ne 3 ]; then
+ 	echo "Usage: sh $0 IMAGE GEN_INIT_CPIO LOG" >&2
+ 	echo "Environment: CASE=lifecycle|nohuge|demote HVO=on|off EXPECTED_POOL=1 TIMEOUT=300 EXPECT_LOG='literal text'" >&2
+ 	echo "             REQUESTED_POOL=EXPECTED_POOL EXTRA_CMDLINE='kernel parameters' MEMORY=3072 (MiB) CPUS=2 NODES=1|2" >&2
++	echo "             RAM_RESERVE=on|off (default on)" >&2
+ 	exit 2
+ fi
+ kernel=$(realpath "$1")
+@@ -19,6 +20,11 @@ requested=${REQUESTED_POOL:-$expected}
+ memory=${MEMORY:-3072}
+ cpus=${CPUS:-2}
+ nodes=${NODES:-1}
++ram_reserve=${RAM_RESERVE-on}
++case "$ram_reserve" in
++	on|off) ;;
++	*) echo 'RAM_RESERVE must be on or off' >&2; exit 2 ;;
++esac
+ for value in "$memory" "$cpus"; do
+ 	case "$value" in
+ 		''|0*|*[!0-9]*)
+@@ -53,13 +59,18 @@ if [ -n "${EXTRA_CMDLINE:-}" ]; then
+ fi
+ printf 'Image: %s\nCommand line: %s\n' "$kernel" "$append"
+ printf 'Guest memory: %s MiB; CPUs: %s; NUMA nodes: %s\n' "$memory" "$cpus" "$nodes"
++printf 'RAM reserve: %s\n' "$ram_reserve"
+ set -- -machine virt -cpu max -m "$memory" -smp "$cpus" -nographic -no-reboot -monitor none
+ if [ "$nodes" = 2 ]; then
+ 	set -- "$@" \
+-		-object "memory-backend-ram,id=ram0,size=$((memory / 2))M" \
+-		-object "memory-backend-ram,id=ram1,size=$((memory / 2))M" \
++		-object "memory-backend-ram,id=ram0,size=$((memory / 2))M,reserve=$ram_reserve" \
++		-object "memory-backend-ram,id=ram1,size=$((memory / 2))M,reserve=$ram_reserve" \
+ 		-numa "node,nodeid=0,memdev=ram0,cpus=0-$((cpus / 2 - 1))" \
+ 		-numa "node,nodeid=1,memdev=ram1,cpus=$((cpus / 2))-$((cpus - 1))"
++elif [ "$ram_reserve" = off ]; then
++	set -- "$@" \
++		-object "memory-backend-ram,id=ram0,size=${memory}M,reserve=off" \
++		-machine memory-backend=ram0
+ fi
+ status=0
+ timeout --kill-after=10 "${TIMEOUT:-300}" "${QEMU:-qemu-system-aarch64}" \
+-- 
+2.43.0
+

@@ -1,0 +1,127 @@
+Image: /home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/v2-arm64/arch/arm64/boot/Image
+Command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1
+Guest memory: 3072 MiB; CPUs: 2; NUMA nodes: 1
+RAM reserve: on
+Booting Linux on physical CPU 0x0000000000 [0x000f0510]
+Linux version 6.6.0+ (chenjun@DESKTOP-QABRF7I) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #1 SMP Mon Nov  9 10:26:30 CST 2026
+random: crng init done
+Machine model: linux,dummy-virt
+earlycon: pl11 at MMIO 0x0000000009000000 (options '')
+printk: bootconsole [pl11] enabled
+NUMA: No NUMA configuration found
+NUMA: Faking a node at [mem 0x0000000040000000-0x00000000ffffffff]
+NUMA: NODE_DATA [mem 0xfffebb40-0xfffecfff]
+cma: Reserved 16 MiB at 0x00000000fee00000 on node -1
+Zone ranges:
+  Normal   [mem 0x0000000040000000-0x00000000ffffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x00000000ffffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x00000000ffffffff]
+HugeTLB: pre-HVO: 1 1GB pages, 4095 vmemmap backing pages saved (16773120 bytes)
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.0
+percpu: Embedded 17 pages/cpu s37024 r0 d32608 u69632
+Detected PIPT I-cache on CPU0
+CPU features: detected: Spectre-v4
+CPU features: detected: Spectre-BHB
+CPU features: kernel page table isolation disabled by kernel configuration
+alternatives: applying boot alternatives
+Kernel command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1
+Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Fallback order for Node 0: 0 
+Built 1 zonelists, mobility grouping on.  Total pages: 774144
+Policy zone: Normal
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+software IO TLB: area num 2.
+software IO TLB: mapped [mem 0x00000000f8800000-0x00000000fc800000] (64MB)
+Memory: 127368K/3145728K available (2048K kernel code, 648K rwdata, 320K rodata, 320K init, 266K bss, 1159608K reserved, 16384K cma-reserved)
+SLUB: HWalign=64, Order=0-1, MinObjects=0, CPUs=2, Nodes=1
+rcu: Hierarchical RCU implementation.
+rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=2.
+rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Root IRQ handler: 0xffffffc080010000
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+arch_timer: cp15 timer(s) running at 62.50MHz (virt).
+clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+sched_clock: 57 bits at 63MHz, resolution 16ns, wraps every 4398046511096ns
+Console: colour dummy device 80x25
+Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=250000)
+pid_max: default: 4096 minimum: 301
+Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+Detected PIPT I-cache on CPU1
+CPU1: Booted secondary processor 0x0000000001 [0x000f0510]
+smp: Brought up 1 node, 2 CPUs
+SMP: Total of 2 processors activated.
+CPU features: detected: 32-bit EL0 Support
+CPU features: detected: ARMv8.4 Translation Table Level
+CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+CPU features: detected: CRC32 instructions
+CPU features: detected: Data independent timing control (DIT)
+CPU features: detected: Enhanced Virtualization Traps
+CPU features: detected: Fine Grained Traps
+CPU features: detected: RCpc load-acquire (LDAPR)
+CPU features: detected: Memory Copy and Memory Set instructions
+CPU features: detected: Random Number Generator
+CPU features: detected: Speculation barrier (SB)
+CPU features: detected: Stage-2 Force Write-Back
+CPU features: detected: Trap EL0 IMPLEMENTATION DEFINED functionality
+CPU features: detected: TLB range maintenance instructions
+CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+spectre-bhb mitigation disabled by compile time option
+spectre-bhb mitigation disabled by compile time option
+CPU: All CPU(s) started at EL1
+alternatives: applying system-wide alternatives
+node 0 deferred pages initialised in 24ms
+devtmpfs: initialized
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+futex hash table entries: 16 (order: 0, 1024 bytes, linear)
+DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+cpuidle: using governor ladder
+ASID allocator initialised with 65536 entries
+Serial: AMBA PL011 UART driver
+9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 13, base_baud = 0) is a PL011 rev1
+printk: console [ttyAMA0] enabled
+printk: console [ttyAMA0] enabled
+printk: bootconsole [pl11] disabled
+printk: bootconsole [pl11] disabled
+------------[ cut here ]------------
+kernel BUG at mm/hugetlb_vmemmap.c:502!
+Internal error: Oops - BUG: 00000000f2000800 [#1] SMP
+CPU: 0 PID: 1 Comm: swapper/0 Not tainted 6.6.0+ #1
+Hardware name: linux,dummy-virt (DT)
+pstate: 61000005 (nZCv daif -PAN -UAO -TCO +DIT -SSBS BTYPE=--)
+pc : 0xffffffc0802852b8
+lr : 0xffffffc080285024
+sp : ffffff800085bce0
+x29: ffffff800085bce0 x28: 0000008000000000 x27: 0000000001000000
+x26: fffffffe00000000 x25: 00000000000c0000 x24: ffffff8040000000
+x23: ffffffc080392268 x22: ffffffc0802c88e4 x21: fffffffe02000000
+x20: ffffffc080392240 x19: fffffffe01000000 x18: 00000000c6cd199e
+x17: 0000000094ab4d61 x16: 00000000e1a0afcc x15: 00000000e6c4ff09
+x14: 000000005ccee16b x13: 0000000060e241e2 x12: 00000000e36cb78f
+x11: 0000000004a81f1e x10: 0000000075720e35 x9 : 0000000049400979
+x8 : ffffff800085be30 x7 : 0000000000000000 x6 : 000000000125c9c0
+x5 : ffffffc080353528 x4 : 0000000000000012 x3 : 0000000000000012
+x2 : fffffffe00000000 x1 : fffffffe01000000 x0 : 0000000000000000
+Call trace:
+ 0xffffffc0802852b8
+ 0xffffffc080285024
+ 0xffffffc080270bd8
+ 0xffffffc080270ef4
+ 0xffffffc080201250
+ 0xffffffc080013680
+Code: a94363f7 f94023f9 a8c57bfd d65f03c0 (d4210000) 
+---[ end trace 0000000000000000 ]---
+Kernel panic - not syncing: Oops - BUG: Fatal exception
+SMP: stopping secondary CPUs

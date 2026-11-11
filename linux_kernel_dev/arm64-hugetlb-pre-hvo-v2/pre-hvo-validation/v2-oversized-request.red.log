@@ -1,0 +1,50 @@
+Booting Linux on physical CPU 0x0000000000 [0x000f0510]
+Linux version 6.6.0+ (chenjun@DESKTOP-QABRF7I) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #7 SMP Mon Nov  9 11:07:19 CST 2026
+random: crng init done
+Machine model: linux,dummy-virt
+earlycon: pl11 at MMIO 0x0000000009000000 (options '')
+printk: bootconsole [pl11] enabled
+NUMA: No NUMA configuration found
+NUMA: Faking a node at [mem 0x0000000040000000-0x00000000c3ffffff]
+NUMA: NODE_DATA [mem 0xc3feab40-0xc3febfff]
+Zone ranges:
+  Normal   [mem 0x0000000040000000-0x00000000c3ffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x000000004fffffff]
+  node   0: [mem 0x0000000080000000-0x00000000c3ffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x00000000c3ffffff]
+------------[ cut here ]------------
+kernel BUG at mm/hugetlb.c:3721!
+Internal error: Oops - BUG: 00000000f2000800 [#1] SMP
+CPU: 0 PID: 0 Comm: swapper Not tainted 6.6.0+ #7
+Hardware name: linux,dummy-virt (DT)
+pstate: 800000c5 (Nzcv daIF -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+pc : 0xffffffc080283dec
+lr : 0xffffffc080283dd0
+sp : ffffffc0802c3b30
+x29: ffffffc0802c3b30 x28: 00000000404610ac x27: 0000000000000000
+x26: ffffffc0802a7a48 x25: ffffffc08024a2de x24: 0000000000000000
+x23: 00000000ffffffff x22: 0000000000623000 x21: ffffffc080392260
+x20: ffffffc0802a7170 x19: 0000000054000000 x18: ffffffc0802c39a8
+x17: 0000000000000268 x16: 0000000040210000 x15: 0000001000000000
+x14: 0000000000000268 x13: 000000000000aa8c x12: 00000000c3fec570
+x11: 0000001000000000 x10: 0000000000009000 x9 : 0000000000000000
+x8 : ffffff800000a000 x7 : 0000000000000000 x6 : 000000000000003f
+x5 : 0000000000000040 x4 : 0000000000009000 x3 : 0000000000623000
+x2 : ffffffc0802b5e95 x1 : 0000000000000012 x0 : 000000004058b2b4
+Call trace:
+ 0xffffffc080283dec
+ 0xffffffc080284694
+ 0xffffffc080284a00
+ 0xffffffc080284c88
+ 0xffffffc08027f120
+ 0xffffffc080275ab4
+ 0xffffffc0802730bc
+ 0xffffffc080270690
+ 0xffffffc0802752d0
+Code: 7100483f 540000a1 f17ffedf 54000042 (d4210000) 
+---[ end trace 0000000000000000 ]---
+Kernel panic - not syncing: Oops - BUG: Fatal exception
+---[ end Kernel panic - not syncing: Oops - BUG: Fatal exception ]---
+qemu-system-aarch64: terminating on signal 15 from pid 634905 (timeout)

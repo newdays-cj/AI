@@ -1,0 +1,130 @@
+Image: /home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/v2-arm64/arch/arm64/boot/Image
+Command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1
+Guest memory: 3072 MiB; CPUs: 2; NUMA nodes: 1
+RAM reserve: on
+Booting Linux on physical CPU 0x0000000000 [0x000f0510]
+Linux version 6.6.0+ (chenjun@DESKTOP-QABRF7I) (aarch64-linux-gnu-gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, GNU ld (GNU Binutils for Ubuntu) 2.42) #3 SMP Mon Nov  9 10:58:29 CST 2026
+random: crng init done
+Machine model: linux,dummy-virt
+earlycon: pl11 at MMIO 0x0000000009000000 (options '')
+printk: bootconsole [pl11] enabled
+NUMA: No NUMA configuration found
+NUMA: Faking a node at [mem 0x0000000040000000-0x00000000ffffffff]
+NUMA: NODE_DATA [mem 0xfffebb40-0xfffecfff]
+cma: Reserved 16 MiB at 0x00000000fee00000 on node -1
+Zone ranges:
+  Normal   [mem 0x0000000040000000-0x00000000ffffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000040000000-0x00000000ffffffff]
+Initmem setup node 0 [mem 0x0000000040000000-0x00000000ffffffff]
+pre-HVO QA: fail metadata allocation 1
+HugeTLB: pre-HVO: 0 1GB pages, 0 vmemmap backing pages saved (0 bytes)
+psci: probing for conduit method from DT.
+psci: PSCIv1.1 detected in firmware.
+psci: Using standard PSCI v0.2 function IDs
+psci: Trusted OS migration not required
+psci: SMC Calling Convention v1.0
+percpu: Embedded 17 pages/cpu s37024 r0 d32608 u69632
+Detected PIPT I-cache on CPU0
+CPU features: detected: Spectre-v4
+CPU features: detected: Spectre-BHB
+CPU features: kernel page table isolation disabled by kernel configuration
+alternatives: applying boot alternatives
+Kernel command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1
+Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, linear)
+Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Fallback order for Node 0: 0 
+Built 1 zonelists, mobility grouping on.  Total pages: 774144
+Policy zone: Normal
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+software IO TLB: area num 2.
+software IO TLB: mapped [mem 0x00000000f7800000-0x00000000fb800000] (64MB)
+Memory: 127368K/3145728K available (2048K kernel code, 648K rwdata, 320K rodata, 320K init, 266K bss, 1175956K reserved, 16384K cma-reserved)
+SLUB: HWalign=64, Order=0-1, MinObjects=0, CPUs=2, Nodes=1
+rcu: Hierarchical RCU implementation.
+rcu: 	RCU restricting CPUs from NR_CPUS=256 to nr_cpu_ids=2.
+rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+Root IRQ handler: 0xffffffc080010000
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+arch_timer: cp15 timer(s) running at 62.50MHz (virt).
+clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+sched_clock: 57 bits at 63MHz, resolution 16ns, wraps every 4398046511096ns
+Console: colour dummy device 80x25
+Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=250000)
+pid_max: default: 4096 minimum: 301
+Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+Detected PIPT I-cache on CPU1
+CPU1: Booted secondary processor 0x0000000001 [0x000f0510]
+smp: Brought up 1 node, 2 CPUs
+SMP: Total of 2 processors activated.
+CPU features: detected: 32-bit EL0 Support
+CPU features: detected: ARMv8.4 Translation Table Level
+CPU features: detected: Data cache clean to the PoU not required for I/D coherence
+CPU features: detected: CRC32 instructions
+CPU features: detected: Data independent timing control (DIT)
+CPU features: detected: Enhanced Virtualization Traps
+CPU features: detected: Fine Grained Traps
+CPU features: detected: RCpc load-acquire (LDAPR)
+CPU features: detected: Memory Copy and Memory Set instructions
+CPU features: detected: Random Number Generator
+CPU features: detected: Speculation barrier (SB)
+CPU features: detected: Stage-2 Force Write-Back
+CPU features: detected: Trap EL0 IMPLEMENTATION DEFINED functionality
+CPU features: detected: TLB range maintenance instructions
+CPU features: detected: Speculative Store Bypassing Safe (SSBS)
+spectre-bhb mitigation disabled by compile time option
+spectre-bhb mitigation disabled by compile time option
+CPU: All CPU(s) started at EL1
+alternatives: applying system-wide alternatives
+node 0 deferred pages initialised in 24ms
+devtmpfs: initialized
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+futex hash table entries: 16 (order: 0, 1024 bytes, linear)
+DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+cpuidle: using governor ladder
+ASID allocator initialised with 65536 entries
+Serial: AMBA PL011 UART driver
+9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 13, base_baud = 0) is a PL011 rev1
+printk: console [ttyAMA0] enabled
+printk: console [ttyAMA0] enabled
+printk: bootconsole [pl11] disabled
+printk: bootconsole [pl11] disabled
+HugeTLB: registered 1.00 GiB page size, pre-allocated 1 pages
+HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+HugeTLB: 508 KiB vmemmap can be freed for a 32.0 MiB page
+HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+clocksource: Switched to clocksource arch_sys_counter
+workingset: timestamp_bits=58 max_order=20 bucket_order=0
+Unpacking initramfs...
+Freeing initrd memory: 752K
+Demotion targets for Node 0: null
+clk: Disabling unused clocks
+Freeing unused kernel memory: 320K
+Run /init as init process
+PRE_HVO: cmdline=console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=1 hugetlb_free_vmemmap=on pre_hvo.expected=1 pre_hvo.case=lifecycle pre_hvo.nodes=1
+
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages=1
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages=1
+PRE_HVO: pattern check across 1 GiB passed
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages=0
+PRE_HVO: head_flags=0x400029808 tail[1]=0x31910
+PRE_HVO: head_flags=0x400029808 tail[64]=0x400031808
+PRE_HVO: head_flags=0x400029808 tail[4096]=0x400031808
+PRE_HVO: head_flags=0x400029808 tail[262143]=0x31800
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages=1
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/nr_hugepages=0
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/free_hugepages=0
+PRE_HVO: /sys/kernel/mm/hugepages/hugepages-1048576kB/surplus_hugepages=0
+PRE_HVO: PASS lifecycle
+reboot: Power down

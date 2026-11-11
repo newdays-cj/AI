@@ -1,0 +1,4 @@
+Image: /home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/arm64/arch/arm64/boot/Image
+Command line: console=ttyAMA0 earlycon=pl011,0x9000000 rdinit=/init panic=-1 hugepagesz=1G hugepages=126 hugetlb_free_vmemmap=on pre_hvo.expected=126 pre_hvo.case=lifecycle pre_hvo.nodes=1
+Guest memory: 131072 MiB; CPUs: 2; NUMA nodes: 1
+qemu-system-aarch64: cannot set up guest memory 'mach-virt.ram': Cannot allocate memory

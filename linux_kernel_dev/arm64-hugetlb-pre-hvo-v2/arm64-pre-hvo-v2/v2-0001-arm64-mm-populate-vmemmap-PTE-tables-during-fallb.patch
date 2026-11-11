@@ -1,0 +1,31 @@
+From 61df41a5cf94c81aac0d64b8a05d0f089e3d8b51 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Wed, 4 Nov 2026 15:48:43 +0800
+Subject: [PATCH v2 1/8] arm64: mm: populate vmemmap PTE tables during fallback
+
+Only treat a PMD block as an already populated vmemmap range. An existing PTE table may still contain empty entries after an early allocation failure and must be completed by base-page population.
+
+Without this distinction, falling back from boot-time HugeTLB vmemmap preparation can leave an empty PTE and fault during struct page initialization.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ arch/arm64/mm/mmu.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/arm64/mm/mmu.c b/arch/arm64/mm/mmu.c
+index 6ffd7305ee80..edc877ba1b41 100644
+--- a/arch/arm64/mm/mmu.c
++++ b/arch/arm64/mm/mmu.c
+@@ -1636,6 +1636,8 @@ void __meminit vmemmap_set_pmd(pmd_t *pmdp, void *p, int node,
+ int __meminit vmemmap_check_pmd(pmd_t *pmdp, int node,
+ 				unsigned long addr, unsigned long next)
+ {
++	if (!pmd_sect(pmdp_get(pmdp)))
++		return 0;
+ 	vmemmap_verify((pte_t *)pmdp, node, addr, next);
+ 	return 1;
+ }
+-- 
+2.43.0
+

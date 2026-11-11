@@ -1,0 +1,25 @@
+WARNING: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#119: FILE: mm/hugetlb.c:3786:
++		BUG_ON(pgtable_bytes > boot_hugetlb_metadata_budget);
+
+WARNING: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#123: FILE: mm/hugetlb.c:3790:
++			BUG_ON(size > boot_hugetlb_metadata_budget);
+
+WARNING: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#151: FILE: mm/hugetlb.c:3816:
++	BUG_ON(memblock_phys_free(virt_to_phys(m), huge_page_size(h)));
+
+WARNING: Do not crash the kernel unless it is absolutely unavoidable--use WARN_ON_ONCE() plus recovery code (if feasible) instead of BUG() or variants
+#195: FILE: mm/hugetlb_vmemmap.c:502:
++	VM_BUG_ON(!static_branch_likely(&hugetlb_optimize_vmemmap_key));
+
+total: 0 errors, 4 warnings, 318 lines checked
+
+NOTE: For some of the reported defects, checkpatch may be able to
+      mechanically convert to the typical style using --fix or --fix-inplace.
+
+Your patch has style problems, please review.
+
+NOTE: If any of the errors are false positives, please report
+      them to the maintainer, see CHECKPATCH in MAINTAINERS.

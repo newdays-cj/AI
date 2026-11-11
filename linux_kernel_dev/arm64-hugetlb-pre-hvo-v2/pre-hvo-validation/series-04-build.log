@@ -1,0 +1,88 @@
+make: Entering directory '/tmp/opencode/pre-hvo-series-verify'
+make[1]: Entering directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/series-arm64'
+  SYNC    include/config/auto.conf.cmd
+  GEN     Makefile
+  GEN     Makefile
+  CALL    /tmp/opencode/pre-hvo-series-verify/scripts/checksyscalls.sh
+  CC      arch/arm64/kernel/smp.o
+  CC      kernel/fork.o
+  CC      mm/filemap.o
+  CC      fs/binfmt_elf.o
+In file included from /tmp/opencode/pre-hvo-series-verify/kernel/fork.c:102:
+/tmp/opencode/pre-hvo-series-verify/include/linux/iommu.h:2045:40: warning: ‘struct iommu_plb_gather’ declared inside parameter list will not be visible outside of this definition or declaration
+ 2045 |                                 struct iommu_plb_gather *plb_gather) {}
+      |                                        ^~~~~~~~~~~~~~~~
+  AR      arch/arm64/kernel/built-in.a
+  CC      arch/arm64/mm/fault.o
+  CC      fs/proc/task_mmu.o
+  CC      kernel/sysctl.o
+  CC      mm/folio-compat.o
+  CC      arch/arm64/mm/init.o
+  CC      fs/proc/array.o
+  CC      mm/readahead.o
+  CC      arch/arm64/mm/hugetlbpage.o
+  CC      kernel/kexec_core.o
+  CC      fs/proc/meminfo.o
+  CC      mm/swap.o
+  AR      arch/arm64/mm/built-in.a
+  AR      arch/arm64/built-in.a
+  CC      mm/vmscan.o
+  CC      fs/proc/page.o
+  AR      kernel/built-in.a
+  CC      security/commoncap.o
+  AR      fs/proc/built-in.a
+  CC      mm/shmem.o
+  CC      fs/hugetlbfs/inode.o
+  AR      security/built-in.a
+  CC      mm/util.o
+  CC      drivers/base/node.o
+  CC      mm/mm_init.o
+  AR      fs/hugetlbfs/built-in.a
+  AR      fs/built-in.a
+  CC      mm/compaction.o
+  CC      mm/show_mem.o
+  AR      drivers/base/built-in.a
+  CC      mm/debug.o
+  CC      mm/gup.o
+  AR      drivers/built-in.a
+  CC      mm/memory.o
+  CC      mm/mincore.o
+  CC      mm/mlock.o
+/tmp/opencode/pre-hvo-series-verify/mm/memory.c: In function ‘__access_remote_vm’:
+/tmp/opencode/pre-hvo-series-verify/mm/memory.c:6674:37: warning: assignment to ‘int’ from ‘void *’ makes integer from pointer without a cast [-Wint-conversion]
+ 6674 |                                 ret = copy_mc_from_user_page(vma, page, addr,
+      |                                     ^
+  CC      mm/mmap.o
+  CC      mm/mprotect.o
+  CC      mm/mremap.o
+  CC      mm/page_vma_mapped.o
+  CC      mm/pagewalk.o
+  CC      mm/pgtable-generic.o
+  CC      mm/rmap.o
+  CC      mm/vmalloc.o
+  CC      mm/page_alloc.o
+  CC      mm/hugetlb.o
+  CC      mm/hugetlb_vmemmap.o
+  CC      mm/mempolicy.o
+  CC      mm/sparse.o
+  CC      mm/sparse-vmemmap.o
+  CC      mm/migrate.o
+  CC      mm/huge_memory.o
+  CC      mm/khugepaged.o
+  CC      mm/page_isolation.o
+  CC      mm/memfd.o
+  AR      mm/built-in.a
+  AR      built-in.a
+  AR      vmlinux.a
+  LD      vmlinux.o
+  OBJCOPY modules.builtin.modinfo
+  GEN     modules.builtin
+  MODPOST vmlinux.symvers
+  UPD     include/generated/utsversion.h
+  CC      init/version-timestamp.o
+  LD      vmlinux
+  NM      System.map
+  SORTTAB vmlinux
+  OBJCOPY arch/arm64/boot/Image
+make[1]: Leaving directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/series-arm64'
+make: Leaving directory '/tmp/opencode/pre-hvo-series-verify'

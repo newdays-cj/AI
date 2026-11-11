@@ -1,0 +1,416 @@
+From 94b8f6cbd9250478f62d47d322e0659d0e2c62fb Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Mon, 9 Nov 2026 12:22:13 +0800
+Subject: [PATCH v2 8/8] mm/hugetlb: retire boot metadata budget as pages are
+ prepared
+
+Prepare each candidate mapping before publishing its reservation. Retire backing credit only on success and account for physically allocated page tables on both success and failure. Require ordinary fallbacks to fit the remaining metadata and normal-memory reserves, otherwise withdraw the unpublished candidate.
+
+Prefer metadata fragments while preserving mirrored-memory allocation policy. Treat an exhausted prospective budget as a short allocation. Document the high-occupancy and oversized-request regressions.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ Documentation/admin-guide/mm/hugetlbpage.rst | 52 +++++++++--
+ mm/hugetlb.c                                 | 85 +++++++++++++----
+ mm/hugetlb_vmemmap.h                         |  2 +-
+ mm/sparse-vmemmap.c                          | 96 +++++++++++++++++---
+ 4 files changed, 196 insertions(+), 39 deletions(-)
+
+diff --git a/Documentation/admin-guide/mm/hugetlbpage.rst b/Documentation/admin-guide/mm/hugetlbpage.rst
+index 6ffb804ed128..5b954542e65e 100644
+--- a/Documentation/admin-guide/mm/hugetlbpage.rst
++++ b/Documentation/admin-guide/mm/hugetlbpage.rst
+@@ -496,12 +496,17 @@ If no suitable range exists, the actual pool may be smaller than requested;
+ a cross-zone range is not added to the pool.
+ 
+ Only the required vmemmap backing is allocated for an optimized page; the
+-remaining descriptors share it. The path reserves a conservative budget for
+-subsequent ordinary metadata and page tables, including when optimization
+-must fall back. ``hugepage_prohibit_sz=`` continues to protect the requested
+-ordinary-memory reserve. Tail mappings become read-only after descriptor
+-initialization, and shrinking or demoting the pool uses the existing
+-vmemmap restoration path.
++remaining descriptors share it. The path initially budgets for ordinary
++metadata and page tables, then prepares each candidate's shared mappings
++before publishing the reservation. A successful preparation retires that
++candidate's backing requirement and the tables already physically allocated
++from the future budget. Failed preparation earns no backing saving: the
++candidate remains ordinary only if its full metadata budget and the
++``hugepage_prohibit_sz=`` reserve still fit; otherwise its reservation is
++withdrawn. The ordinary-memory reserve is not spent as optimization credit.
++Tail mappings become read-only after descriptor initialization, with the
++per-page HVO protection already active. Shrinking or demoting the pool uses
++the existing vmemmap restoration path.
+ 
+ An early diagnostic reports how many pages were optimized and how much
+ redundant vmemmap backing was not allocated. The reported saving excludes
+@@ -558,6 +563,10 @@ Run one VM at a time, with at least 3 GiB available to QEMU::
+     NODES=2 MEMORY=6144 EXPECTED_POOL=2 REQUESTED_POOL=0:1,1:1 \
+         sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
+         "$OUT/usr/gen_init_cpio" numa.log
++    MEMORY=2112 REQUESTED_POOL=2 EXPECTED_POOL=1 \
++        EXTRA_CMDLINE='cma=0 memmap=exactmap,256M@0x40000000,1G@0x80000000,64M@0xc0000000' \
++        sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" oversized-request.log
+ 
+ Each invocation compiles ``init.c`` with ``-static -Wall -Wextra -Werror``,
+ creates an uncompressed initramfs using ``mktemp`` and ``gen_init_cpio``,
+@@ -584,6 +593,37 @@ guest kernel. The guest checks that both node pool counters are available
+ and that their sum equals the expected global count. Arbitrary QEMU
+ arguments are not exposed.
+ 
++``RAM_RESERVE=on|off`` controls the QEMU RAM backend's virtual memory
++reservation and defaults to ``on``, preserving the existing behavior.
++``off`` uses an explicit ``memory-backend-ram`` object for a single node;
++with two nodes the setting applies to both backend objects. This permits
++a large guest address space on a host whose commit limit would otherwise
++reject it. It does not provide 128 GiB of resident host RAM: pages actually
++touched by the guest still consume host memory. Run one VM at a time and
++allow for the guest's resident working set.
++
++For the high-RAM pool regression, use a kernel with deferred struct-page
++initialization and boot-time vmemmap optimization enabled, and disable CMA
++for this isolated case::
++
++    RAM_RESERVE=off MEMORY=131072 EXPECTED_POOL=126 EXTRA_CMDLINE='cma=0' \
++        sh "$testdir/run.sh" "$OUT/arch/arm64/boot/Image" \
++        "$OUT/usr/gen_init_cpio" high-pool.log
++
++This requests and expects 126 1 GiB pages in a 128 GiB guest virtual memory
++configuration. The known baseline at ``dc55ffbf8c05`` allocates only 125
++pages and fails the initial pool assertion. Keep the expected count at 126
++and retain all lifecycle checks when comparing a candidate: honoring the
++pool request without usable mappings or correct release is not a pass.
++This recipe does not measure whole-system peak memory use.
++
++The oversized-request recipe uses the existing ``memmap=`` controls to
++provide a small kernel bank, one aligned 1 GiB bank, and a small metadata
++bank. Only one huge page can be reserved. Requesting two must report the
++short allocation and complete the one-page lifecycle without a kernel BUG;
++the prospective metadata credit is not evidence that another candidate
++exists.
++
+ ``EXPECTED_POOL`` defaults to 1 and sets the guest's expected count.
+ ``REQUESTED_POOL`` defaults to that count and sets the boot request; it also
+ accepts the kernel's node-specific count syntax. Separate counts allow tests
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+index 92c921c4a1bc..2fe9d7e3bb49 100644
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -89,6 +89,7 @@ static bool __initdata parsed_valid_hugepagesz = true;
+ static bool __initdata parsed_default_hugepagesz;
+ static unsigned int default_hugepages_in_node[MAX_NUMNODES] __initdata;
+ static bool boot_hugetlb_params_done __initdata;
++/* Vmemmap backing and page tables that still need physical allocation. */
+ static unsigned long boot_hugetlb_metadata_budget __initdata;
+ 
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
+@@ -159,7 +160,7 @@ bool __init hugetlb_bootmem_pre_hvo_enabled(void)
+ 	return boot_pre_hvo;
+ }
+ 
+-/* Called only for MEMINIT_EARLY, including when memory hotplug is built. */
++/* Called only after reservation replay, while the boot list is stable. */
+ unsigned long __ref hugetlb_bootmem_pre_hvo_skip(unsigned long pfn)
+ {
+ 	static unsigned long cached_start __initdata = ULONG_MAX;
+@@ -2349,7 +2350,8 @@ static int __init early_normal_page_reserve(char *p)
+ }
+ early_param("hugepage_prohibit_sz", early_normal_page_reserve);
+ 
+-static bool __ref huge_page_limit_check(int type, size_t hsize, int nid)
++static bool __ref huge_page_limit_check(int type, size_t hsize, int nid,
++				      unsigned long metadata_budget)
+ {
+ 	u64 mem_usable = 0;
+ 	char *str = NULL;
+@@ -2369,14 +2371,16 @@ static bool __ref huge_page_limit_check(int type, size_t hsize, int nid)
+ 
+ 	if (type == HUGE_PAGE_BOOTMEM_ALLOC) {
+ 		mem_usable = memblock_phys_mem_size() - memblock_reserved_size();
+-		mem_usable -= min_t(u64, mem_usable, boot_hugetlb_metadata_budget);
+ 		str = "memblock usable";
++		if (metadata_budget > mem_usable)
++			goto out;
++		mem_usable -= metadata_budget;
+ 	} else if (type == HUGE_PAGE_FRESH_ALLOC) {
+ 		mem_usable = nr_free_pages() << PAGE_SHIFT;
+ 		str = "free page";
+ 	}
+ 
+-	if (mem_usable < normal_page_reserve_sz + hsize)
++	if (hsize > mem_usable || normal_page_reserve_sz > mem_usable - hsize)
+ 		goto out;
+ 
+ 	return true;
+@@ -2406,7 +2410,7 @@ static struct folio *alloc_fresh_hugetlb_folio(struct hstate *h,
+ 
+ retry:
+ #ifdef CONFIG_HUGETLB_ALLOC_LIMIT
+-	if (!huge_page_limit_check(HUGE_PAGE_FRESH_ALLOC, huge_page_size(h), nid))
++	if (!huge_page_limit_check(HUGE_PAGE_FRESH_ALLOC, huge_page_size(h), nid, 0))
+ 		return NULL;
+ #endif
+ 
+@@ -3704,16 +3708,29 @@ int alloc_bootmem_huge_page(struct hstate *h, int nid)
+ int __alloc_bootmem_huge_page(struct hstate *h, int nid)
+ {
+ 	struct huge_bootmem_page *m = NULL; /* initialize for clang */
++	unsigned long metadata_budget = boot_hugetlb_metadata_budget;
++	u64 mem_usable = memblock_phys_mem_size() - memblock_reserved_size();
+ 	int nr_nodes, node;
+ 	int noinit __maybe_unused;
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++	if (boot_pre_hvo_reserving && huge_page_size(h) == SZ_1G) {
++		unsigned long saved = hugetlb_vmemmap_optimizable_size(h);
++
++		/* Prospective credit only; commit it after mapping succeeds. */
++		if (saved > metadata_budget)
++			return 0;
++		metadata_budget -= saved;
++	}
++#endif
+ 	if (boot_hugetlb_metadata_budget &&
+-	    memblock_phys_mem_size() - memblock_reserved_size() <
+-	    boot_hugetlb_metadata_budget + huge_page_size(h))
++	    (metadata_budget > mem_usable ||
++	     huge_page_size(h) > mem_usable - metadata_budget))
+ 		return 0;
+ 
+ #ifdef CONFIG_HUGETLB_ALLOC_LIMIT
+-	if (!huge_page_limit_check(HUGE_PAGE_BOOTMEM_ALLOC, huge_page_size(h), nid))
++	if (!huge_page_limit_check(HUGE_PAGE_BOOTMEM_ALLOC, huge_page_size(h),
++				   nid, metadata_budget))
+ 		return 0;
+ #endif
+ 
+@@ -3741,6 +3758,10 @@ int __alloc_bootmem_huge_page(struct hstate *h, int nid)
+ 	}
+ 
+ found:
++	m->hstate = h;
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++	m->pre_hvo = false;
++#endif
+ 
+ 	/*
+ 	 * Only initialize the head struct page in memmap_init_reserved_pages,
+@@ -3751,14 +3772,50 @@ int __alloc_bootmem_huge_page(struct hstate *h, int nid)
+ 	 */
+ 	noinit = memblock_reserved_mark_noinit(virt_to_phys((void *)m + PAGE_SIZE),
+ 		huge_page_size(h) - PAGE_SIZE);
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++	if (!noinit && boot_pre_hvo_candidate(m)) {
++		unsigned long pfn = PHYS_PFN(virt_to_phys(m));
++		unsigned long start = (unsigned long)pfn_to_page(pfn);
++		unsigned long size = hugetlb_vmemmap_size(h);
++		unsigned long pgtable_bytes;
++		int ret;
++
++		ret = vmemmap_populate_hugetlb(start, start + size,
++					      early_pfn_to_nid(pfn), &pgtable_bytes);
++		/* Even on failure, newly installed empty tables remain reserved. */
++		BUG_ON(pgtable_bytes > boot_hugetlb_metadata_budget);
++		boot_hugetlb_metadata_budget -= pgtable_bytes;
++		if (!ret) {
++			/* The retained head is already reserved: retire all backing. */
++			BUG_ON(size > boot_hugetlb_metadata_budget);
++			boot_hugetlb_metadata_budget -= size;
++			m->pre_hvo = true;
++		}
++	}
++	if (boot_pre_hvo_reserving && !m->pre_hvo) {
++		/* An ordinary fallback must fit without prospective HVO credit. */
++		metadata_budget = boot_hugetlb_metadata_budget;
++		mem_usable = memblock_phys_mem_size() - memblock_reserved_size();
++		if (metadata_budget > mem_usable)
++			goto free;
++#ifdef CONFIG_HUGETLB_ALLOC_LIMIT
++		if (!huge_page_limit_check(HUGE_PAGE_BOOTMEM_ALLOC, 0, nid,
++					   metadata_budget))
++			goto free;
++#endif
++	}
++#endif
+ 	/* Put them into a private list first because mem_map is not up yet */
+ 	INIT_LIST_HEAD(&m->list);
+ 	list_add(&m->list, &huge_boot_pages);
+-	m->hstate = h;
++	return 1;
++
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
+-	m->pre_hvo = !noinit && boot_pre_hvo_candidate(m);
++free:
++	/* Removing the whole reservation also removes its noinit attribute. */
++	BUG_ON(memblock_phys_free(virt_to_phys(m), huge_page_size(h)));
++	return 0;
+ #endif
+-	return 1;
+ }
+ 
+ /* Initialize [start_page:end_page_number] tail struct pages of a hugepage */
+@@ -5254,16 +5311,10 @@ void __init hugetlb_bootmem_pre_hvo_prepare(void)
+ 	boot_hugetlb_metadata_budget = 0;
+ 
+ 	list_for_each_entry(m, &huge_boot_pages, list) {
+-		unsigned long start = (unsigned long)pfn_to_page(PHYS_PFN(virt_to_phys(m)));
+ 		unsigned long size = hugetlb_vmemmap_size(m->hstate);
+ 
+ 		if (!m->pre_hvo)
+ 			continue;
+-		if (vmemmap_populate_hugetlb(start, start + size,
+-					    early_pfn_to_nid(PHYS_PFN(virt_to_phys(m))))) {
+-			m->pre_hvo = false;
+-			continue;
+-		}
+ 		nr++;
+ 		saved += size - HUGETLB_VMEMMAP_RESERVE_SIZE;
+ 	}
+diff --git a/mm/hugetlb_vmemmap.h b/mm/hugetlb_vmemmap.h
+index 7180eb5ec6da..a407c6af3672 100644
+--- a/mm/hugetlb_vmemmap.h
++++ b/mm/hugetlb_vmemmap.h
+@@ -21,7 +21,7 @@
+ bool __init hugetlb_vmemmap_boot_enabled(void);
+ void __init hugetlb_vmemmap_boot_finish(struct hstate *h, struct page *head);
+ int __init vmemmap_populate_hugetlb(unsigned long start, unsigned long end,
+-				  int nid);
++				  int nid, unsigned long *pgtable_bytes);
+ unsigned long __init sparse_boot_memmap_size(void);
+ void __init sparse_boot_memmap_populate(void);
+ #endif
+diff --git a/mm/sparse-vmemmap.c b/mm/sparse-vmemmap.c
+index 50e522ac183a..c4762b8a640d 100644
+--- a/mm/sparse-vmemmap.c
++++ b/mm/sparse-vmemmap.c
+@@ -28,6 +28,7 @@
+ #include <linux/vmalloc.h>
+ #include <linux/sched.h>
+ #include <linux/pgalloc.h>
++#include <linux/sizes.h>
+ 
+ #include <asm/dma.h>
+ 
+@@ -303,37 +304,102 @@ int __meminit vmemmap_populate_basepages(unsigned long start, unsigned long end,
+ }
+ 
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++/* Prefer fragments without bypassing the normal mirrored-memory preference. */
++static void * __init vmemmap_alloc_hugetlb(int nid)
++{
++	enum memblock_flags flags = memblock_has_mirror() ? MEMBLOCK_MIRROR :
++		MEMBLOCK_NONE;
++	phys_addr_t start, end, addr;
++	int node = nid;
++	void *p;
++	u64 i;
++
++retry:
++	for_each_free_mem_range(i, node, flags, &start, &end, NULL) {
++		start = ALIGN(max_t(phys_addr_t, start, PAGE_SIZE), PAGE_SIZE);
++		end = round_down(min(end, memblock_get_current_limit()), PAGE_SIZE);
++		if (end <= start)
++			continue;
++		if (!IS_ALIGNED(start, SZ_1G))
++			addr = start;
++		else if (!IS_ALIGNED(end, SZ_1G))
++			addr = round_down(end, SZ_1G);
++		else
++			continue;
++
++		addr = memblock_alloc_range_nid(PAGE_SIZE, PAGE_SIZE,
++				addr, addr + PAGE_SIZE, node, true);
++		if (!addr)
++			return NULL;
++		p = phys_to_virt(addr);
++		memset(p, 0, PAGE_SIZE);
++		return p;
++	}
++	if (node != NUMA_NO_NODE) {
++		node = NUMA_NO_NODE;
++		goto retry;
++	}
++	/* Ordinary allocation exhausts mirrored memory before its fallback. */
++	return vmemmap_alloc_block_zero(PAGE_SIZE, nid);
++}
++
+ int __init vmemmap_populate_hugetlb(unsigned long start, unsigned long end,
+-				  int nid)
++				  int nid, unsigned long *pgtable_bytes)
+ {
+ 	unsigned long addr, pfn;
+ 	void *backing;
+ 
+-	backing = vmemmap_alloc_block(PAGE_SIZE, nid);
++	*pgtable_bytes = 0;
++	backing = vmemmap_alloc_hugetlb(nid);
+ 	if (!backing)
+ 		return -ENOMEM;
+ 	pfn = PHYS_PFN(__pa(backing));
+ 
+ 	/* No aliases may be installed until every fallible allocation is done. */
+ 	for (addr = start; addr < end; addr += PAGE_SIZE) {
+-		pgd_t *pgd = vmemmap_pgd_populate(addr, nid);
++		pgd_t *pgd = pgd_offset_k(addr);
+ 		p4d_t *p4d;
+ 		pud_t *pud;
+ 		pmd_t *pmd;
++		void *p;
+ 
+-		if (!pgd)
+-			goto failed;
+-		p4d = vmemmap_p4d_populate(pgd, addr, nid);
+-		if (!p4d)
+-			goto failed;
+-		pud = vmemmap_pud_populate(p4d, addr, nid);
+-		if (!pud)
+-			goto failed;
+-		if (pmd_leaf(*pmd_offset(pud, addr)))
++		/* Folded levels never have a missing entry and allocate nothing. */
++		if (pgd_none(*pgd)) {
++			p = vmemmap_alloc_hugetlb(nid);
++			if (!p)
++				goto failed;
++			*pgtable_bytes += PAGE_SIZE;
++			pgd_populate_kernel(addr, pgd, p);
++		}
++		p4d = p4d_offset(pgd, addr);
++		if (p4d_none(*p4d)) {
++			p = vmemmap_alloc_hugetlb(nid);
++			if (!p)
++				goto failed;
++			*pgtable_bytes += PAGE_SIZE;
++			pud_init(p);
++			p4d_populate_kernel(addr, p4d, p);
++		}
++		pud = pud_offset(p4d, addr);
++		if (pud_none(*pud)) {
++			p = vmemmap_alloc_hugetlb(nid);
++			if (!p)
++				goto failed;
++			*pgtable_bytes += PAGE_SIZE;
++			pmd_init(p);
++			pud_populate(&init_mm, pud, p);
++		}
++		pmd = pmd_offset(pud, addr);
++		if (pmd_leaf(*pmd))
+ 			panic("pre-HVO: vmemmap PMD already populated at %lx\n", addr);
+-		pmd = vmemmap_pmd_populate(pud, addr, nid);
+-		if (!pmd)
+-			goto failed;
++		if (pmd_none(*pmd)) {
++			p = vmemmap_alloc_hugetlb(nid);
++			if (!p)
++				goto failed;
++			*pgtable_bytes += PAGE_SIZE;
++			kernel_pte_init(p);
++			pmd_populate_kernel(&init_mm, pmd, p);
++		}
+ 		if (!pte_none(ptep_get(pte_offset_kernel(pmd, addr))))
+ 			panic("pre-HVO: vmemmap PTE already populated at %lx\n", addr);
+ 	}
+-- 
+2.43.0
+

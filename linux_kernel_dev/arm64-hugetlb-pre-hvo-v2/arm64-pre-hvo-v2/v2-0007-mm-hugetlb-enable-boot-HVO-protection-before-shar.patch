@@ -1,0 +1,53 @@
+From 9781eabc5e19223f02291354e748ff0d6488dcc7 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Mon, 9 Nov 2026 12:21:49 +0800
+Subject: [PATCH v2 7/8] mm/hugetlb: enable boot HVO protection before shared
+ descriptors
+
+Count each optimized boot page before initializing shared fake-head descriptors and before updating their mappings through arm64 BBM. Assert the static-key precondition in the boot completion helper and retain the existing successful-restore decrement.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+Co-authored-by: sisyphus-dev-ai <sisyphus-dev-ai@users.noreply.github.com>
+---
+ mm/hugetlb.c         | 5 +++++
+ mm/hugetlb_vmemmap.c | 2 +-
+ 2 files changed, 6 insertions(+), 1 deletion(-)
+
+diff --git a/mm/hugetlb.c b/mm/hugetlb.c
+index 9ad113a64edf..92c921c4a1bc 100644
+--- a/mm/hugetlb.c
++++ b/mm/hugetlb.c
+@@ -3814,6 +3814,11 @@ static void __init gather_bootmem_prealloc(void)
+ 		VM_BUG_ON(!hstate_is_gigantic(h));
+ 		WARN_ON(folio_ref_count(folio) != 1);
+ 
++#ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
++		/* Shared fake heads must be recognized as soon as they are initialized. */
++		if (m->pre_hvo)
++			static_branch_inc(&hugetlb_optimize_vmemmap_key);
++#endif
+ 		hugetlb_folio_init_vmemmap(folio, h,
+ 					   HUGETLB_VMEMMAP_RESERVE_PAGES);
+ #ifdef CONFIG_HUGETLB_PAGE_OPTIMIZE_VMEMMAP_BOOT
+diff --git a/mm/hugetlb_vmemmap.c b/mm/hugetlb_vmemmap.c
+index fc55c099818f..28134cef9b5e 100644
+--- a/mm/hugetlb_vmemmap.c
++++ b/mm/hugetlb_vmemmap.c
+@@ -499,13 +499,13 @@ void __init hugetlb_vmemmap_boot_finish(struct hstate *h, struct page *head)
+ 	unsigned long start = (unsigned long)head;
+ 	unsigned long addr, end = start + hugetlb_vmemmap_size(h);
+ 
++	VM_BUG_ON(!static_branch_likely(&hugetlb_optimize_vmemmap_key));
+ 	/* All retained descriptors are initialized before aliases become RO. */
+ 	for (addr = start + PAGE_SIZE; addr < end; addr += PAGE_SIZE) {
+ 		pte_t *pte = pte_offset_kernel(pmd_off_k(addr), addr);
+ 
+ 		vmemmap_update_pte(addr, pte, pte_wrprotect(ptep_get(pte)));
+ 	}
+-	static_branch_inc(&hugetlb_optimize_vmemmap_key);
+ 	SetHPageVmemmapOptimized(head);
+ }
+ #endif
+-- 
+2.43.0
+

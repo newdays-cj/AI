@@ -1,0 +1,78 @@
+From 94b8f6cbd9250478f62d47d322e0659d0e2c62fb Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Mon, 9 Nov 2026 12:22:22 +0800
+Subject: [PATCH v2 0/8] arm64 boot-time HugeTLB vmemmap optimization
+
+Prepare shared vmemmap backing while reserving boot-configured arm64
+gigantic HugeTLB pages, before ordinary struct-page population. The scope
+is 4 KiB base pages and 1 GiB boot pages, using the existing
+hugetlb_free_vmemmap=on control. Active HugeTLB CMA and PREEMPT_RT retain
+their existing paths.
+
+This local OLK adaptation uses deferred backing population and candidate
+mapping preparation. It is not a direct backport of the community series.
+It reuses the vendor arm64 BBM/fault-repair foundation rather than replacing
+it with the newer mailing-list AF proposal.
+
+Changes since the five-patch local v1:
+
+- Enable per-page HVO protection before shared descriptor initialization
+  and the first BBM update, retaining successful-restore key accounting.
+- Retire backing and actual allocated page-table cost as candidates are
+  prepared, rather than retaining a full ordinary metadata budget.
+- Grant no backing credit on preparation failure; require ordinary
+  fallback to fit or withdraw the entire unpublished reservation.
+- Treat prospective-budget exhaustion as a short allocation, not a BUG.
+- Prefer metadata fragments without bypassing mirrored-memory preference.
+- Support high-address-space QEMU tests through RAM_RESERVE=on|off,
+  preserving the default and the exact pool/lifecycle assertions.
+
+The original five local commits are preserved, followed by three review
+fixes. Apply all eight numbered patches on the stated base.
+
+Validation includes arm64 39-bit and 48-bit VA builds, x86_64 SMP HVO with
+boot optimization compiled out, and QEMU lifecycle, NUMA, demotion, HVO-off,
+reservation and failure-path tests. The 128 GiB guest now provides the
+requested 126-page pool, versus 125 on v1, and shrinks the full pool after
+checking a mapped 1 GiB page. Sparse-RAM oversized requests and synthetic
+mirrored-memory selection have failing-old/passing-new evidence. All
+scratch injections were removed from the delivered source.
+
+These results do not measure whole-system peak memory or validate physical
+arm64 mirroring/BBM races. Four deliberate accounting/release/debug BUG
+warnings remain in checkpatch; there are zero checkpatch errors for the
+review-fix kernel diff. The final independent review approved that diff.
+
+Chen Jun (8):
+  arm64: mm: populate vmemmap PTE tables during fallback
+  mm/sparse: prepare shared HugeTLB vmemmap backing atomically
+  mm/hugetlb: complete vmemmap optimization for boot pages
+  mm/hugetlb: pre-optimize arm64 boot gigantic pages
+  docs: document arm64 boot-time HugeTLB vmemmap optimization
+  selftests/mm: allow unreserved RAM for pre-HVO capacity tests
+  mm/hugetlb: enable boot HVO protection before shared descriptors
+  mm/hugetlb: retire boot metadata budget as pages are prepared
+
+ Documentation/admin-guide/mm/hugetlbpage.rst  | 193 ++++++++++
+ arch/arm64/mm/init.c                          |  24 +-
+ arch/arm64/mm/mmu.c                           |   2 +
+ fs/Kconfig                                    |   9 +
+ include/linux/hugetlb.h                       |  18 +
+ mm/hugetlb.c                                  | 340 +++++++++++++++++-
+ mm/hugetlb_vmemmap.c                          |  30 ++
+ mm/hugetlb_vmemmap.h                          |   9 +
+ mm/mm_init.c                                  |  11 +
+ mm/sparse-vmemmap.c                           | 118 ++++++
+ mm/sparse.c                                   |  51 ++-
+ .../mm/hugetlb-pre-hvo/config.fragment        |  27 ++
+ .../selftests/mm/hugetlb-pre-hvo/init.c       | 228 ++++++++++++
+ .../selftests/mm/hugetlb-pre-hvo/run.sh       | 100 ++++++
+ 14 files changed, 1148 insertions(+), 12 deletions(-)
+ create mode 100644 tools/testing/selftests/mm/hugetlb-pre-hvo/config.fragment
+ create mode 100644 tools/testing/selftests/mm/hugetlb-pre-hvo/init.c
+ create mode 100644 tools/testing/selftests/mm/hugetlb-pre-hvo/run.sh
+
+
+base-commit: 46cc79517493c0a1528fb39b566790c73366ec64
+-- 
+2.43.0

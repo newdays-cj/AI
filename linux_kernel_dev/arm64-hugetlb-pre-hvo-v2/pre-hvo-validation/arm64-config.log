@@ -1,0 +1,56 @@
+make[1]: Entering directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/arm64'
+  GEN     Makefile
+  HOSTCC  scripts/basic/fixdep
+  GEN     Makefile
+  HOSTCC  scripts/kconfig/conf.o
+  HOSTCC  scripts/kconfig/confdata.o
+  HOSTCC  scripts/kconfig/expr.o
+  LEX     scripts/kconfig/lexer.lex.c
+  YACC    scripts/kconfig/parser.tab.[ch]
+  HOSTCC  scripts/kconfig/lexer.lex.o
+  HOSTCC  scripts/kconfig/menu.o
+  HOSTCC  scripts/kconfig/parser.tab.o
+  HOSTCC  scripts/kconfig/preprocess.o
+  HOSTCC  scripts/kconfig/symbol.o
+  HOSTCC  scripts/kconfig/util.o
+  HOSTLD  scripts/kconfig/conf
+
+WARNING: unmet direct dependencies detected for HALTPOLL_CPUIDLE
+  Depends on [n]: CPU_IDLE [=n] && ARCH_CPUIDLE_HALTPOLL [=y] && ARCH_HAS_OPTIMIZED_POLL [=y]
+  Selected by [y]:
+  - ARM64 [=y]
+#
+# configuration written to .config
+#
+  GEN     Makefile
+Using .config as base
+Merging /tmp/opencode/pre-hvo-final-src/kernel/configs/tiny.config
+Value of CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE is redefined by fragment /tmp/opencode/pre-hvo-final-src/kernel/configs/tiny.config:
+Previous value: CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE=y
+New value: # CONFIG_CC_OPTIMIZE_FOR_PERFORMANCE is not set
+
+Value of CONFIG_CC_OPTIMIZE_FOR_SIZE is redefined by fragment /tmp/opencode/pre-hvo-final-src/kernel/configs/tiny.config:
+Previous value: # CONFIG_CC_OPTIMIZE_FOR_SIZE is not set
+New value: CONFIG_CC_OPTIMIZE_FOR_SIZE=y
+
+Value of CONFIG_OPTIMIZE_INLINING is redefined by fragment /tmp/opencode/pre-hvo-final-src/kernel/configs/tiny.config:
+Previous value: # CONFIG_OPTIMIZE_INLINING is not set
+New value: CONFIG_OPTIMIZE_INLINING=y
+
+Value of CONFIG_SLUB_TINY is redefined by fragment /tmp/opencode/pre-hvo-final-src/kernel/configs/tiny.config:
+Previous value: # CONFIG_SLUB_TINY is not set
+New value: CONFIG_SLUB_TINY=y
+
+#
+# merged configuration written to .config (needs make)
+#
+  GEN     Makefile
+
+WARNING: unmet direct dependencies detected for HALTPOLL_CPUIDLE
+  Depends on [n]: CPU_IDLE [=n] && ARCH_CPUIDLE_HALTPOLL [=y] && ARCH_HAS_OPTIMIZED_POLL [=y]
+  Selected by [y]:
+  - ARM64 [=y]
+#
+# configuration written to .config
+#
+make[1]: Leaving directory '/home/chenjun/Git/OLK-6.6-sp/.omo/pre-hvo-validation/arm64'
