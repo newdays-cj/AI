@@ -408,7 +408,14 @@ fi
     echo "export NO_PROXY=\"localhost,127.0.0.1,::1\""
     echo "export no_proxy=\"\$NO_PROXY\""
     if [ "$USE_SYSTEMD" = "0" ] && command -v pgrep >/dev/null 2>&1; then
-        echo "pgrep -f \"python3 .*gpt-proxy-router.py\" >/dev/null 2>&1 || nohup python3 \"\$HOME/.local/bin/gpt-proxy-router.py\" >> \"\$HOME/.cache/gpt-proxy-router.log\" 2>&1 &"
+        # 在子 shell 内后台启动, 避免交互式 shell 输出作业编号和 Done 通知。
+        cat <<'AUTOSTART'
+(
+    if ! pgrep -f 'python3 .*gpt-proxy-router\.py' >/dev/null 2>&1; then
+        nohup python3 "$HOME/.local/bin/gpt-proxy-router.py" </dev/null >> "$HOME/.cache/gpt-proxy-router.log" 2>&1 &
+    fi
+) >/dev/null 2>&1
+AUTOSTART
     fi
     echo "$MARK_END"
 } >> "$BASHRC"

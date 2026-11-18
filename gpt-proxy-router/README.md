@@ -97,6 +97,20 @@ journalctl --user -u gpt-proxy-router -f
 4. **返回 401** — 网络已通，需配置认证：API Key（`Authorization: Bearer sk-...`）
    或 OAuth 登录（opencode 用 `opencode auth login`）
 5. **上游代理随机失败** — 检查代理服务商是否限速/限制并发；本方案已按 curl 行为优化握手
+6. **每次登录打印 `pgrep -f "python3 .*gpt-proxy-router.py" ...`** — 旧版 nohup
+   降级自启命令末尾的 `&` 会将整条 `pgrep ... || nohup ...` 放到后台，即使代理已运行，
+   Bash 仍会显示 `[1] ...` / `[1]+ Done ...` 作业通知。命令的输出重定向无法屏蔽
+   shell 自己的通知。新版改为在子 shell 中检查进程并按需后台启动，避免登录时打印。
+   执行 `bash deploy-gpt-proxy.sh` 可更新现有 `.bashrc` 配置；也可只将其中代理标记块内的
+   旧自启命令替换为以下内容，然后重开终端：
+
+   ```bash
+   (
+       if ! pgrep -f 'python3 .*gpt-proxy-router\.py' >/dev/null 2>&1; then
+           nohup python3 "$HOME/.local/bin/gpt-proxy-router.py" </dev/null >> "$HOME/.cache/gpt-proxy-router.log" 2>&1 &
+       fi
+   ) >/dev/null 2>&1
+   ```
 
 ## 8. 配置修改指南
 
