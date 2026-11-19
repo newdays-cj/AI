@@ -1,0 +1,26 @@
+From 33eea22f74accb57c3c91ec62d3b58b160206798 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Thu, 19 Nov 2026 19:22:37 +0800
+Subject: [PATCH 2/2] iommu: Remove unnecessary IOPF latency tracepoint export
+
+The IOPF latency tracepoint is used within the built-in IOMMU core and
+does not require an exported symbol. Keep the event definition and trace
+calls while removing its GPL symbol export.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+---
+ drivers/iommu/iommu-traces.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/iommu/iommu-traces.c b/drivers/iommu/iommu-traces.c
+index ce2ab3277b5f..23416bf76df9 100644
+--- a/drivers/iommu/iommu-traces.c
++++ b/drivers/iommu/iommu-traces.c
+@@ -25,4 +25,3 @@ EXPORT_TRACEPOINT_SYMBOL_GPL(unmap);
+ 
+ /* iommu_error */
+ EXPORT_TRACEPOINT_SYMBOL_GPL(io_page_fault);
+-EXPORT_TRACEPOINT_SYMBOL_GPL(iopf_latency);
+-- 
+2.43.0
+
