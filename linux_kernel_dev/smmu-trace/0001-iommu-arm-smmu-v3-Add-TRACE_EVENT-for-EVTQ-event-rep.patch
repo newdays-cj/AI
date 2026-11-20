@@ -1,0 +1,139 @@
+From e5c5368dc5692b1ae6464d3207f0cf5be7cac7e5 Mon Sep 17 00:00:00 2001
+From: Chen Jun <newdays-cj@live.com>
+Date: Mon, 1 Jun 2026 22:58:02 +0800
+Subject: [PATCH] iommu/arm-smmu-v3: Add TRACE_EVENT for EVTQ event reporting
+
+Add a tracepoint 'smmu_evtq_event' in arm_smmu_evtq_thread() to allow
+users to collect raw SMMUv3 event queue (EVTQ) entries via tracefs/perf.
+The tracepoint records all four u64 dwords from each EVTQ entry without
+any decoding, keeping overhead minimal.
+
+The tracepoint is placed after queue_remove_raw() completes and before
+arm_smmu_handle_evt(), ensuring all events are captured regardless of
+whether they are handled or filtered by ratelimit.  Existing dev_info()
+printk behavior is preserved unchanged.
+
+Signed-off-by: Chen Jun <newdays-cj@live.com>
+---
+ drivers/iommu/arm/arm-smmu-v3/Makefile      |  2 +-
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c |  4 ++
+ drivers/iommu/arm/arm-smmu-v3/trace.c       | 12 +++++
+ drivers/iommu/arm/arm-smmu-v3/trace.h       | 53 +++++++++++++++++++++
+ 4 files changed, 70 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/iommu/arm/arm-smmu-v3/trace.c
+ create mode 100644 drivers/iommu/arm/arm-smmu-v3/trace.h
+
+diff --git a/drivers/iommu/arm/arm-smmu-v3/Makefile b/drivers/iommu/arm/arm-smmu-v3/Makefile
+index cb278edd06fc..cbd342652dcb 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/Makefile
++++ b/drivers/iommu/arm/arm-smmu-v3/Makefile
+@@ -1,6 +1,6 @@
+ # SPDX-License-Identifier: GPL-2.0
+ obj-$(CONFIG_ARM_SMMU_V3) += arm_smmu_v3.o
+-arm_smmu_v3-y := arm-smmu-v3.o
++arm_smmu_v3-y := arm-smmu-v3.o trace.o
+ arm_smmu_v3-$(CONFIG_HISI_VIRTCCA_CODA) += arm-s-smmu-v3.o
+ arm_smmu_v3-$(CONFIG_HISI_CCADA_HOST) += arm-r-smmu-v3.o
+ arm_smmu_v3-$(CONFIG_ARM_SMMU_V3_IOMMUFD) += arm-smmu-v3-iommufd.o
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index 0a13c26b6da0..86addc540191 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -33,6 +33,8 @@
+ #include "arm-smmu-v3.h"
+ #include "../../dma-iommu.h"
+ 
++#include "trace.h"
++
+ #ifdef CONFIG_HISI_VIRTCCA_CODA
+ #include "arm-s-smmu-v3.h"
+ #endif
+@@ -2055,6 +2057,8 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+ 		while (!queue_remove_raw(q, evt)) {
+ 			u8 id = FIELD_GET(EVTQ_0_ID, evt[0]);
+ 
++			trace_smmu_evtq_event(smmu, evt);
++
+ 			ret = arm_smmu_handle_evt(smmu, evt);
+ 			if (!ret || !__ratelimit(&rs))
+ 				continue;
+diff --git a/drivers/iommu/arm/arm-smmu-v3/trace.c b/drivers/iommu/arm/arm-smmu-v3/trace.c
+new file mode 100644
+index 000000000000..a2d2cf387a6f
+--- /dev/null
++++ b/drivers/iommu/arm/arm-smmu-v3/trace.c
+@@ -0,0 +1,12 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ARM SMMUv3 trace support
++ *
++ * Copyright (c) 2026 OpenCloudOS / openEuler
++ */
++
++#include <linux/string.h>
++#include <linux/types.h>
++
++#define CREATE_TRACE_POINTS
++#include "trace.h"
+diff --git a/drivers/iommu/arm/arm-smmu-v3/trace.h b/drivers/iommu/arm/arm-smmu-v3/trace.h
+new file mode 100644
+index 000000000000..847fadc743d6
+--- /dev/null
++++ b/drivers/iommu/arm/arm-smmu-v3/trace.h
+@@ -0,0 +1,53 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * ARM SMMUv3 trace support
++ *
++ * Copyright (c) 2026 OpenCloudOS / openEuler
++ */
++
++#undef TRACE_SYSTEM
++#define TRACE_SYSTEM arm_smmu_v3
++
++#if !defined(_TRACE_ARM_SMMU_V3_H) || defined(TRACE_HEADER_MULTI_READ)
++#define _TRACE_ARM_SMMU_V3_H
++
++#include <linux/tracepoint.h>
++
++#include "arm-smmu-v3.h"
++
++TRACE_EVENT(smmu_evtq_event,
++
++	TP_PROTO(struct arm_smmu_device *smmu, u64 *evt),
++
++	TP_ARGS(smmu, evt),
++
++	TP_STRUCT__entry(
++		__string(iommu, dev_name(smmu->dev))
++		__field(u64, evt0)
++		__field(u64, evt1)
++		__field(u64, evt2)
++		__field(u64, evt3)
++	),
++
++	TP_fast_assign(
++		__assign_str(iommu, dev_name(smmu->dev));
++		__entry->evt0 = evt[0];
++		__entry->evt1 = evt[1];
++		__entry->evt2 = evt[2];
++		__entry->evt3 = evt[3];
++	),
++
++	TP_printk("%s evt: 0x%016llx 0x%016llx 0x%016llx 0x%016llx",
++		__get_str(iommu),
++		__entry->evt0, __entry->evt1,
++		__entry->evt2, __entry->evt3)
++);
++
++#endif /* _TRACE_ARM_SMMU_V3_H */
++
++/* This part must be outside protection */
++#undef TRACE_INCLUDE_PATH
++#undef TRACE_INCLUDE_FILE
++#define TRACE_INCLUDE_PATH ../../drivers/iommu/arm/arm-smmu-v3/
++#define TRACE_INCLUDE_FILE trace
++#include <trace/define_trace.h>
+-- 
+2.43.0
+
