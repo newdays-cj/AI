@@ -1,0 +1,59 @@
+diff --git a/Documentation/devicetree/bindings/arm/openeuler,reserved-user-va.yaml b/Documentation/devicetree/bindings/arm/openeuler,reserved-user-va.yaml
+new file mode 100644
+index 000000000000..9e0a34fedfb4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/openeuler,reserved-user-va.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/openeuler,reserved-user-va.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: openEuler numbered user virtual address ranges
++
++maintainers:
++  - openEuler Kernel Team <kernel@openeuler.org>
++
++description: |
++  Downstream ARM64 virtual address layout policy. This describes no physical
++  memory. Built-in code and this node share one immutable boot-time registry.
++  Every enabled child registers one numbered interval. Conflicting entries
++  are rejected; entries already registered are never overridden.
++
++properties:
++  compatible:
++    const: openeuler,reserved-user-va
++
++patternProperties:
++  '^range-[0-7]$':
++    type: object
++    additionalProperties: false
++    properties:
++      range-id:
++        $ref: /schemas/types.yaml#/definitions/uint32
++        maximum: 7
++      virtual-range:
++        $ref: /schemas/types.yaml#/definitions/uint64-array
++        minItems: 2
++        maxItems: 2
++        description: Page-aligned virtual start address and nonzero size.
++      status: true
++    required:
++      - range-id
++      - virtual-range
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    reserved-user-va {
++        compatible = "openeuler,reserved-user-va";
++        range-0 {
++            range-id = <0>;
++            virtual-range = /bits/ 64 <0x1000000000 0x1000000>;
++        };
++    };
