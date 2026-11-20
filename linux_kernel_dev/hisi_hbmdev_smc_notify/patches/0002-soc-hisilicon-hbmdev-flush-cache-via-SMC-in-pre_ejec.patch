@@ -1,0 +1,97 @@
+From 6d5e7c728d93788fc60a8f87da02c86e17b05577 Mon Sep 17 00:00:00 2001
+From: Chen Jun <chenjun102@huawei.com>
+Date: Wed, 9 Sep 2026 19:28:24 +0800
+Subject: [PATCH 2/2] soc: hisilicon: hbmdev: flush cache via SMC in pre_eject
+ callback
+
+When an HBM memory device is offlined via ACPI hotplug, the firmware
+must flush the cache associated with the removed memory region.  This
+flush must happen after remove_memory() completes (so firmware observes
+the post-offline state) but before device power-down (_EJ0) is issued.
+
+Register a pre_eject callback on the PNP0C80 child device's hotplug
+profile.  The callback broadcasts a vendor SMC
+(HISI_HBMDEV_CACHE_FLUSH_SMC, FID 0x83009000) to all CPUs via
+on_each_cpu(), because firmware expects every CPU to observe the
+post-offline state and perform per-CPU cleanup (e.g. TLB/cache
+invalidation).
+
+The SMC takes no arguments: firmware infers the target from the
+platform context.  Failures are logged with pr_warn() and do not abort
+the offline flow, keeping the power-down path robust against firmware
+issues.
+
+This follows the OEM calling convention already used by other HiSilicon
+vendor SMCs in this tree (e.g. hisi-gm-trng.c, hisi-stl.c).  The FID
+0x83009000 encodes owner=OEM, FAST, SMC_32, function 0x9000.
+
+Signed-off-by: Chen Jun <chenjun102@huawei.com>
+---
+ drivers/soc/hisilicon/hisi_hbmdev.c | 30 +++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
+
+diff --git a/drivers/soc/hisilicon/hisi_hbmdev.c b/drivers/soc/hisilicon/hisi_hbmdev.c
+index cb65da2c5463..653931fe794c 100644
+--- a/drivers/soc/hisilicon/hisi_hbmdev.c
++++ b/drivers/soc/hisilicon/hisi_hbmdev.c
+@@ -7,13 +7,26 @@
+ #include <linux/module.h>
+ #include <linux/nodemask.h>
+ #include <linux/acpi.h>
++#include <linux/arm-smccc.h>
+ #include <linux/container.h>
++#include <linux/smp.h>
+ 
+ #include "hisi_internal.h"
+ 
+ #define ACPI_MEMORY_DEVICE_HID			"PNP0C80"
+ #define ACPI_GENERIC_CONTAINER_DEVICE_HID	"PNP0A06"
+ 
++/*
++ * SMC invoked from the pre_eject hotplug callback, after remove_memory
++ * completes and before device power-down (_EJ0), to flush cache.  Broadcast
++ * to all CPUs via on_each_cpu() since firmware expects every CPU to observe
++ * the post-offline state.
++ */
++#define HISI_HBMDEV_CACHE_FLUSH_SMC					\
++	ARM_SMCCC_CALL_VAL(ARM_SMCCC_FAST_CALL,				\
++			   ARM_SMCCC_SMC_32,				\
++			   ARM_SMCCC_OWNER_OEM, 0x9000)
++
+ struct cdev_node {
+ 	struct device *dev;
+ 	struct list_head clist;
+@@ -22,6 +35,22 @@ struct cdev_node {
+ static struct mutex dev_lock;
+ struct cdev_node cdev_list;
+ 
++static void smc_flush_cache(void *info)
++{
++	struct arm_smccc_res res;
++
++	arm_smccc_smc(HISI_HBMDEV_CACHE_FLUSH_SMC, 0, 0, 0, 0, 0, 0, 0,
++		      &res);
++	if ((int)res.a0 < 0)
++		pr_warn("HBM SMC cache flush failed (ret=%d)\n",
++			(int)res.a0);
++}
++
++static void hbmdev_pre_eject(struct acpi_device *adev)
++{
++	on_each_cpu(smc_flush_cache, NULL, true);
++}
++
+ static int get_pxm(struct acpi_device *acpi_device, void *arg)
+ {
+ 	acpi_handle handle = acpi_device->handle;
+@@ -109,6 +138,7 @@ static void memdev_power_off(struct acpi_device *adev)
+ 			continue;
+ 
+ 		child->handler->hotplug.demand_offline = true;
++		child->handler->hotplug.pre_eject = hbmdev_pre_eject;
+ 
+ 		get_device(&child->dev);
+ 		status = acpi_hotplug_schedule(child, ACPI_OST_EC_OSPM_EJECT);
+-- 
+2.43.0
+

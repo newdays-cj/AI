@@ -1,0 +1,34 @@
+From 6d5e7c728d93788fc60a8f87da02c86e17b05577 Mon Sep 17 00:00:00 2001
+From: Chen Jun <chenjun102@huawei.com>
+Date: Wed, 9 Sep 2026 19:36:14 +0800
+Subject: [PATCH 0/2] Flush HBM cache via vendor SMC before ACPI hotplug _EJ0
+
+This series adds an ACPI hotplug pre_eject callback and uses it to
+notify HiSilicon firmware to flush cache associated with HBM memory
+after the memory is removed but before the device is powered down.
+
+Patch 1 adds the pre_eject callback to struct acpi_hotplug_profile
+and invokes it from acpi_scan_hot_remove() between acpi_bus_trim()
+(which runs .detach -> remove_memory) and acpi_evaluate_lck()/_EJ0
+(which powers down the device).
+
+Patch 2 registers the callback in the HiSilicon hbmdev driver and
+broadcasts a vendor SMC (HISI_HBMDEV_CACHE_FLUSH_SMC, FID 0x83009000)
+to all CPUs via on_each_cpu(), so firmware can perform per-CPU cleanup
+such as TLB/cache invalidation against the post-offline state.
+
+Both patches are checkpatch clean (--strict --no-tree) and the kernel
+builds without warnings.
+
+Chen Jun (2):
+  ACPI: hotplug: add pre_eject callback before device power-down
+  soc: hisilicon: hbmdev: flush cache via SMC in pre_eject callback
+
+ drivers/acpi/scan.c                 | 11 +++++++++++
+ drivers/soc/hisilicon/hisi_hbmdev.c | 30 +++++++++++++++++++++++++++++
+ include/acpi/acpi_bus.h             |  1 +
+ 3 files changed, 42 insertions(+)
+
+-- 
+2.43.0
+

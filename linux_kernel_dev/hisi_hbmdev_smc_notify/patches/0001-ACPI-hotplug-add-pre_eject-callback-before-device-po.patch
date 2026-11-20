@@ -1,0 +1,75 @@
+From 506ee9ccc944a8927a4a5f03622fce257dfb0178 Mon Sep 17 00:00:00 2001
+From: Chen Jun <chenjun102@huawei.com>
+Date: Wed, 9 Sep 2026 19:27:14 +0800
+Subject: [PATCH 1/2] ACPI: hotplug: add pre_eject callback before device
+ power-down
+
+Add a new pre_eject callback to struct acpi_hotplug_profile that is
+invoked from acpi_scan_hot_remove() after acpi_bus_trim() (which runs
+.detach and removes memory) but before acpi_evaluate_lck()/_EJ0 (which
+powers down the device).
+
+This gives vendor drivers a hook to perform cleanup that must happen
+after memory removal but before device power-down -- for example,
+notifying firmware to flush cache associated with the removed memory.
+
+The handler pointer is saved before acpi_bus_trim() because
+acpi_bus_trim() NULLs device->handler at the end of the trim.  The
+callback is optional: it is only invoked when both the handler and
+its pre_eject member are non-NULL.
+
+The new field is appended at the end of struct acpi_hotplug_profile
+to preserve kABI stability.
+
+Signed-off-by: Chen Jun <chenjun102@huawei.com>
+---
+ drivers/acpi/scan.c     | 11 +++++++++++
+ include/acpi/acpi_bus.h |  1 +
+ 2 files changed, 12 insertions(+)
+
+diff --git a/drivers/acpi/scan.c b/drivers/acpi/scan.c
+index bb097a62e2e8..820e51ffd565 100644
+--- a/drivers/acpi/scan.c
++++ b/drivers/acpi/scan.c
+@@ -253,6 +253,7 @@ static int acpi_scan_try_to_offline(struct acpi_device *device)
+ static int acpi_scan_hot_remove(struct acpi_device *device)
+ {
+ 	acpi_handle handle = device->handle;
++	struct acpi_scan_handler *handler;
+ 	unsigned long long sta;
+ 	acpi_status status;
+ 
+@@ -268,8 +269,18 @@ static int acpi_scan_hot_remove(struct acpi_device *device)
+ 	ACPI_DEBUG_PRINT((ACPI_DB_INFO,
+ 		"Hot-removing device %s...\n", dev_name(&device->dev)));
+ 
++	/*
++	 * Save the handler pointer before acpi_bus_trim() clears it, so
++	 * pre_eject can still be invoked after memory removal but before
++	 * device power-down (_EJ0).
++	 */
++	handler = device->handler;
++
+ 	acpi_bus_trim(device);
+ 
++	if (handler && handler->hotplug.pre_eject)
++		handler->hotplug.pre_eject(device);
++
+ 	acpi_evaluate_lck(handle, 0);
+ 	/*
+ 	 * TBD: _EJD support.
+diff --git a/include/acpi/acpi_bus.h b/include/acpi/acpi_bus.h
+index 702ba0645ac9..4340349baeeb 100644
+--- a/include/acpi/acpi_bus.h
++++ b/include/acpi/acpi_bus.h
+@@ -112,6 +112,7 @@ struct acpi_hotplug_profile {
+ 	void (*notify_online)(struct acpi_device *adev);
+ 	bool enabled:1;
+ 	bool demand_offline:1;
++	void (*pre_eject)(struct acpi_device *adev);
+ };
+ 
+ static inline struct acpi_hotplug_profile *to_acpi_hotplug_profile(
+-- 
+2.43.0
+
