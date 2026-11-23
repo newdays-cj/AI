@@ -1,0 +1,2198 @@
+{
+  "files": [
+    {
+      "path": "arm-r-smmu-v3.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_support_rme",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_write_reg_sync",
+          "params": "struct arm_smmu_device *smmu, u32 val, unsigned int reg_off, unsigned int ack_off"
+        },
+        {
+          "returnType": "void",
+          "name": "realm_smmu_write_ste",
+          "params": "struct arm_smmu_master *master, u32 sid, const struct arm_smmu_ste *target"
+        },
+        {
+          "returnType": "bool",
+          "name": "is_realm_dev_attach",
+          "params": "struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "bool",
+          "name": "is_realm_dev_detach",
+          "params": "struct arm_smmu_domain *smmu_domain, struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "realm_smmu_attach_dev",
+          "params": "struct arm_smmu_domain *smmu_domain, struct arm_smmu_master *master, struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "realm_smmu_domain_clear",
+          "params": "struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "bool",
+          "name": "is_realm_sid",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "bool",
+          "name": "is_realm_vmid",
+          "params": "struct arm_smmu_device *smmu, u32 vmid"
+        },
+        {
+          "returnType": "bool",
+          "name": "realm_smmu_need_forward",
+          "params": "struct arm_smmu_device *smmu, u64 cmd0, u64 cm1"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_cmdq_issue_cmdlist",
+          "params": "struct arm_smmu_device *smmu, u64 *cmds, int n, bool sync"
+        },
+        {
+          "returnType": "CMDQ_ENT_DWORDS *",
+          "name": "sizeof",
+          "params": "*cmds) > PAGE_SIZE"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_init_queue",
+          "params": "struct arm_smmu_device *smmu, struct realm_smmu_queue *q, int ent_dwords, int queue_type, const char *name"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_init_strtab_2lvl",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_init_strtab_linear",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_init_strtab",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_r_smmu_revtq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_realm_gerror_handler",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "realm_smmu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "endif",
+          "name": "if",
+          "params": "desc->msi_index != R_EVTQ_MSI_INDEX && desc->msi_index != R_GERROR_MSI_INDEX"
+        },
+        {
+          "returnType": "void",
+          "name": "realm_smmu_setup_msis",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "realm_smmu_setup_unique_irqs",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_r_smmu_device_init",
+          "params": "struct arm_smmu_device *smmu, resource_size_t ioaddr"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_r_smmu_free_l2_strtab",
+          "params": "struct arm_smmu_device *smmu, struct realm_smmu_strtab_cfg *cfg"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_r_smmu_device_remove",
+          "params": "struct arm_smmu_device *smmu"
+        }
+      ],
+      "structs": [],
+      "enums": [
+        {
+          "name": "arm_r_smmu_msi_index"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/pci.h",
+        "linux/bitops.h",
+        "asm/rmi_cmds.h",
+        "asm/hisi_cca_da.h",
+        "linux/crash_dump.h",
+        "linux/io-pgtable.h",
+        "arm-smmu-v3.h",
+        "arm-r-smmu-v3.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "write_lock": 2,
+          "write_unlock": 2,
+          "read_lock": 2,
+          "read_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "arm-r-smmu-v3.h",
+      "type": "header",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "realm_smmu_set_stage",
+          "params": "struct arm_smmu_domain *smmu_domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "arm-s-smmu-v3.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_set_irq",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_cmdq_need_forward",
+          "params": "u64 cmd0, u64 cmd1, u64 s_smmu_id, bool *forward"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_queue_write",
+          "params": "struct arm_smmu_device *smmu, u64 *src, size_t n_dwords"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_cmdq_write_entries",
+          "params": "struct arm_smmu_device *smmu, u64 *cmds, struct arm_smmu_ll_queue *llq, struct arm_smmu_queue *q, int n, bool sync"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_init_one_queue",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_queue *q, size_t dwords, const char *name"
+        },
+        {
+          "returnType": "int",
+          "name": "virtcca_smmu_write_reg_sync",
+          "params": "struct arm_smmu_device *smmu, u32 val, u32 cmp_val, u32 reg_off, u32 ack_off"
+        },
+        {
+          "returnType": "int",
+          "name": "virtcca_smmu_device_disable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "virtcca_smmu_evtq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "virtcca_smmu_gerror_handler",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_disable_irq",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_enable_irq",
+          "params": "struct arm_smmu_device *smmu, u32 irqen_flags"
+        },
+        {
+          "returnType": "void",
+          "name": "platform_get_s_irq_byname_optional",
+          "params": "struct platform_device *pdev, struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "virtcca_smmu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_s_smmu_setup_msis",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_setup_unique_irqs",
+          "params": "struct arm_smmu_device *smmu, bool resume"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_setup_irqs",
+          "params": "struct arm_smmu_device *smmu, bool resume"
+        },
+        {
+          "returnType": "int",
+          "name": "virtcca_smmu_id_alloc",
+          "params": "void"
+        },
+        {
+          "returnType": "bool",
+          "name": "virtcca_smmu_map_init",
+          "params": "struct arm_smmu_device *smmu, resource_size_t ioaddr"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_s_smmu_device_enable",
+          "params": "struct arm_smmu_device *smmu, u32 enables"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_s_smmu_idr1_support_secure",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_device_init",
+          "params": "struct platform_device *pdev, struct arm_smmu_device *smmu, resource_size_t ioaddr, bool resume"
+        }
+      ],
+      "structs": [],
+      "enums": [
+        {
+          "name": "arm_s_smmu_msi_index"
+        }
+      ],
+      "typedefs": [],
+      "exports": [
+        "virtcca_smmu_map_init"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h",
+        "linux/pci.h",
+        "asm/virtcca_coda.h",
+        "arm-smmu-v3.h",
+        "arm-s-smmu-v3.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "arm-s-smmu-v3.h",
+      "type": "header",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "virtcca_smmu_enable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_set_irq_cfg",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "virtcca_smmu_set_stage",
+          "params": "struct iommu_domain *domain, struct arm_smmu_domain *smmu_domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/platform_device.h",
+        "asm/kvm_tmi.h",
+        "asm/virtcca_cvm_host.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "arm-smmu-v3-iommufd.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "iommu_domain *",
+          "name": "arm_smmu_get_msi_mapping_domain",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_nested_cd_table_ste",
+          "params": "struct arm_smmu_ste *target, struct arm_smmu_master *master, struct arm_smmu_nested_domain *nested_domain, bool ats_enabled"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_nested_domain_ste",
+          "params": "struct arm_smmu_ste *target, struct arm_smmu_master *master, struct arm_smmu_nested_domain *nested_domain, bool ats_enabled"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_attach_dev_nested",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_domain_nested_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_validate_vste",
+          "params": "struct iommu_hwpt_arm_smmuv3 *arg, bool *enable_ats"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "arm_vsmmu_alloc_domain_nested",
+          "params": "struct iommufd_viommu *viommu, u32 flags, const struct iommu_user_data *user_data"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_vsmmu_vsid_to_sid",
+          "params": "struct arm_vsmmu *vsmmu, u32 vsid, u32 *sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_vsmmu_convert_user_cmd",
+          "params": "struct arm_vsmmu *vsmmu, struct arm_vsmmu_invalidation_cmd *cmd"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_vsmmu_cache_invalidate",
+          "params": "struct iommufd_viommu *viommu, struct iommu_user_data_array *array"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "arm_vsmmu_invalidation_cmd"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "uapi/linux/iommufd.h",
+        "arm-smmu-v3.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "mutex_lock": 1,
+          "mutex_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "arm-smmu-v3-sva.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "__maybe_unused",
+          "name": "arm_smmu_update_s1_domain_cd_entry",
+          "params": "struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "u64",
+          "name": "page_size_to_cd",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_sva_cd",
+          "params": "struct arm_smmu_cd *target, struct arm_smmu_master *master, struct mm_struct *mm, u16 asid"
+        },
+        {
+          "returnType": "define",
+          "name": "CMDQ_MAX_TLBI_OPS",
+          "params": "1 << (PAGE_SHIFT - 3)) static void arm_smmu_mm_arch_invalidate_secondary_tlbs(struct mmu_notifier *mn, struct mm_struct *mm, unsigned long start, unsigned long end"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_mm_release",
+          "params": "struct mmu_notifier *mn, struct mm_struct *mm"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_mmu_notifier_free",
+          "params": "struct mmu_notifier *mn"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_sva_supported",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_iopf_supported",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_sva_supported",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_sva_enabled",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_master_sva_enable_iopf",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_master_sva_disable_iopf",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_master_enable_sva",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_master_disable_sva",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_sva_notifier_synchronize",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_sva_set_dev_pasid",
+          "params": "struct iommu_domain *domain, struct device *dev, ioasid_t id"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_sva_domain_free",
+          "params": "struct iommu_domain *domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/mm.h",
+        "linux/mmu_context.h",
+        "linux/mmu_notifier.h",
+        "linux/sched/mm.h",
+        "linux/slab.h",
+        "kunit/visibility.h",
+        "arm-smmu-v3.h",
+        "../../io-pgtable-arm.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "spin_lock_irqsave": 2,
+          "spin_unlock_irqrestore": 2,
+          "mutex_lock": 3,
+          "mutex_unlock": 3
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "arm-smmu-v3-test.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_entry_differs_in_used_bits",
+          "params": "const __le64 *entry, const __le64 *used_bits, const __le64 *target, unsigned int length"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_writer_record_syncs",
+          "params": "struct arm_smmu_entry_writer *writer"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_debug_print_used_bits",
+          "params": "struct arm_smmu_entry_writer *writer, const __le64 *ste"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_ste_expect_transition",
+          "params": "struct kunit *test, const struct arm_smmu_ste *cur, const struct arm_smmu_ste *target, unsigned int num_syncs_expected, bool hitless"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_ste_expect_non_hitless_transition",
+          "params": "struct kunit *test, const struct arm_smmu_ste *cur, const struct arm_smmu_ste *target, unsigned int num_syncs_expected"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_ste_expect_hitless_transition",
+          "params": "struct kunit *test, const struct arm_smmu_ste *cur, const struct arm_smmu_ste *target, unsigned int num_syncs_expected"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_make_cdtable_ste",
+          "params": "struct arm_smmu_ste *ste, unsigned int s1dss, const dma_addr_t dma_addr"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_bypass_to_abort",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_abort_to_bypass",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_cdtable_to_abort",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_abort_to_cdtable",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_cdtable_to_bypass",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_bypass_to_cdtable",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_cdtable_s1dss_change",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_s1dssbypass_to_stebypass",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_stebypass_to_s1dssbypass",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_make_s2_ste",
+          "params": "struct arm_smmu_ste *ste, bool ats_enabled"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_s2_to_abort",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_abort_to_s2",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_s2_to_bypass",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_bypass_to_s2",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_s1_to_s2",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_s2_to_s1",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_ste_test_non_hitless",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_cd_expect_transition",
+          "params": "struct kunit *test, const struct arm_smmu_cd *cur, const struct arm_smmu_cd *target, unsigned int num_syncs_expected, bool hitless"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_cd_expect_non_hitless_transition",
+          "params": "struct kunit *test, const struct arm_smmu_cd *cur, const struct arm_smmu_cd *target, unsigned int num_syncs_expected"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_test_cd_expect_hitless_transition",
+          "params": "struct kunit *test, const struct arm_smmu_cd *cur, const struct arm_smmu_cd *target, unsigned int num_syncs_expected"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_make_s1_cd",
+          "params": "struct arm_smmu_cd *cd, unsigned int asid"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_cd_test_s1_clear",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_cd_test_s1_change_asid",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_make_sva_cd",
+          "params": "struct arm_smmu_cd *cd, unsigned int asid"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_test_make_sva_release_cd",
+          "params": "struct arm_smmu_cd *cd, unsigned int asid"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_cd_test_sva_clear",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_v3_write_cd_test_sva_release",
+          "params": "struct kunit *test"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_v3_test_suite_init",
+          "params": "struct kunit_suite *test"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "arm_smmu_test_writer"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "kunit/test.h",
+        "linux/io-pgtable.h",
+        "arm-smmu-v3.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "arm-smmu-v3.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "__init",
+          "name": "arm_smmu_bypass_dev_setup",
+          "params": "char *str"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_bypass_dev_domain_type",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "parse_driver_options",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "queue_has_space",
+          "params": "struct arm_smmu_ll_queue *q, u32 n"
+        },
+        {
+          "returnType": "bool",
+          "name": "queue_full",
+          "params": "struct arm_smmu_ll_queue *q"
+        },
+        {
+          "returnType": "bool",
+          "name": "queue_empty",
+          "params": "struct arm_smmu_ll_queue *q"
+        },
+        {
+          "returnType": "bool",
+          "name": "queue_consumed",
+          "params": "struct arm_smmu_ll_queue *q, u32 prod"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_sync_cons_out",
+          "params": "struct arm_smmu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_inc_cons",
+          "params": "struct arm_smmu_ll_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_sync_cons_ovf",
+          "params": "struct arm_smmu_queue *q"
+        },
+        {
+          "returnType": "int",
+          "name": "queue_sync_prod_in",
+          "params": "struct arm_smmu_queue *q"
+        },
+        {
+          "returnType": "u32",
+          "name": "queue_inc_prod_n",
+          "params": "struct arm_smmu_ll_queue *q, int n"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_poll_init",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_queue_poll *qp"
+        },
+        {
+          "returnType": "int",
+          "name": "queue_poll",
+          "params": "struct arm_smmu_queue_poll *qp"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "++qp->spin_cnt < ARM_SMMU_POLL_SPIN_COUNT"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_write",
+          "params": "__le64 *dst, u64 *src, size_t n_dwords"
+        },
+        {
+          "returnType": "void",
+          "name": "queue_read",
+          "params": "u64 *dst, __le64 *src, size_t n_dwords"
+        },
+        {
+          "returnType": "int",
+          "name": "queue_remove_raw",
+          "params": "struct arm_smmu_queue *q, u64 *ent"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_preempt_disable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_preempt_enable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_preempt_disable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_preempt_enable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_build_cmd",
+          "params": "u64 *cmd, struct arm_smmu_cmdq_ent *ent"
+        },
+        {
+          "returnType": "CONFIG_ARM_SMMU_V3_ECMDQ",
+          "name": "if",
+          "params": "smmu->ecmdq_enabled"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_build_sync_cmd",
+          "params": "u64 *cmd, struct arm_smmu_device *smmu, struct arm_smmu_queue *q, u32 prod"
+        },
+        {
+          "returnType": "void",
+          "name": "__arm_smmu_cmdq_skip_err",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_skip_err",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_ecmdq_skip_err",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_shared_lock",
+          "params": "struct arm_smmu_cmdq *cmdq"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_shared_unlock",
+          "params": "struct arm_smmu_cmdq *cmdq"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_cmdq_shared_tryunlock",
+          "params": "struct arm_smmu_cmdq *cmdq"
+        },
+        {
+          "returnType": "void",
+          "name": "__arm_smmu_cmdq_poll_set_valid_map",
+          "params": "struct arm_smmu_cmdq *cmdq, u32 sprod, u32 eprod, bool set"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_set_valid_map",
+          "params": "struct arm_smmu_cmdq *cmdq, u32 sprod, u32 eprod"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_poll_valid_map",
+          "params": "struct arm_smmu_cmdq *cmdq, u32 sprod, u32 eprod"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_poll_until_not_full",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, struct arm_smmu_ll_queue *llq"
+        },
+        {
+          "returnType": "int",
+          "name": "__arm_smmu_cmdq_poll_until_msi",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, struct arm_smmu_ll_queue *llq"
+        },
+        {
+          "returnType": "int",
+          "name": "__arm_smmu_cmdq_poll_until_consumed",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, struct arm_smmu_ll_queue *llq"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_poll_until_sync",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, struct arm_smmu_ll_queue *llq"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_write_entries",
+          "params": "struct arm_smmu_cmdq *cmdq, u64 *cmds, u32 prod, int n"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_issue_cmdlist",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, u64 *cmds, int n, bool sync"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_issue_cmdlist",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq *cmdq, u64 *cmds, int n, bool sync"
+        },
+        {
+          "returnType": "CONFIG_HISI_CCADA_HOST",
+          "name": "if",
+          "params": "smmu->realm.forward_cmd"
+        },
+        {
+          "returnType": "endif",
+          "name": "if",
+          "params": "sync"
+        },
+        {
+          "returnType": "CONFIG_ARM_SMMU_V3_ECMDQ",
+          "name": "if",
+          "params": "smmu->ecmdq_enabled"
+        },
+        {
+          "returnType": "int",
+          "name": "__arm_smmu_cmdq_issue_cmd",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_ent *ent, bool sync"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_issue_cmd",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_ent *ent"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_issue_cmd_with_sync",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_ent *ent"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_batch_init",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_batch *cmds"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cmdq_batch_add",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_batch *cmds, struct arm_smmu_cmdq_ent *cmd"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_batch_submit",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_cmdq_batch *cmds"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_page_response",
+          "params": "struct device *dev, struct iopf_fault *unused, struct iommu_page_response *resp"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_asid",
+          "params": "struct arm_smmu_device *smmu, u16 asid"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_get_ste_used",
+          "params": "const __le64 *ent, __le64 *used_bits"
+        },
+        {
+          "returnType": "u8",
+          "name": "arm_smmu_entry_qword_diff",
+          "params": "struct arm_smmu_entry_writer *writer, const __le64 *entry, const __le64 *target, __le64 *unused_update"
+        },
+        {
+          "returnType": "bool",
+          "name": "entry_set",
+          "params": "struct arm_smmu_entry_writer *writer, __le64 *entry, const __le64 *target, unsigned int start, unsigned int len"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_entry",
+          "params": "struct arm_smmu_entry_writer *writer, __le64 *entry, const __le64 *target"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "used_qword_diff"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_sync_cd",
+          "params": "struct arm_smmu_master *master, int ssid, bool leaf"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_cd_l1_desc",
+          "params": "struct arm_smmu_cdtab_l1 *dst, dma_addr_t l2ptr_dma"
+        },
+        {
+          "returnType": "dma_addr_t",
+          "name": "arm_smmu_cd_l1_get_desc",
+          "params": "const struct arm_smmu_cdtab_l1 *src"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_get_cd_used",
+          "params": "const __le64 *ent, __le64 *used_bits"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_cd_writer_sync_entry",
+          "params": "struct arm_smmu_entry_writer *writer"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_cd_entry",
+          "params": "struct arm_smmu_master *master, int ssid, struct arm_smmu_cd *cdptr, const struct arm_smmu_cd *target"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_s1_cd",
+          "params": "struct arm_smmu_cd *target, struct arm_smmu_master *master, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_clear_cd",
+          "params": "struct arm_smmu_master *master, ioasid_t ssid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_alloc_cd_tables",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_free_cd_tables",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_strtab_l1_desc",
+          "params": "struct arm_smmu_strtab_l1 *dst, dma_addr_t l2ptr_dma"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_ste_writer_sync_entry",
+          "params": "struct arm_smmu_entry_writer *writer"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_ste",
+          "params": "struct arm_smmu_master *master, u32 sid, struct arm_smmu_ste *ste, const struct arm_smmu_ste *target"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_abort_ste",
+          "params": "struct arm_smmu_ste *target"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_bypass_ste",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_ste *target"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_cdtable_ste",
+          "params": "struct arm_smmu_ste *target, struct arm_smmu_master *master, bool ats_enabled, unsigned int s1dss"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_make_s2_domain_ste",
+          "params": "struct arm_smmu_ste *target, struct arm_smmu_master *master, struct arm_smmu_domain *smmu_domain, bool ats_enabled"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_init_initial_stes",
+          "params": "struct arm_smmu_ste *strtab, unsigned int nent"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_l2_strtab",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_streams_cmp_key",
+          "params": "const void *lhs, const struct rb_node *rhs"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_streams_cmp_node",
+          "params": "struct rb_node *lhs, const struct rb_node *rhs"
+        },
+        {
+          "returnType": "arm_smmu_master *",
+          "name": "arm_smmu_find_master",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_handle_evt",
+          "params": "struct arm_smmu_device *smmu, u64 *evt"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_evtq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "CONFIG_ARCH_PHYTIUM",
+          "name": "if",
+          "params": "read_cpuid_id() == MIDR_PHYTIUM_FTC862 && read_sysreg_s(SYS_AIDR_EL1) == PHYTIUM_CPU_SOCID_PS24080"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_handle_ppr",
+          "params": "struct arm_smmu_device *smmu, u64 *evt"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_priq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_gerror_handler",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_combined_irq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "arm_smmu_combined_irq_handler",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_atc_inv_to_cmd",
+          "params": "int ssid, unsigned long iova, size_t size, struct arm_smmu_cmdq_ent *cmd"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_atc_inv_master",
+          "params": "struct arm_smmu_master *master, ioasid_t ssid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_atc_inv_domain",
+          "params": "struct arm_smmu_domain *smmu_domain, unsigned long iova, size_t size"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_context",
+          "params": "void *cookie"
+        },
+        {
+          "returnType": "void",
+          "name": "__arm_smmu_tlb_inv_range",
+          "params": "struct arm_smmu_cmdq_ent *cmd, unsigned long iova, size_t size, size_t granule, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_range_domain",
+          "params": "unsigned long iova, size_t size, size_t granule, bool leaf, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_range_asid",
+          "params": "unsigned long iova, size_t size, int asid, size_t granule, bool leaf, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_page_nosync",
+          "params": "struct iommu_iotlb_gather *gather, unsigned long iova, size_t granule, void *cookie"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_tlb_inv_walk",
+          "params": "unsigned long iova, size_t size, size_t granule, void *cookie"
+        },
+        {
+          "returnType": "CONFIG_HISILICON_ERRATUM_162100602",
+          "name": "if",
+          "params": "!size"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_dbm_capable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_capable",
+          "params": "struct device *dev, enum iommu_cap cap"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_enforce_cache_coherency",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_domain_free_paging",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "endif",
+          "name": "if",
+          "params": "smmu_domain->stage == ARM_SMMU_DOMAIN_S1"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_domain_finalise_s1",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_domain_finalise_s2",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_domain *smmu_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_domain_finalise",
+          "params": "struct arm_smmu_domain *smmu_domain, struct arm_smmu_device *smmu, u32 flags"
+        },
+        {
+          "returnType": "arm_smmu_ste *",
+          "name": "arm_smmu_get_step_for_sid",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_install_ste_for_dev",
+          "params": "struct arm_smmu_master *master, const struct arm_smmu_ste *target"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_ats_supported",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_enable_ats",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_enable_pasid",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_disable_pasid",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "arm_smmu_master_domain *",
+          "name": "arm_smmu_find_master_domain",
+          "params": "struct arm_smmu_domain *smmu_domain, struct arm_smmu_master *master, ioasid_t ssid, bool nested_ats_flush"
+        },
+        {
+          "returnType": "arm_smmu_domain *",
+          "name": "to_smmu_domain_devices",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_remove_master_domain",
+          "params": "struct arm_smmu_master *master, struct iommu_domain *domain, ioasid_t ssid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_attach_prepare",
+          "params": "struct arm_smmu_attach_state *state, struct iommu_domain *new_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_attach_commit",
+          "params": "struct arm_smmu_attach_state *state"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "state->ats_enabled && master->ats_enabled"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "!state->ats_enabled && master->ats_enabled"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_attach_dev",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "endif",
+          "name": "switch",
+          "params": "smmu_domain->stage"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_s1_set_dev_pasid",
+          "params": "struct iommu_domain *domain, struct device *dev, ioasid_t id"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_update_ste",
+          "params": "struct arm_smmu_master *master, struct iommu_domain *sid_domain, bool ats_enabled"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_set_pasid",
+          "params": "struct arm_smmu_master *master, struct arm_smmu_domain *smmu_domain, ioasid_t pasid, struct arm_smmu_cd *cd"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_remove_dev_pasid",
+          "params": "struct device *dev, ioasid_t pasid, struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_attach_dev_ste",
+          "params": "struct iommu_domain *domain, struct device *dev, struct arm_smmu_ste *ste, unsigned int s1dss"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_attach_dev_identity",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_attach_dev_blocked",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "arm_smmu_domain_alloc_user",
+          "params": "struct device *dev, u32 flags, struct iommu_domain *parent, const struct iommu_user_data *user_data"
+        },
+        {
+          "returnType": "CONFIG_HISI_CCADA_HOST",
+          "name": "if",
+          "params": "flags & IOMMU_HWPT_RME"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_map_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t pgsize, size_t pgcount, int prot, gfp_t gfp, size_t *mapped"
+        },
+        {
+          "returnType": "size_t",
+          "name": "arm_smmu_unmap_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t pgsize, size_t pgcount, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_flush_iotlb_all",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_iotlb_sync",
+          "params": "struct iommu_domain *domain, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_iotlb_sync_map",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size"
+        },
+        {
+          "returnType": "phys_addr_t",
+          "name": "arm_smmu_iova_to_phys",
+          "params": "struct iommu_domain *domain, dma_addr_t iova"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_sid_in_range",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_sid_strtab",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_insert_master",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_remove_master",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_release_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_read_and_clear_dirty",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, unsigned long flags, struct iommu_dirty_bitmap *dirty"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_set_dirty_tracking",
+          "params": "struct iommu_domain *domain, bool enabled"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_split_block",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "__arm_smmu_merge_page",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t size, int prot"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_merge_page",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, int prot"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_support_dirty_log",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_switch_dirty_log",
+          "params": "struct iommu_domain *domain, bool enable, unsigned long iova, size_t size, int prot"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_sync_dirty_log",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, unsigned long *bitmap, unsigned long base_iova, unsigned long bitmap_pgshift"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_clear_dirty_log",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, unsigned long *bitmap, unsigned long base_iova, unsigned long bitmap_pgshift"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_enable_rme",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_of_xlate",
+          "params": "struct device *dev, struct of_phandle_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_get_resv_regions",
+          "params": "struct device *dev, struct list_head *head"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_dev_enable_feature",
+          "params": "struct device *dev, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_dev_disable_feature",
+          "params": "struct device *dev, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "define",
+          "name": "IS_HISI_PTT_DEVICE",
+          "params": "pdev) ((pdev)->vendor == PCI_VENDOR_ID_HUAWEI && \\ (pdev)->device == 0xa12e) static int arm_smmu_def_domain_type(struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_group_set_mpam",
+          "params": "struct iommu_group *group, u16 partid, u8 pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_group_get_mpam",
+          "params": "struct iommu_group *group, u16 *partid, u8 *pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_one_queue",
+          "params": "struct arm_smmu_device *smmu, struct arm_smmu_queue *q, void __iomem *page, unsigned long prod_off, unsigned long cons_off, size_t dwords, const char *name"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cmdq_init",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_init",
+          "params": "struct arm_smmu_cmdq *cmdq"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_free_iopf_action",
+          "params": "void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_destroy_vmid_map",
+          "params": "void *data"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_queues",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_install_bypass_ste_for_dev",
+          "params": "struct arm_smmu_device *smmu, u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_prepare_init_l2_strtab",
+          "params": "struct device *dev, void *data"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_strtab_2lvl",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "CONFIG_SMMU_BYPASS_DEV",
+          "name": "if",
+          "params": "!ret && smmu_bypass_devices_num"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_strtab_linear",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_strtab",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_init_structures",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_write_reg_sync",
+          "params": "struct arm_smmu_device *smmu, u32 val, unsigned int reg_off, unsigned int ack_off"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_update_gbpa",
+          "params": "struct arm_smmu_device *smmu, u32 set, u32 clr"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_free_msis",
+          "params": "void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "void",
+          "name": "_arm_smmu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_setup_msis",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_resume_msis",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_resume_msis",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_setup_unique_irqs",
+          "params": "struct arm_smmu_device *smmu, bool resume"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_setup_irqs",
+          "params": "struct arm_smmu_device *smmu, bool resume"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_disable",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_reset",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_reset",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_disable_action",
+          "params": "void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_write_strtab",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_reset",
+          "params": "struct arm_smmu_device *smmu, bool resume"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_layout",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_probe",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_device_iidr_probe",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "hisi_smmu_check_errata",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "hisi_smmu_check_errata",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_get_httu",
+          "params": "struct arm_smmu_device *smmu, u32 reg"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_mpam_register_smmu",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_hw_probe",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "CONFIG_ARM_SMMU_V3_ECMDQ",
+          "name": "if",
+          "params": "smmu->features & ARM_SMMU_FEAT_ECMDQ && !disable_ecmdq"
+        },
+        {
+          "returnType": "void",
+          "name": "acpi_get_hisi_options",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "void",
+          "name": "acpi_smmu_get_options",
+          "params": "u32 model, struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_acpi_probe",
+          "params": "struct platform_device *pdev, struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_acpi_probe",
+          "params": "struct platform_device *pdev, struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_dt_probe",
+          "params": "struct platform_device *pdev, struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "long",
+          "name": "arm_smmu_resource_size",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_disable",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_ecmdq_disable",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_suspend",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_resume",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_rmr_install_bypass_ste",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_device_probe",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_device_remove",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_device_shutdown",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "define",
+          "name": "ARM_SMMU_PM_OPS",
+          "params": "&arm_smmu_pm_ops) #else #define ARM_SMMU_PM_OPS NULL #endif static void arm_smmu_driver_unregister(struct platform_driver *drv"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "smmu_bypass_device"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_option_prop"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cd_writer"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ste_writer"
+        }
+      ],
+      "enums": [
+        {
+          "name": "arm_smmu_msi_index"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/acpi.h",
+        "linux/acpi_iort.h",
+        "linux/arm_mpam.h",
+        "linux/bitops.h",
+        "linux/crash_dump.h",
+        "linux/delay.h",
+        "linux/err.h",
+        "linux/interrupt.h",
+        "linux/io-pgtable.h",
+        "linux/iopoll.h",
+        "linux/module.h",
+        "linux/msi.h",
+        "linux/of.h",
+        "linux/of_address.h",
+        "linux/of_platform.h",
+        "linux/pci.h",
+        "linux/pci-ats.h",
+        "linux/platform_device.h",
+        "kunit/visibility.h",
+        "uapi/linux/iommufd.h",
+        "arm-smmu-v3.h",
+        "../../dma-iommu.h",
+        "arm-s-smmu-v3.h",
+        "arm-r-smmu-v3.h",
+        "asm/hisi_cca_da.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "read_lock": 2,
+          "read_unlock": 2,
+          "mutex_lock": 12,
+          "mutex_unlock": 13,
+          "spin_lock_irqsave": 6,
+          "spin_unlock_irqrestore": 7
+        },
+        "rcu": {},
+        "atomics": {
+          "atomic_read": 2,
+          "atomic_dec": 1,
+          "atomic_inc": 1,
+          "atomic_set": 4
+        },
+        "barriers": {
+          "smp_mb": 1
+        },
+        "writeReadOnce": {
+          "WRITE_ONCE": 6,
+          "READ_ONCE": 5
+        },
+        "waitWake": {},
+        "percpu": {
+          "for_each_possible_cpu": 3
+        },
+        "lockdep": {
+          "might_sleep": 1,
+          "lockdep_assert_held": 4
+        }
+      }
+    },
+    {
+      "path": "arm-smmu-v3.h",
+      "type": "header",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "STRTAB_MAX_L1_ENTRIES",
+          "params": "1 << 17) static inline u32 arm_smmu_strtab_l1_idx(u32 sid"
+        },
+        {
+          "returnType": "u32",
+          "name": "arm_smmu_strtab_l2_idx",
+          "params": "u32 sid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cdtab_l1_idx",
+          "params": "unsigned int ssid"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_cdtab_l2_idx",
+          "params": "unsigned int ssid"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_cdtab_allocated",
+          "params": "struct arm_smmu_ctx_desc_cfg *cfg"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_ssids_in_use",
+          "params": "struct arm_smmu_ctx_desc_cfg *cd_table"
+        },
+        {
+          "returnType": "arm_smmu_nested_domain *",
+          "name": "to_smmu_nested_domain",
+          "params": "struct iommu_domain *dom"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_canwbs",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_sva_supported",
+          "params": "struct arm_smmu_device *smmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_sva_supported",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_sva_enabled",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_master_enable_sva",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "arm_smmu_master_disable_sva",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "arm_smmu_master_iopf_supported",
+          "params": "struct arm_smmu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "arm_smmu_sva_notifier_synchronize",
+          "params": "void"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ste"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_strtab_l2"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_strtab_l1"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cd"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cdtab_l2"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cdtab_l1"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cmdq_ent"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ll_queue"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_queue"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_queue_poll"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cmdq"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ecmdq"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_cmdq_batch"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_evtq"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_priq"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ctx_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_ctx_desc_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_s2_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_strtab_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "realm_smmu_queue"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_strtab_l1_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "realm_smmu_strtab_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "realm_smmu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_stream"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_master"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_nested_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_entry_writer"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_entry_writer_ops"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_master_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_smmu_attach_state"
+        },
+        {
+          "kind": "struct",
+          "name": "arm_vsmmu"
+        }
+      ],
+      "enums": [
+        {
+          "name": "pri_resp"
+        },
+        {
+          "name": "arm_smmu_domain_stage"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/bitfield.h",
+        "linux/iommu.h",
+        "linux/iommufd.h",
+        "linux/kernel.h",
+        "linux/mmzone.h",
+        "linux/sizes.h",
+        "linux/kvm_host.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "atomic_t",
+            "name": "prod"
+          },
+          {
+            "type": "atomic_t",
+            "name": "cons"
+          },
+          {
+            "type": "atomic_t",
+            "name": "owner_prod"
+          },
+          {
+            "type": "atomic_t",
+            "name": "lock"
+          },
+          {
+            "type": "struct mutex",
+            "name": "strtab_l2_lock"
+          },
+          {
+            "type": "struct mutex",
+            "name": "streams_mutex"
+          },
+          {
+            "type": "struct mutex",
+            "name": "init_mutex"
+          },
+          {
+            "type": "atomic_t",
+            "name": "nr_ats_masters"
+          },
+          {
+            "type": "spinlock_t",
+            "name": "devices_lock"
+          },
+          {
+            "type": "struct mutex",
+            "name": "arm_smmu_asid_lock"
+          }
+        ],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    }
+  ],
+  "kconfig": [],
+  "makefile": {
+    "obj_y": [],
+    "obj_m": []
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "module": {
+    "path": "drivers/iommu/arm/arm-smmu-v3",
+    "name": "arm-smmu-v3",
+    "type": "device_driver",
+    "fileCount": {
+      "total": 9,
+      "source": 6,
+      "header": 3
+    },
+    "kconfigOptions": [],
+    "buildTargets": {
+      "obj_y": [],
+      "obj_m": []
+    },
+    "publicApis": [
+      {
+        "name": "virtcca_smmu_map_init",
+        "signature": "bool virtcca_smmu_map_init(...)",
+        "file": "arm-s-smmu-v3.c"
+      }
+    ],
+    "keyStructures": [],
+    "moduleEntryPoints": [],
+    "externalDependencies": [
+      "../../dma-iommu.h",
+      "../../io-pgtable-arm.h",
+      "arm-r-smmu-v3.h",
+      "arm-s-smmu-v3.h",
+      "arm-smmu-v3.h",
+      "asm/hisi_cca_da.h",
+      "asm/kvm_tmi.h",
+      "asm/rmi_cmds.h",
+      "asm/virtcca_coda.h",
+      "asm/virtcca_cvm_host.h",
+      "kunit/test.h",
+      "kunit/visibility.h",
+      "linux/acpi.h",
+      "linux/acpi_iort.h",
+      "linux/arm_mpam.h",
+      "linux/bitfield.h",
+      "linux/bitops.h",
+      "linux/crash_dump.h",
+      "linux/delay.h",
+      "linux/err.h",
+      "linux/interrupt.h",
+      "linux/io-pgtable.h",
+      "linux/iommu.h",
+      "linux/iommufd.h",
+      "linux/iopoll.h",
+      "linux/kernel.h",
+      "linux/kvm_host.h",
+      "linux/mm.h",
+      "linux/mmu_context.h",
+      "linux/mmu_notifier.h",
+      "linux/mmzone.h",
+      "linux/module.h",
+      "linux/msi.h",
+      "linux/of.h",
+      "linux/of_address.h",
+      "linux/of_platform.h",
+      "linux/pci-ats.h",
+      "linux/pci.h",
+      "linux/platform_device.h",
+      "linux/sched/mm.h",
+      "linux/sizes.h",
+      "linux/slab.h",
+      "uapi/linux/iommufd.h"
+    ],
+    "concurrency": {
+      "filesWithConcurrency": 5,
+      "lockDeclarations": [
+        {
+          "type": "atomic_t",
+          "name": "prod",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "cons",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "owner_prod",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "lock",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "strtab_l2_lock",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "streams_mutex",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "init_mutex",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "nr_ats_masters",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "spinlock_t",
+          "name": "devices_lock",
+          "file": "arm-smmu-v3.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "arm_smmu_asid_lock",
+          "file": "arm-smmu-v3.h"
+        }
+      ],
+      "lockOperations": {
+        "write_lock": 2,
+        "write_unlock": 2,
+        "read_lock": 4,
+        "read_unlock": 4,
+        "mutex_lock": 16,
+        "mutex_unlock": 18,
+        "spin_lock_irqsave": 8,
+        "spin_unlock_irqrestore": 9
+      },
+      "rcu": {},
+      "atomics": {
+        "atomic_read": 2,
+        "atomic_dec": 1,
+        "atomic_inc": 1,
+        "atomic_set": 4
+      },
+      "barriers": {
+        "smp_mb": 1
+      },
+      "writeReadOnce": {
+        "WRITE_ONCE": 6,
+        "READ_ONCE": 5
+      },
+      "waitWake": {},
+      "percpu": {
+        "for_each_possible_cpu": 3
+      }
+    }
+  }
+}

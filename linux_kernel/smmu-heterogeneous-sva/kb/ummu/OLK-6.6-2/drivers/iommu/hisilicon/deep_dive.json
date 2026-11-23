@@ -1,0 +1,5021 @@
+{
+  "files": [
+    {
+      "path": "attribute.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "ssize_t",
+          "name": "features_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "tid_bits_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "pgsize_bitmap_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "ias_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "oas_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "ptsize_bitmap_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "options_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "mcmdq_log2num_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "mcmdq_log2size_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "evtq_log2num_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "evtq_log2size_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "permq_num_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "permq_ent_num_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "eid_list_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "int",
+          "name": "check_input_buf",
+          "params": "const char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "bp_partid_store",
+          "params": "struct device *kobj, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "bp_pmg_store",
+          "params": "struct device *kobj, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "bp_run_store",
+          "params": "struct device *dev, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "bp_mpam_info_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "uotr_partid_store",
+          "params": "struct device *kobj, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "uotr_pmg_store",
+          "params": "struct device *kobj, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "uotr_run_store",
+          "params": "struct device *dev, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "uotr_mpam_info_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/device.h",
+        "linux/errno.h",
+        "linux/iommu.h",
+        "linux/ummu_core.h",
+        "ummu.h",
+        "cfg_table.h",
+        "qos.h",
+        "attribute.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "attribute.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/sysfs.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "cfg_table.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "u32",
+          "name": "ummu_kvtable_convert_hash_val",
+          "params": "u32 val, int width"
+        },
+        {
+          "returnType": "u32",
+          "name": "ummu_kvtable_crc32_calc",
+          "params": "const u8 *data, u16 length, int width"
+        },
+        {
+          "returnType": "u32",
+          "name": "ummu_kvtable_xor_calc",
+          "params": "const u8 *data, u16 length, int width"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "width == KV_TABLE_HASH_WIDTH_8BIT"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "width == KV_TABLE_HASH_WIDTH_4BIT"
+        },
+        {
+          "returnType": "u32",
+          "name": "ummu_device_calc_hash_value_for_eid",
+          "params": "struct ummu_device *ummu, eid_t eid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_calc_kv_index",
+          "params": "struct ummu_device *ummu, eid_t eid, u32 *kv_index"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_create_kvtable",
+          "params": "struct ummu_device *ummu, u32 tag, eid_t eid, u32 kv_index"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_delete_kvtbl",
+          "params": "struct ummu_device *ummu, u32 tag, eid_t eid, u32 kv_index"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_tct_table",
+          "params": "struct kref *kref"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_put_tct_table",
+          "params": "struct ummu_tct_desc_cfg *cfg"
+        },
+        {
+          "returnType": "void",
+          "name": "free_os_meta",
+          "params": "struct kref *ref"
+        },
+        {
+          "returnType": "int",
+          "name": "os_meta_get_kv_index",
+          "params": "struct os_meta *meta, eid_t eid, u32 *kv_index"
+        },
+        {
+          "returnType": "void",
+          "name": "os_meta_del_eid",
+          "params": "struct os_meta *meta, eid_t eid"
+        },
+        {
+          "returnType": "int",
+          "name": "os_meta_add_eid",
+          "params": "struct os_meta *meta, eid_t eid, u32 kv_index, int type"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_tect",
+          "params": "struct ummu_tect_cfg *tect"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_tect_table",
+          "params": "struct kref *kref"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_put_tect_table",
+          "params": "struct ummu_tect_cfg *tect"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_build_tecte_abort",
+          "params": "struct ummu_tecte_data *tecte"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_tecte_pre_init",
+          "params": "struct ummu_tecte_data *tect, u32 num_ents"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_tect_linear",
+          "params": "struct ummu_device *ummu, struct ummu_tect_cfg *tect"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_write_tect_l1_desc",
+          "params": "__le64 *tecte, struct ummu_tect_l1_desc *desc"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_tect_second_lvl",
+          "params": "struct ummu_device *ummu, struct ummu_tect_cfg *tect, u32 tect_tag"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_tect_first_lvl",
+          "params": "struct ummu_device *ummu, struct ummu_tect_cfg *tect"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_tect",
+          "params": "struct ummu_device *ummu, const struct ummu_capability *cap, struct ummu_tect_cfg *tect"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_global_meta",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_global_meta",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_prepare_tect_tct",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_check_cap",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_tct_linear",
+          "params": "struct ummu_device *ummu, struct ummu_tct_desc_cfg *tct_cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_tct_first_lvl",
+          "params": "struct ummu_device *ummu, struct ummu_tct_desc_cfg *tct_cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_tct_second_lvl",
+          "params": "struct ummu_device *ummu, struct ummu_l1_tct_desc *l1_desc"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_tct",
+          "params": "struct ummu_device *ummu, const struct ummu_capability *cap, struct ummu_tct_desc_cfg *tct_cfg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_tct",
+          "params": "struct ummu_tct_desc_cfg *tct_cfg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_write_tct_l1_desc",
+          "params": "__le64 *tcte_ptr, struct ummu_l1_tct_desc *l1_desc"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_write_tct_desc",
+          "params": "struct ummu_device *ummu, struct ummu_domain_cfgs *cfgs, bool is_clear"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_tect_tag_in_range",
+          "params": "struct ummu_device *ummu, u32 tect_tag"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_os_meta",
+          "params": "struct ummu_device *ummu, const struct ummu_capability *cap, guid_t *guid, struct os_meta **os_data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_tecte_tag_by_eid",
+          "params": "eid_t eid, u32 *tecte_tag"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_set_domain_cfgs_tag",
+          "params": "struct ummu_domain_cfgs *cfgs, struct ummu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_tecte_cfged",
+          "params": "const struct ummu_tecte_data *target"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_make_bypass_tecte",
+          "params": "struct ummu_tecte_data *target"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_make_default_tecte",
+          "params": "struct ummu_device *ummu, struct ummu_tct_desc_cfg *tct_cfg, struct ummu_tecte_data *target"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_build_s2_domain_tecte",
+          "params": "struct ummu_domain *u_domain, struct ummu_tecte_data *target"
+        },
+        {
+          "returnType": "bool",
+          "name": "check_tecte_can_set",
+          "params": "const struct ummu_tecte_data *tecte, const struct ummu_tecte_data *src"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_fill_tecte",
+          "params": "struct ummu_device *ummu, u32 deid, const struct ummu_tecte_data *src"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_write_tecte",
+          "params": "struct ummu_device *ummu, u32 deid, struct ummu_tecte_data *src"
+        },
+        {
+          "returnType": "bool",
+          "name": "dev_work_on_local",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_add_eid",
+          "params": "struct ummu_core_device *core_dev, guid_t *guid, eid_t eid, enum eid_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_del_eid",
+          "params": "struct ummu_core_device *core_dev, guid_t *guid, eid_t eid, enum eid_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_set_tect",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_init_hash_table",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_config_hash_table",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "os_meta"
+        },
+        {
+          "kind": "struct",
+          "name": "eid_info"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/xarray.h",
+        "linux/ummu_core.h",
+        "linux/cleanup.h",
+        "linux/uuid.h",
+        "ub/ubus/ubus.h",
+        "ummu.h",
+        "queue.h",
+        "flush.h",
+        "regs.h",
+        "cfg_table.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "mutex_lock": 1,
+          "mutex_unlock": 1
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {
+          "WRITE_ONCE": 5
+        },
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "cfg_table.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_tecte_data"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_tect_l1_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_tect_cfg"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/types.h",
+        "linux/kref.h",
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "flush.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "ummu_domain_tlbi_cmd",
+          "params": "struct ummu_domain *u_domain, enum ummu_tlbi_scope scope, enum ummu_tlbi_scene scene, struct ummu_mcmdq_ent *cmd"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_range_tlbi_nofeat",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_ent *cmd, struct ummu_tlb_range *range"
+        },
+        {
+          "returnType": "define",
+          "name": "granule_to_lvl",
+          "params": "granule, translation_granule) \\ (4 - (ilog2(granule) - 3) / ((translation_granule)-3)) static void __ummu_tlbi_range(struct ummu_mcmdq_ent *cmd, struct ummu_tlb_range *range, struct ummu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_tlbi_range",
+          "params": "struct ummu_tlb_range *range, bool leaf, struct ummu_domain *u_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_tlbi_context",
+          "params": "void *cookie"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_tlbi_walk",
+          "params": "unsigned long iova, size_t size, size_t granule, void *cookie"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_tlbi_page",
+          "params": "struct iommu_iotlb_gather *gather, unsigned long iova, size_t granule, void *cookie"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_iotlb_sync",
+          "params": "struct iommu_domain *domain, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_tlb_inv_walk",
+          "params": "struct iommu_domain *domain, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "define",
+          "name": "CMDQ_MAX_TLBI_OPS",
+          "params": "1 << (PAGE_SHIFT - 3)) void ummu_mm_arch_inv_secondary_tlbs(struct iommu_domain *domain, unsigned long start, size_t size"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_flush_iotlb_all",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sync_iommu_domain",
+          "params": "struct ummu_base_domain *base_domain, struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_init_flush_iotlb",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_prefetch_cfg",
+          "params": "struct ummu_device *ummu, u32 tecte_tag, u32 tid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sync_tect_range",
+          "params": "struct ummu_device *ummu, u32 tecte_tag, u8 range"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sync_tect_all",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_sync_tect",
+          "params": "struct ummu_device *ummu, u32 tecte_tag"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sync_tct",
+          "params": "struct ummu_device *ummu, u32 tecte_tag, u32 tid, bool leaf"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sync_tct_all",
+          "params": "struct ummu_device *ummu, u32 tecte_tag"
+        },
+        {
+          "returnType": "u8",
+          "name": "get_minist_log2size_range",
+          "params": "size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_flush_plb",
+          "params": "struct ummu_device *ummu, u32 tag, u32 tid, u64 addr, size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_flush_plb_free_bit",
+          "params": "struct ummu_device *ummu, u32 tag, u32 tid, u32 next_lvl_idx, u32 next_lvl_offset"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_ioplb_sync",
+          "params": "struct iommu_domain *domain, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_flush_plb_all",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_flush_ioplb_all",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_check_pa_continuity",
+          "params": "struct ummu_device *ummu, u64 addr, u32 size_order, u32 id"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_tlb_range"
+        }
+      ],
+      "enums": [
+        {
+          "name": "ummu_tlbi_scene"
+        },
+        {
+          "name": "ummu_tlbi_scope"
+        },
+        {
+          "name": "ummu_tlbi_type"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "uapi/linux/iommufd.h",
+        "linux/platform_device.h",
+        "linux/preempt.h",
+        "linux/bitops.h",
+        "linux/ummu_core.h",
+        "trace.h",
+        "ummu.h",
+        "queue.h",
+        "flush.h",
+        "nested.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "flush.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_plbi_node"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "interrupt.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_device_mcmdq_skip_err",
+          "params": "struct ummu_device *ummu, struct ummu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_skip_err",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "ummu_gerror_handler",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_make_iommu_fault",
+          "params": "struct ummu_device *ummu, struct ummu_device_event *evt, struct iommu_fault *flt"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_page_response",
+          "params": "struct device *dev, struct iopf_fault *evt, struct iommu_page_response *resp"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_abort_page_fault",
+          "params": "struct ummu_device *ummu, u32 gripid, u32 tect_tag"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_report_iommu_fault",
+          "params": "struct device *evt_src, u32 tid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_handle_iopf",
+          "params": "struct ummu_device *ummu, struct ummu_device_event *evt"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_decode_event",
+          "params": "struct ummu_device *ummu, u64 *raw, struct ummu_device_event *event"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_handle_evt",
+          "params": "struct ummu_device *ummu, struct ummu_device_event *event"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_dump_event",
+          "params": "struct ummu_device *ummu, u64 *raw, struct ummu_device_event *evt"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "ummu_evtq_thread",
+          "params": "int irq, void *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_msis",
+          "params": "void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_setup_msis",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_disable_irqs",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_enable_irqs",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_init_evtq_irq",
+          "params": "struct ummu_device *ummu, int irq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_init_gerr_irq",
+          "params": "struct ummu_device *ummu, int irq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_setup_irq_affinity",
+          "params": "struct ummu_device *ummu, u32 evtq_irq, u32 gerr_irq, const char *affinity_prop"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_setup_irqs",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [],
+      "enums": [
+        {
+          "name": "ummu_evtq_evt_name"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/interrupt.h",
+        "linux/cpumask.h",
+        "linux/of.h",
+        "trace.h",
+        "ummu.h",
+        "queue.h",
+        "regs.h",
+        "logic_ummu/logic_ummu.h",
+        "interrupt.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "interrupt.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "iommu.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "pr_fmt",
+          "params": "fmt) \"UMMU: \" fmt #include <linux/bitfield.h> #include <linux/kvm_host.h> #include <linux/iommu.h> #include <uapi/linux/iommufd.h> #include <linux/iova.h> #include <ub/ubfi/ubfi.h> #include <linux/slab.h> #include <linux/io-pgtable.h> #include <ub/ubus/ubus.h> #include <linux/ummu_core.h> #include \"ummu.h\" #include \"flush.h\" #include \"interrupt.h\" #include \"logic_ummu/logic_ummu.h\" #include \"perm_queue.h\" #include \"page_table.h\" #include \"cfg_table.h\" #include \"perm_table.h\" #include \"qos.h\" #include \"queue.h\" #include \"regs.h\" #include \"sva.h\" #include \"nested.h\" #include \"iommu.h\" #define UMMU_CAPS_NUM 7 static bool ummu_capable(struct device *dev, enum iommu_cap cap"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_set_dirty_tracking",
+          "params": "struct iommu_domain *domain, bool enable"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_read_and_clear_dirty",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, unsigned long flags, struct iommu_dirty_bitmap *dirty"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_domain_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "set_dev_tid",
+          "params": "struct device *dev, u32 tid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_detach_dev",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_collect_pgtable_passthrough",
+          "params": "struct ummu_domain *u_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_context_prepare",
+          "params": "struct ummu_domain *u_domain"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "u_domain->cfgs.stage == UMMU_DOMAIN_S2"
+        },
+        {
+          "returnType": "void",
+          "name": "parse_tid_property",
+          "params": "struct ummu_domain *u_domain, struct ummu_master *master, struct ummu_tid_param *para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_alloc_tid",
+          "params": "struct ummu_domain *u_domain, struct ummu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_domain_attach_mapt",
+          "params": "struct ummu_domain *u_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_context_set",
+          "params": "struct ummu_domain *u_domain, struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_attach_dev",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_map_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t pgsize, size_t pgcount, int prot, gfp_t gfp, size_t *mapped"
+        },
+        {
+          "returnType": "size_t",
+          "name": "ummu_unmap_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t pgsize, size_t pgcount, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "phys_addr_t",
+          "name": "ummu_iova_to_phys",
+          "params": "struct iommu_domain *domain, dma_addr_t iova"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_get_resv_regions",
+          "params": "struct device *device, struct list_head *head"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_dev_enable_feat",
+          "params": "struct device *dev, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_dev_disable_feat",
+          "params": "struct device *dev, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_def_domain_type",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_remove_dev_pasid",
+          "params": "struct device *dev, ioasid_t id, struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_resource",
+          "params": "struct ummu_base_domain *base_domain, struct resource_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_put_resource",
+          "params": "struct ummu_base_domain *base_domain, struct resource_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_cfg_sync",
+          "params": "struct ummu_base_domain *base_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_cfg_sync_all",
+          "params": "struct ummu_base_domain *base_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sync_dom_cfg",
+          "params": "struct ummu_base_domain *src, struct ummu_base_domain *dst, enum ummu_dom_cfg_sync_type type"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_invalidate_cfg",
+          "params": "struct ummu_base_domain *base_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_get_hw_cap",
+          "params": "struct device *dev, u32 *hw_cap"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_needs_mmu_notifier",
+          "params": "struct ummu_base_domain *base_domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/bitfield.h",
+        "linux/kvm_host.h",
+        "linux/iommu.h",
+        "uapi/linux/iommufd.h",
+        "linux/iova.h",
+        "ub/ubfi/ubfi.h",
+        "linux/slab.h",
+        "linux/io-pgtable.h",
+        "ub/ubus/ubus.h",
+        "linux/ummu_core.h",
+        "ummu.h",
+        "flush.h",
+        "interrupt.h",
+        "logic_ummu/logic_ummu.h",
+        "perm_queue.h",
+        "page_table.h",
+        "cfg_table.h",
+        "perm_table.h",
+        "qos.h",
+        "queue.h",
+        "regs.h",
+        "sva.h",
+        "nested.h",
+        "iommu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "iommu.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "logic_ummu/logic_ummu.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "logic_ummu_domain *",
+          "name": "base_to_logic_domain",
+          "params": "struct ummu_base_domain *dom"
+        },
+        {
+          "returnType": "logic_ummu_domain *",
+          "name": "iommu_to_logic_domain",
+          "params": "struct iommu_domain *dom"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_domain_update_attr",
+          "params": "struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_attach_dev",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "if",
+          "name": "IS_ENABLED",
+          "params": "CONFIG_UB_UMMU_SVA) static int logic_ummu_set_dev_pasid(struct iommu_domain *domain, struct device *dev, ioasid_t pasid"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_map_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t pgsize, size_t pgcount, int prot, gfp_t gfp, size_t *mapped"
+        },
+        {
+          "returnType": "size_t",
+          "name": "logic_ummu_unmap_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t pgsize, size_t pgcount, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_flush_iotlb_all",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_iotlb_sync",
+          "params": "struct iommu_domain *domain, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "phys_addr_t",
+          "name": "logic_ummu_iova_to_phys",
+          "params": "struct iommu_domain *domain, dma_addr_t iova"
+        },
+        {
+          "returnType": "bool",
+          "name": "logic_ummu_enforce_cache_coherency",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_domain_free",
+          "params": "struct logic_ummu_domain *logic_domain, const struct iommu_domain_ops *domain_ops"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_nested_domain_free",
+          "params": "struct logic_ummu_domain *logic_domain, const struct iommu_domain_ops *domain_ops"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_mmu_notifier_list_del",
+          "params": "struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "logic_ummu_get_msi_mapping_domain",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "bool",
+          "name": "logic_ummu_capable",
+          "params": "struct device *dev, enum iommu_cap cap"
+        },
+        {
+          "returnType": "if",
+          "name": "IS_ENABLED",
+          "params": "CONFIG_UB_UMMU_SVA) static int logic_ummu_grant(struct iommu_domain *d, void *va, size_t size, int perm, void *cookie, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_ungrant",
+          "params": "struct iommu_domain *d, void *va, size_t size, void *cookie, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_plb_sync_all",
+          "params": "struct iommu_domain *d"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_plb_sync",
+          "params": "struct iommu_domain *d, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_set_dirty_tracking",
+          "params": "struct iommu_domain *domain, bool enable"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_read_and_clear_dirty",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, unsigned long flags, struct iommu_dirty_bitmap *dirty"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_domain_set_domain_ops",
+          "params": "struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_domain_set_dirty_ops",
+          "params": "struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "if",
+          "name": "IS_ENABLED",
+          "params": "CONFIG_UB_UMMU_SVA) static int logic_domain_set_perm_ops(struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_domain_set_ops",
+          "params": "struct logic_ummu_domain *logic_domain"
+        },
+        {
+          "returnType": "if",
+          "name": "IS_ENABLED",
+          "params": "CONFIG_UB_UMMU_SVA) if (agent_domain->perm_ops"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_mm_arch_invalidate_secondary_tlbs",
+          "params": "struct mmu_notifier *mn, struct mm_struct *mm, unsigned long start, unsigned long end"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_mmu_notifier_free",
+          "params": "struct mmu_notifier *mn"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_mmu_notifier_register",
+          "params": "struct logic_ummu_domain *logic_domain, struct mm_struct *mm"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_sync_iommu_domain",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "logic_ummu_domain_alloc_user_v2",
+          "params": "struct device *dev, u32 flags, struct iommu_domain *parent, struct kvm *kvm, const struct iommu_user_data *data"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "logic_ummu_viommu_alloc_domain_nested",
+          "params": "struct iommufd_viommu *viommu, u32 flags, const struct iommu_user_data *user_data"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_viommu_cache_invalidate",
+          "params": "struct iommufd_viommu *viommu, struct iommu_user_data_array *array"
+        },
+        {
+          "returnType": "iommufd_viommu *",
+          "name": "logic_ummu_viommu_alloc",
+          "params": "struct device *dev, struct iommu_domain *parent, struct iommufd_ctx *ictx, unsigned int viommu_type"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_release_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_probe_finalize",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_get_resv_regions",
+          "params": "struct device *dev, struct list_head *list"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_of_xlate",
+          "params": "struct device *dev, struct of_phandle_args *args"
+        },
+        {
+          "returnType": "bool",
+          "name": "logic_ummu_is_attach_deferred",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_dev_enable_feat",
+          "params": "struct device *dev, enum iommu_dev_features f"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_dev_disable_feat",
+          "params": "struct device *dev, enum iommu_dev_features f"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_page_response",
+          "params": "struct device *dev, struct iopf_fault *evt, struct iommu_page_response *msg"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_def_domain_type",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_remove_dev_pasid",
+          "params": "struct device *dev, ioasid_t pasid, struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_set_group_qos_params",
+          "params": "struct iommu_group *group, u16 partid, u8 pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_get_group_qos_params",
+          "params": "struct iommu_group *group, u16 *partid, u8 *pmg"
+        },
+        {
+          "returnType": "u32",
+          "name": "get_ummu_count",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_cfg_sync_all",
+          "params": "struct ummu_base_domain *d"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_cfg_sync",
+          "params": "struct ummu_base_domain *d"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_get_resource",
+          "params": "struct ummu_base_domain *d, struct resource_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_put_resource",
+          "params": "struct ummu_base_domain *d, struct resource_args *args"
+        },
+        {
+          "returnType": "bool",
+          "name": "is_eid_added",
+          "params": "eid_t eid"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_add_eid",
+          "params": "struct ummu_core_device *device, guid_t *guid, eid_t eid, enum eid_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_del_eid",
+          "params": "struct ummu_core_device *device, guid_t *guid, eid_t eid, enum eid_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "remove_all_eid",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_invalidate_cfg",
+          "params": "struct ummu_base_domain *domain"
+        },
+        {
+          "returnType": "bool",
+          "name": "logic_ummu_device_support_attr",
+          "params": "struct ummu_core_device *core_device, struct tdev_attr *attr"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_get_hw_cap",
+          "params": "struct device *dev, u32 *hw_cap"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_dev_config",
+          "params": "struct device *dev, int type, int command, void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_tlb_inv_walk",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, size_t pgsize"
+        },
+        {
+          "returnType": "void",
+          "name": "gen_iommu_ops",
+          "params": "const struct iommu_ops *src, struct iommu_ops *dst"
+        },
+        {
+          "returnType": "void",
+          "name": "gen_iommu_domain_ops",
+          "params": "const struct iommu_domain_ops *src, struct iommu_domain_ops *dst"
+        },
+        {
+          "returnType": "int",
+          "name": "init_ummu_device",
+          "params": "struct ummu_device *ummu, const struct iommu_ops *iommu_ops, const struct ummu_core_ops *core_ops"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_core_device_init",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_core_device_deinit",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_device_add_agent",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_device_del_agent",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "update_logic_ummu",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_add_ummu_device",
+          "params": "struct ummu_device *ummu, const struct iommu_ops *iommu_ops, const struct ummu_core_ops *core_ops"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_remove_ummu_device",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "tid_type_store",
+          "params": "struct device *dev, struct device_attribute *attr, const char *buf, size_t count"
+        },
+        {
+          "returnType": "int",
+          "name": "logic_ummu_device_init",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "logic_ummu_device_exit",
+          "params": "void"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "logic_ummu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "logic_ummu_viommu"
+        },
+        {
+          "kind": "struct",
+          "name": "logic_ummu_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "logic_ummu_mn"
+        },
+        {
+          "kind": "struct",
+          "name": "eid_info"
+        },
+        {
+          "kind": "struct",
+          "name": "logic_ummu_identity_device"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/kvm_host.h",
+        "uapi/linux/iommufd.h",
+        "uapi/linux/hisi_ummu.h",
+        "linux/device.h",
+        "linux/err.h",
+        "linux/kernel.h",
+        "linux/platform_device.h",
+        "linux/slab.h",
+        "ub/ubfi/ubfi.h",
+        "linux/xarray.h",
+        "linux/cleanup.h",
+        "linux/iommufd.h",
+        "linux/ummu_core.h",
+        "linux/mmu_notifier.h",
+        "linux/rwsem.h",
+        "logic_ummu.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "struct mutex",
+            "name": "dev_mutex"
+          },
+          {
+            "type": "struct rw_semaphore",
+            "name": "rwsem"
+          }
+        ],
+        "lockOperations": {
+          "down_write": 2,
+          "up_write": 2,
+          "down_read": 1,
+          "up_read": 1
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "logic_ummu/logic_ummu.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/ummu_core.h",
+        "../ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "nested.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_build_nested_domain_tct",
+          "params": "struct ummu_domain *u_domain, struct ummu_tecte_data *target"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_build_nested_domain_tecte",
+          "params": "struct ummu_nested_domain *nested_domain, struct ummu_tecte_data *tecte"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_attach_dev_nested",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_domain_nested_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "ummu_get_msi_mapping_domain",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_validate_vtecte_data",
+          "params": "struct iommu_hwpt_ummu *arg"
+        },
+        {
+          "returnType": "iommu_domain *",
+          "name": "ummu_viommu_alloc_domain_nested",
+          "params": "struct iommu_domain *parent, u32 flags, const struct iommu_user_data *user_data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_fix_user_cmd",
+          "params": "struct ummu_device *ummu, u64 *cmd, u32 tecte_tag, u16 vmid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_viommu_cache_invalidate_user",
+          "params": "struct iommu_domain *domain, struct iommu_user_data_array *array"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "uapi/linux/iommufd.h",
+        "iommu.h",
+        "cfg_table.h",
+        "queue.h",
+        "nested.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "nested.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_nested_domain"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "page_table.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "ummu_get_pgtable_cfg",
+          "params": "struct ummu_domain *u_domain, struct ummu_pgtable_cfg *cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_collect_pgtable_s1",
+          "params": "struct ummu_domain *u_domain, struct io_pgtable_cfg *pgtbl_cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_collect_pgtable_s2",
+          "params": "struct ummu_domain *u_domain, struct io_pgtable_cfg *pgtbl_cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_collect_pgtable",
+          "params": "struct ummu_domain *u_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_map_identity_pages",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_global_identity_pgtbl_init",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_global_identity_pgtbl_free",
+          "params": "void"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_pgtable_cfg"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/dma-mapping.h",
+        "linux/io-pgtable.h",
+        "linux/errno.h",
+        "linux/kvm_host.h",
+        "flush.h",
+        "cfg_table.h",
+        "page_table.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "page_table.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "perm_queue.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "pr_fmt",
+          "params": "fmt) \"UMMU: \" fmt #include <linux/iopoll.h> #include \"cfg_table.h\" #include \"ummu.h\" #include \"regs.h\" #include \"perm_queue.h\" #define PERMQ_CTXTBL_BYTES 64U #define PERMQ_CTXTBL_STATUS GENMASK(1, 0) #define PERMQ_CTXTBL_RESET 0x0 #define PERMQ_CTXTBL_READY 0x1 #define PERMQ_CTXTBL_ERROR 0x2 #define PERMQ_CTXTBL_QSIZE GENMASK(5, 2) #define PERMQ_CTXTBL_ENT_QBASE GENMASK_ULL(51, 12) #define PERMQ_CTXTBL_ENT_MA GENMASK_ULL(61, 58) #define PERMQ_CTXTBL_WBWA 1 #define PERMQ_CTXTBL_ENT_SH GENMASK_ULL(63, 62) #define PERMQ_CTXTBL_ENT2_TECTE_TAG GENMASK(15, 0) #define PERMQ_CTXTBL_ENT4_TID GENMASK(19, 0) #define PERMQ_CTXTBL_ENT4_UIEQN GENMASK(28, 24) #define PERMQ_CTXTBL_ENT4_INTEN (1UL << 29) #define PERMQ_INT_ENABLE 0x1 #define PERMQ_CTXTBL_ENT5_PCMDQPI GENMASK(15, 0) #define PERMQ_CTXTBL_ENT5_PCMDQCI GENMASK(31, 16) #define PERMQ_CTXTBL_ENT5_PCPLQPI GENMASK_ULL(47, 32) #define PERMQ_CTXTBL_ENT5_PCPLQCI GENMASK_ULL(63, 48) #define PERMQ_CTXTBL_ENT6_NEXT_QID GENMASK_ULL(47, 0) #define PERMQ_CTXTBL_ENT6_QM_FLAG (1ULL << 48) void ummu_device_uninit_permqs(struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_init_permqs",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_init_permq_ctrl_page",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_permq_resource",
+          "params": "struct ummu_device *ummu, u32 qid, struct queue_args *queue"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_tid_res",
+          "params": "struct tid_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_release_ucmdq",
+          "params": "struct ummu_device *ummu, u32 qid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_permq_resource",
+          "params": "struct ummu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_set_permq_ctxtbl",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_init_permq_ctxtbl_ent",
+          "params": "struct ummu_domain *domain, struct ummu_permq_desc *permq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_init_permq_ctrltbl_ent",
+          "params": "void __iomem *ctrl_base, u32 qid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_domain_config_permq",
+          "params": "struct ummu_domain *domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h",
+        "cfg_table.h",
+        "ummu.h",
+        "regs.h",
+        "perm_queue.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {
+          "WRITE_ONCE": 1
+        },
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "perm_queue.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "perm_table.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "GET_BITS_MASK",
+          "params": "bits) (((u64)1 << (bits)) - 1) #define GET_LEVEL_RANGE_MASK(level) \\ (GET_BITS_MASK(g_mapt_range_bits[level][1])) #define GET_LEVEL_BASE(addr, level) \\ ((u64)(addr) & \\ (u64)GET_LEVEL_RANGE_MASK(level)) #define GET_LEVEL_BLOCK_INDEX(addr, level) \\ (((u64)(addr) >> g_mapt_range_bits[level][1]) & \\ (GET_BITS_MASK(g_mapt_range_bits[level][0] - \\ g_mapt_range_bits[level][1] + 1))) #define ENTRY_ADDR_LOW(addr) FIELD_GET(GENMASK(31, 0), (addr)) #define ENTRY_ADDR_HIGH(addr) FIELD_GET(GENMASK(47, 32), (addr)) #define TABLE_ADDR_LOW(addr) FIELD_GET(GENMASK(31, 0), (addr)) #define TABLE_ADDR_HIGH(addr) FIELD_GET(GENMASK(38, 32), (addr)) #define LVL_OFFSET_LOW(offset) FIELD_GET(GENMASK(19, 0), (offset)) #define LVL_OFFSET_HIGH(offset) FIELD_GET(GENMASK(29, 20), (offset)) #define TABLE_LVL_OFFSET(low, high) (((u32)(high) << 20) | (u32)(low)) #define IS_RTE_IN_USE(addr) (((((uint64_t)(addr)) & INVALID_ADDR) == INVALID_ADDR) ? false : true) static int ummu_alloc_mapt_block_tbl(struct io_pt_blk_table *blk_table"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_mapt_block_tbl",
+          "params": "struct io_pt_blk_table *blk_table"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_write_block_desc",
+          "params": "__le64 *dst, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_mapt_mem",
+          "params": "struct ummu_domain *ummu_domain, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_mapt_mem_for_entry",
+          "params": "struct ummu_domain *ummu_domain, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_mapt_mem_for_table",
+          "params": "struct ummu_domain *ummu_domain, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_alloc_mapt_blk_mem",
+          "params": "struct ummu_domain *ummu_domain, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_sva_mapt_context",
+          "params": "struct ummu_domain *ummu_domain, enum ummu_mapt_mode mode"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_blk_tbl_ent",
+          "params": "__le64 *dst, struct ummu_mapt_info *io_pt_cfg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_mapt_for_entry",
+          "params": "struct ummu_domain *ummu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_mapt_for_table",
+          "params": "struct ummu_domain *ummu_domain, u32 blk_index"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_mapt_info_by_index",
+          "params": "struct ummu_domain *ummu_domain, u32 blk_index"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_domain_mapt_mem",
+          "params": "struct ummu_domain *ummu_domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_mapt_blk_mem",
+          "params": "struct ummu_domain *ummu_domain, struct block_args *blk_para"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_check_perm",
+          "params": "enum ummu_mapt_perm perm"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_check_ebit",
+          "params": "enum ummu_ebit_state e_bit"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_gen_random",
+          "params": "u32 *value"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_get_token",
+          "params": "struct ummu_token_info *token, u32 *value"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "token->input == 1"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_check_data",
+          "params": "enum ummu_mapt_mode mode, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_perm_table_mode_is_valid",
+          "params": "enum ummu_mapt_mode mode"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_perm_data_preproc",
+          "params": "struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_entry_fill_node",
+          "params": "struct ummu_mapt_entry_node *node, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_add_token",
+          "params": "void *mapt_node, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_remove_token",
+          "params": "void *mapt_node, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "node->token_val_1 == data_info->tokenval"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_update_token",
+          "params": "void *mapt_node, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_table_fill_node",
+          "params": "struct ummu_mapt_table_node *node, u64 base, u64 limit, struct ummu_data_info *data_info, bool new_node"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_modify_entry_cnt",
+          "params": "struct ummu_mapt_block *block, u64 lv_offset, int cnt"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_plbi_issue",
+          "params": "struct ummu_data_info *data_info, u32 cmd_type, u64 data1, u64 data2"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_table_type_switch_plbi",
+          "params": "struct ummu_data_info *data_info, uint64_t node_base, uint64_t node_limit, uint32_t level"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_fill_head_node_free_bit",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_fill_head_node",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_fill_node_by_level",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, u64 lvl_base, u64 lvl_limit"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_free_level_block",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_mapt_table_node *prev_node"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_table_clear_node",
+          "params": "struct ummu_mapt_table_node *node, struct ummu_mapt_info *mapt_info, struct ummu_mapt_table_node *pre_node"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_clear_head_node",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_clear_head_node_free_bit",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_clear_node_by_level",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, u64 lvl_base, u64 lvl_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_update_node_token_free_bit",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_update_node_token",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *cur_node, u64 node_base, u64 node_limit"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "cur_node->type == 0"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_update_token_by_level",
+          "params": "struct ummu_data_info *data_info, u32 level, struct ummu_mapt_table_node *pre_node, u64 lvl_base, u64 lvl_limit"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_entry_op",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_table_op",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *data_info"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_grant_imp",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_update_info",
+          "params": "enum ummu_grant_op_type opt, struct ummu_mapt_info *mapt_info, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_perm_grant",
+          "params": "struct iommu_domain *domain, void *va, size_t size, int perm, void *cookie, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_ungrant_imp",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_perm_ungrant",
+          "params": "struct iommu_domain *domain, void *va, size_t size, void *cookie, struct iommu_plb_gather *plb_gather"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_ksva_mapt_for_table",
+          "params": "struct ummu_mapt_info *pt_cfg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_ksva_mapt_for_entry",
+          "params": "struct ummu_domain *domain, size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_ksva_mapt",
+          "params": "struct ummu_domain *domain, enum ummu_mapt_mode mode"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_ksva_mapt",
+          "params": "struct ummu_domain *domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/cleanup.h",
+        "linux/random.h",
+        "trace.h",
+        "ummu.h",
+        "flush.h",
+        "seg_mng.h",
+        "cfg_table.h",
+        "perm_table.h",
+        "queue.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {
+          "atomic_set": 1,
+          "atomic_inc": 1,
+          "atomic_dec": 1,
+          "atomic_read": 2
+        },
+        "barriers": {},
+        "writeReadOnce": {
+          "WRITE_ONCE": 2,
+          "READ_ONCE": 1
+        },
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "perm_table.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_mapt_entry_node"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mapt_table_node"
+        },
+        {
+          "kind": "struct",
+          "name": "io_pt_blk_table"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mapt_block"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mapt_table_ctx"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mapt_info"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_seg_info"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_data_info"
+        }
+      ],
+      "enums": [
+        {
+          "name": "ummu_grant_op_type"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/ummu_core.h",
+        "linux/maple_tree.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "atomic_t",
+            "name": "mapt_blk_cnt"
+          }
+        ],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "plat_erratum.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_device_acpi_get_options",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_dt_get_options",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_device_option_prop"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/acpi.h",
+        "linux/of.h",
+        "plat_erratum.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "plat_erratum.h",
+      "type": "header",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_device_acpi_get_options",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "qos.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "ummu_check_mpam_cap_info",
+          "params": "struct ummu_device *ummu, u32 partid, u32 pmg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_set_tct_mtm",
+          "params": "__le64 *tcte, u32 partid, u32 pmg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_partid_map",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_partid_map",
+          "params": "int partid, __le64 *tecte"
+        },
+        {
+          "returnType": "int",
+          "name": "check_domain_type",
+          "params": "struct device *dev, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_check_mpam_info",
+          "params": "struct ummu_device *ummu, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_tecte_and_tcte",
+          "params": "struct ummu_device *ummu, struct ummu_mpam *mpam, u32 tect_tag, __le64 **tecte, __le64 **tcte"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_set_tct_mtm_en",
+          "params": "int tid, __le64 *tecte"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_set_tect_mtm",
+          "params": "struct ummu_mpam *mpam, __le64 *tecte"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_st_mode",
+          "params": "__le64 *tecte, u32 tect_tag, bool *is_nested, bool *s1_only"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_set_master_mpam",
+          "params": "struct ummu_device *ummu, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_set_mpam",
+          "params": "struct device *dev, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_mpam_from_tcte",
+          "params": "struct ummu_device *ummu, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_master_mpam",
+          "params": "struct ummu_device *ummu, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_get_mpam",
+          "params": "struct device *dev, struct ummu_mpam *mpam"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_cfg_table_ptr",
+          "params": "struct ummu_device *ummu, u32 tid, __le64 **tcte"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_group_set_mpam",
+          "params": "struct iommu_group *group, u16 partid, u8 pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_mpam_info",
+          "params": "struct ummu_device *ummu, u32 tid, u16 *partid, u8 *pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_group_get_mpam",
+          "params": "struct iommu_group *group, u16 *partid, u8 *pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_set_bypass_mpam",
+          "params": "struct ummu_device *ummu, int partid, int pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_bypass_mpam",
+          "params": "struct ummu_device *ummu, int *partid, int *pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_set_uotr_mpam",
+          "params": "struct ummu_device *ummu, int partid, int pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_uotr_mpam",
+          "params": "struct ummu_device *ummu, int *partid, int *pmg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_dev_config",
+          "params": "struct device *dev, int type, int command, void *data"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h",
+        "linux/errno.h",
+        "linux/bitfield.h",
+        "linux/kernel.h",
+        "regs.h",
+        "flush.h",
+        "cfg_table.h",
+        "logic_ummu/logic_ummu.h",
+        "qos.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {
+          "WRITE_ONCE": 4
+        },
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "qos.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [
+        {
+          "name": "ummu_mpam_type"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/device.h",
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "queue.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "ummu_queue_has_space",
+          "params": "struct ummu_ll_queue *q, u32 n"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_queue_full",
+          "params": "struct ummu_ll_queue *q"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_queue_empty",
+          "params": "struct ummu_ll_queue *q"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_queue_consumed",
+          "params": "struct ummu_ll_queue *q, u32 prod"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_sync_cons_out",
+          "params": "struct ummu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_sync_cons_ovf",
+          "params": "struct ummu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_inc_cons",
+          "params": "struct ummu_ll_queue *q"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_queue_sync_prod_in",
+          "params": "struct ummu_queue *q"
+        },
+        {
+          "returnType": "u32",
+          "name": "ummu_queue_inc_prod_n",
+          "params": "struct ummu_ll_queue *q, int n"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_poll_init",
+          "params": "struct ummu_device *ummu, struct ummu_queue_poll *qp"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_queue_poll",
+          "params": "struct ummu_queue_poll *qp"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "++qp->spin_cnt < UMMU_POLL_SPIN_COUNT"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_write",
+          "params": "__le64 *dst, u64 *src, size_t n_dwords"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_queue_read",
+          "params": "u64 *dst, __le64 *src, size_t n_dwords"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_queue_remove_raw",
+          "params": "struct ummu_queue *queue, u64 *ent"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_free_queue",
+          "params": "struct ummu_queue *q"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_free_mcmdq",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_common_init_queue",
+          "params": "struct ummu_device *ummu, struct ummu_queue *q, size_t dwords"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_allocate",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_cfg_para",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_init",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_write_mcmdq_regs",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_mcmdq_init_cfg",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_write_evtq_regs",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_free_evtq",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_evtq_init",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_queues",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_poll_until_not_full",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq, struct ummu_ll_queue *llq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_shared_lock",
+          "params": "struct ummu_mcmdq *mcmdq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_shared_unlock",
+          "params": "struct ummu_mcmdq *mcmdq"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_mcmdq_shared_tryunlock",
+          "params": "struct ummu_mcmdq *mcmdq"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_build_nop_cmd",
+          "params": "u64 *cmd, struct ummu_mcmdq_ent *ent"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_build_cmd",
+          "params": "struct ummu_device *ummu, u64 *cmd, struct ummu_mcmdq_ent *ent"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "ent->sync.support_sev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_build_sync_cmd",
+          "params": "u64 *cmd, struct ummu_device *ummu, struct ummu_queue *q, u32 prod"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_poll_set_valid_map",
+          "params": "struct ummu_mcmdq *mcmdq, u32 sprod, u32 eprod, bool set"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_set_valid_map",
+          "params": "struct ummu_mcmdq *mcmdq, u32 sprod, u32 eprod"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_poll_valid_map",
+          "params": "struct ummu_mcmdq *mcmdq, u32 sprod, u32 eprod"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_poll_until_msi",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq, struct ummu_ll_queue *llq"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_poll_until_consumed",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq, struct ummu_ll_queue *llq"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_poll_until_sync",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq, struct ummu_ll_queue *llq"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_write_entries",
+          "params": "struct ummu_mcmdq *mcmdq, u64 *cmds, u32 prod, int n"
+        },
+        {
+          "returnType": "int",
+          "name": "check_pa_continuity_nop_exec",
+          "params": "struct ummu_queue *q, u32 prod"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_exclusive_issue_cmdlist",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq *mcmdq, u64 *cmds, int n, bool sync"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_issue_cmdlist",
+          "params": "struct ummu_device *ummu, u64 *cmds, int n, bool sync"
+        },
+        {
+          "returnType": "bool",
+          "name": "non_va_range_tlbi",
+          "params": "int opcode"
+        },
+        {
+          "returnType": "int",
+          "name": "__ummu_mcmdq_issue_cmd",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_ent *ent, bool sync"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_issue_cmd",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_ent *ent"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_issue_cmd_with_sync",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_ent *ent"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_mcmdq_batch_add",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_batch *cmds, struct ummu_mcmdq_ent *cmd"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_mcmdq_batch_submit",
+          "params": "struct ummu_device *ummu, struct ummu_mcmdq_batch *cmds"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_queue_poll"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h",
+        "linux/dma-mapping.h",
+        "linux/log2.h",
+        "ummu.h",
+        "regs.h",
+        "sva.h",
+        "queue.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "read_lock": 2,
+          "read_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {
+          "atomic_set": 1,
+          "atomic_read": 1
+        },
+        "barriers": {},
+        "writeReadOnce": {
+          "WRITE_ONCE": 3,
+          "READ_ONCE": 5
+        },
+        "waitWake": {},
+        "percpu": {
+          "for_each_possible_cpu": 4
+        },
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "queue.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_mcmdq_batch"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mcmdq_ent"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_device_event"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "regs.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "seg_mng.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "pr_fmt",
+          "params": "fmt) \"UMMU: \" fmt #include <linux/errno.h> #include <linux/kernel.h> #include \"seg_tree.h\" #include \"seg_mng.h\" static int ummu_compare(u64 left, u64 size, void *data"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_table_param_check",
+          "params": "struct ummu_seg_info *exist_addr, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_ungrant_param_check",
+          "params": "struct ummu_seg_info *exist_addr, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_remove_tokenval",
+          "params": "u32 tokenval, struct ummu_seg_info *data"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_entry_param_check",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_grant_check",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_entry_ungrant_param_check",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "ummu_grant_op_type",
+          "name": "ummu_ungrant_check",
+          "params": "struct ummu_mapt_info *mapt_info, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "void",
+          "name": "clear_seg_info",
+          "params": "void *data"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_destroy_seg_mng",
+          "params": "struct maple_tree *seg_table"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_insert_new_addr",
+          "params": "struct maple_tree *seg_table, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_delete_addr",
+          "params": "struct maple_tree *seg_table, struct ummu_data_info *grant_param"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_token_update",
+          "params": "struct maple_tree *seg_table, struct ummu_data_info *grant_param, enum ummu_grant_op_type op"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/errno.h",
+        "linux/kernel.h",
+        "seg_tree.h",
+        "seg_mng.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "seg_mng.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/maple_tree.h",
+        "perm_table.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "seg_tree.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "pr_fmt",
+          "params": "fmt) \"UMMU: \" fmt #include <linux/errno.h> #include <linux/kernel.h> #include <linux/maple_tree.h> #include <linux/slab.h> #include \"seg_tree.h\" struct maple_tree *ummu_create_seg_tree(void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_insert_seg",
+          "params": "void *data, struct maple_tree *seg_tree, u64 left, u64 size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_delete_seg",
+          "params": "u64 left, u64 size, struct maple_tree *seg_tree, range_compare func, clear_seg_node cleaner"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_destroy_seg_tree",
+          "params": "struct maple_tree *seg_tree, clear_seg_node cleaner"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/errno.h",
+        "linux/kernel.h",
+        "linux/maple_tree.h",
+        "linux/slab.h",
+        "seg_tree.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "seg_tree.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [
+        {
+          "name": "range_compare_ret"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "sva.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "ummu_sva_supported",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_sva_supported",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_iopf_supported",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_sva_enabled",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_sva_enable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_iopf_enabled",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_master_sva_disable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_enable_sva",
+          "params": "struct ummu_master *master, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_disable_sva",
+          "params": "struct ummu_master *master, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_enable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_disable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_get_translation_granule",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_domain_collect_tct_info",
+          "params": "struct ummu_device *ummu, struct ummu_domain *domain, u32 asid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_master_put",
+          "params": "struct ummu_master *master, bool is_ksva"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_collect_domain_cfg",
+          "params": "struct ummu_domain *domain, ioasid_t id"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_asid_get",
+          "params": "struct iommu_domain *iommu_domain, bool is_ksva, u32 *asid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_asid_put",
+          "params": "struct iommu_domain *iommu_domain, bool is_ksva"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_set_dev_pasid",
+          "params": "struct iommu_domain *domain, struct device *dev, ioasid_t id"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_domain_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_domain_remove_tid",
+          "params": "struct ummu_domain *domain, struct ummu_master *master, u32 tid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_iopf_queue_alloc",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_iopf_queue_free",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_tcte_invalidate",
+          "params": "struct ummu_domain *u_domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/mm.h",
+        "linux/mmu_context.h",
+        "linux/sched/mm.h",
+        "linux/slab.h",
+        "iommu.h",
+        "ummu.h",
+        "page_table.h",
+        "perm_table.h",
+        "perm_queue.h",
+        "cfg_table.h",
+        "queue.h",
+        "flush.h",
+        "sva.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "mutex_lock": 2,
+          "mutex_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "sva.h",
+      "type": "header",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "ummu_master_enable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_iopf_enabled",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_disable_iopf",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_enable_sva",
+          "params": "struct ummu_master *master, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_master_sva_enabled",
+          "params": "struct ummu_master *master"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_master_disable_sva",
+          "params": "struct ummu_master *master, enum iommu_dev_features feat"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_iopf_queue_free",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_domain_remove_tid",
+          "params": "struct ummu_domain *domain, struct ummu_master *master, u32 tid"
+        },
+        {
+          "returnType": "define",
+          "name": "ummu_domain_alloc_sva",
+          "params": "(void *) 0) static inline bool ummu_sva_supported(struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_iopf_queue_alloc",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_tcte_invalidate",
+          "params": "struct ummu_domain *u_domain"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "trace.c",
+      "type": "source",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/string.h",
+        "linux/types.h",
+        "trace.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "trace.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/tracepoint.h",
+        "trace/define_trace.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ubmem-mmu/ubmem_mmu.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "ubmem_mmu_domain *",
+          "name": "to_ubmem_mmu_domain",
+          "params": "struct iommu_domain *dom"
+        },
+        {
+          "returnType": "bool",
+          "name": "ubmem_granule_is_valid",
+          "params": "unsigned long granule, u8 chip_version"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_granule_sanitize",
+          "params": "struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "bool",
+          "name": "ubmem_dfx_log_allow",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_umau_dfx_irq",
+          "params": "struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_ummu_dfx_irq",
+          "params": "struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "irqreturn_t",
+          "name": "ubmem_error_handler",
+          "params": "int irq, void *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_write_msi_msg",
+          "params": "struct msi_desc *desc, struct msi_msg *msg"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_set_usi_mask",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_setup_irq",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_setup_msis",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "mmu_domain_cfg_clear",
+          "params": "struct ubmem_mmu_domain *dom"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_mmu_attach_dev",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "write_ate_entries",
+          "params": "struct ubmem_mmu_domain *dom, struct ubmem_mmu_device *mdev"
+        },
+        {
+          "returnType": "void",
+          "name": "write_pte_entry",
+          "params": "struct ubmem_mmu_domain *dom, struct ubmem_mmu_device *mdev"
+        },
+        {
+          "returnType": "void",
+          "name": "clear_pte_entry",
+          "params": "struct ubmem_mmu_domain *dom, struct ubmem_mmu_device *mdev"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_flush_dtlb",
+          "params": "struct ubmem_mmu_device *mdev"
+        },
+        {
+          "returnType": "int",
+          "name": "alloc_and_fill_entry",
+          "params": "struct ubmem_mmu_domain *dom"
+        },
+        {
+          "returnType": "void",
+          "name": "free_and_inv_entry",
+          "params": "struct ubmem_mmu_domain *dom"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_mmu_map_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t pgsize, size_t pgcount, int prot, gfp_t gfp, size_t *mapped"
+        },
+        {
+          "returnType": "void",
+          "name": "clear_cached_pa_list",
+          "params": "struct maple_tree *mt"
+        },
+        {
+          "returnType": "size_t",
+          "name": "ubmem_mmu_unmap_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t pgsize, size_t pgcount, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "iova != mas.index"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_mmu_iotlb_sync_map",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_domain_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_release_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "bool",
+          "name": "ubmem_mmu_tdev_support_attr",
+          "params": "struct ummu_core_device *core_device, struct tdev_attr *attr"
+        },
+        {
+          "returnType": "int",
+          "name": "umau_tab_init",
+          "params": "struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_mmu_init",
+          "params": "struct platform_device *pdev, struct ubmem_mmu_info *info, struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "int",
+          "name": "register_to_ummu_core",
+          "params": "struct platform_device *pdev, struct ubmem_mmu_device *mmu"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_mmu_device_probe",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_mmu_device_remove",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ubmem_reg_offset"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_mmu_info"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_mmu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_mmu_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_master"
+        },
+        {
+          "kind": "struct",
+          "name": "pa_info"
+        }
+      ],
+      "enums": [
+        {
+          "name": "ummu_ubif_reg_enum"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/module.h",
+        "linux/platform_device.h",
+        "linux/iopoll.h",
+        "linux/dma-map-ops.h",
+        "linux/refcount.h",
+        "linux/iommu.h",
+        "linux/xarray.h",
+        "linux/bitmap.h",
+        "linux/log2.h",
+        "linux/ummu_core.h",
+        "linux/delay.h",
+        "linux/maple_tree.h",
+        "linux/interrupt.h",
+        "ub/ubfi/ubfi.h",
+        "uapi/linux/hisi_ummu.h",
+        "../regs.h",
+        "ubmem_mmu.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "spinlock_t",
+            "name": "pte_lock"
+          },
+          {
+            "type": "struct mutex",
+            "name": "map_lock"
+          }
+        ],
+        "lockOperations": {
+          "spin_lock": 2,
+          "spin_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ubmem-mmu/ubmem_mmu.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "../ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ubmem-mmu/ubmem_vmmu_main.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "u32",
+          "name": "pid_hash",
+          "params": "pid_t pid"
+        },
+        {
+          "returnType": "bool",
+          "name": "ubmem_vmmu_tdev_support_attr",
+          "params": "struct ummu_core_device *core_device, struct tdev_attr *attr"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_attach_dev",
+          "params": "struct iommu_domain *domain, struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_handle_req_vm",
+          "params": "struct ubm_request *req, u64 req_buf_size"
+        },
+        {
+          "returnType": "ubmem_vmmu_map_info *",
+          "name": "ubmem_vmmu_create_map_info",
+          "params": "struct ubmem_vmmu_map_ctx *map_ctx, u64 uba"
+        },
+        {
+          "returnType": "ubmem_vmmu_map_ctx *",
+          "name": "ubmem_vmmu_get_map_ctx",
+          "params": "struct ubmem_vmmu_domain *mdom, u64 uba"
+        },
+        {
+          "returnType": "u64",
+          "name": "ubmem_vmmu_add_map_info",
+          "params": "struct ubmem_vmmu_map_ctx *map_ctx, u64 uba, u64 paddr, u64 need_map_size"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_map_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, phys_addr_t paddr, size_t pgsize, size_t pgcount, int prot, gfp_t gfp, size_t *mapped"
+        },
+        {
+          "returnType": "size_t",
+          "name": "ubmem_vmmu_unmap_pages",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t pgsize, size_t pgcount, struct iommu_iotlb_gather *gather"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_iotlb_sync_map",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_vmmu_domain_free",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ubmem_vmmu_release_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_init_ummu_device",
+          "params": "struct ubmem_vmmu_device *ubmem_vmmu, const struct iommu_ops *iommu_ops, const struct ummu_core_ops *core_ops"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_init_device_resource",
+          "params": "struct platform_device *pdev, struct ubmem_vmmu_device *ubmem_vmmu"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_device_probe",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "int",
+          "name": "ubmem_vmmu_device_remove",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "__init",
+          "name": "ubmem_vmmu_driver_register",
+          "params": "struct platform_driver *drv"
+        },
+        {
+          "returnType": "__exit",
+          "name": "ubmem_vmmu_driver_unregister",
+          "params": "struct platform_driver *drv"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ubm_request"
+        },
+        {
+          "kind": "struct",
+          "name": "response_slot"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_vmmu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_vmmu_map_info"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_vmmu_map_ctx"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_vmmu_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "ubmem_vmmu_master"
+        }
+      ],
+      "enums": [
+        {
+          "name": "ubmem_vmmu_opcode"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/module.h",
+        "linux/platform_device.h",
+        "linux/iopoll.h",
+        "linux/err.h",
+        "linux/xarray.h",
+        "linux/ummu_core.h",
+        "ub/ubfi/ubfi.h",
+        "linux/hash.h",
+        "uapi/linux/hisi_ummu.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "spinlock_t",
+            "name": "slot_lock"
+          },
+          {
+            "type": "spinlock_t",
+            "name": "lock"
+          }
+        ],
+        "lockOperations": {
+          "spin_lock": 6,
+          "spin_unlock": 8
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/core.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "ummu_tid_manager *",
+          "name": "ummu_core_alloc_tid_manager",
+          "params": "struct ummu_core_device *core_device, const struct tid_ops *ops, u32 max, u32 min"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_free_tid_manager",
+          "params": "struct ummu_tid_manager *manager"
+        },
+        {
+          "returnType": "int",
+          "name": "set_global_device",
+          "params": "struct ummu_core_device *core_device"
+        },
+        {
+          "returnType": "void",
+          "name": "reset_global_device",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_root_release",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_device_add_sysfs",
+          "params": "struct ummu_core_device *ummu_core"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_device_remove_sysfs",
+          "params": "struct ummu_core_device *ummu_core"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_device_init",
+          "params": "struct ummu_core_device *ummu_core, struct ummu_core_init_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_device_deinit",
+          "params": "struct ummu_core_device *ummu_core"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_device_register",
+          "params": "struct ummu_core_device *ummu_core, enum ummu_register_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_device_unregister",
+          "params": "struct ummu_core_device *ummu_core"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_get_resource",
+          "params": "struct iommu_sva *sva, struct device *dev, struct resource_args *args"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_put_resource",
+          "params": "struct iommu_sva *sva, struct device *dev, struct resource_args *args"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_get_hw_cap",
+          "params": "struct device *dev, u32 *hw_cap"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_dev_config",
+          "params": "struct device *dev, int type, int command, void *data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_sva_mode",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "u32",
+          "name": "ummu_sva_get_features",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_is_ksva",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_is_sva",
+          "params": "struct iommu_domain *domain"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_sva_unbind_device",
+          "params": "struct iommu_sva *sva"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_ksva_unbind_device",
+          "params": "struct iommu_sva *sva"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_grant_range",
+          "params": "struct iommu_sva *sva, void *va, size_t size, int perm, void *cookie"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_ungrant_range",
+          "params": "struct iommu_sva *sva, void *va, size_t size, void *cookie"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_get_tid",
+          "params": "struct device *dev, struct iommu_sva *sva, u32 *tidp"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_invalidate_cfg_table",
+          "params": "u32 tid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_invalidate_cfg",
+          "params": "struct ummu_invalid_cfg_param *param"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_tlb_inv_walk",
+          "params": "struct iommu_domain *domain, unsigned long iova, size_t size, size_t granule"
+        },
+        {
+          "returnType": "__init",
+          "name": "ummu_core_init",
+          "params": "void"
+        },
+        {
+          "returnType": "__exit",
+          "name": "ummu_core_exit",
+          "params": "void"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "ummu_core_device_init",
+        "ummu_core_device_deinit",
+        "ummu_core_device_register",
+        "ummu_core_device_unregister",
+        "ummu_core_dev_config",
+        "ummu_get_sva_mode",
+        "ummu_sva_get_features",
+        "ummu_sva_bind_device",
+        "ummu_is_ksva",
+        "ummu_is_sva",
+        "ummu_ksva_bind_device",
+        "ummu_sva_unbind_device",
+        "ummu_ksva_unbind_device",
+        "ummu_sva_grant_range",
+        "ummu_sva_ungrant_range",
+        "ummu_get_tid",
+        "ummu_core_invalidate_cfg_table",
+        "ummu_core_invalidate_cfg",
+        "ummu_core_tlb_inv_walk"
+      ],
+      "moduleCalls": [
+        {
+          "type": "module_init",
+          "func": "ummu_core_init"
+        },
+        {
+          "type": "module_exit",
+          "func": "ummu_core_exit"
+        }
+      ],
+      "includes": [
+        "linux/module.h",
+        "ub/ubus/ubus.h",
+        "ummu_core_priv.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "mutex_lock": 4,
+          "mutex_unlock": 5
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/core_common.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "setup_tdev_dma_ops",
+          "params": "struct device *dev, bool coherent"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "setup_tdev_dma_ops",
+        "ummu_core_get_domain_by_tid"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/spinlock.h",
+        "linux/module.h",
+        "linux/dma-map-ops.h",
+        "linux/iommu.h",
+        "linux/ummu_core.h",
+        "../../iommu-priv.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu-core/core_eid.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_flush_cached_eid",
+          "params": "struct ummu_core_device *core_device"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_add_eid",
+          "params": "guid_t *guid, eid_t eid, enum eid_type type"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_del_eid",
+          "params": "guid_t *guid, eid_t eid, enum eid_type type"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "eid_info"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "global_core_device",
+        "global_device_lock",
+        "ummu_flush_cached_eid",
+        "ummu_core_add_eid",
+        "ummu_core_del_eid"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/list.h",
+        "linux/spinlock.h",
+        "linux/init.h",
+        "linux/module.h",
+        "linux/ummu_core.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "spin_lock": 3,
+          "spin_unlock": 3,
+          "mutex_lock": 2,
+          "mutex_unlock": 2
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/core_ioctl.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "get_ummu_cnt",
+          "params": "struct ktid_info *entry, u32 *cnt"
+        },
+        {
+          "returnType": "int",
+          "name": "get_tid_res",
+          "params": "struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "proc_manager_open",
+          "params": "struct inode *inode, struct file *filp"
+        },
+        {
+          "returnType": "int",
+          "name": "enable_dev_feat",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "disable_dev_feat",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "release_tid_resource",
+          "params": "struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "proc_manager_close",
+          "params": "struct inode *inode, struct file *filp"
+        },
+        {
+          "returnType": "void",
+          "name": "tid_mmap",
+          "params": "struct vm_area_struct *vma"
+        },
+        {
+          "returnType": "void",
+          "name": "release_tid_mmap_info",
+          "params": "struct kref *ref"
+        },
+        {
+          "returnType": "void",
+          "name": "tid_munmap",
+          "params": "struct vm_area_struct *area"
+        },
+        {
+          "returnType": "int",
+          "name": "tid_mremap",
+          "params": "struct vm_area_struct *area"
+        },
+        {
+          "returnType": "int",
+          "name": "check_map_resource",
+          "params": "struct vm_area_struct *vma, unsigned long size"
+        },
+        {
+          "returnType": "int",
+          "name": "map_block_resource",
+          "params": "struct vm_area_struct *vma, size_t blk_size, unsigned long block_index, struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "do_map_queues",
+          "params": "struct ktid_info *entry, struct vm_area_struct *vma, int cnt, const struct resource_args *queues_args"
+        },
+        {
+          "returnType": "int",
+          "name": "map_mutiq_resource",
+          "params": "struct vm_area_struct *vma, struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "map_mapt_block",
+          "params": "struct vm_area_struct *vma, struct ktid_info *entry, struct mmap_info *map_info, unsigned long offset"
+        },
+        {
+          "returnType": "void",
+          "name": "deinit_map_info",
+          "params": "struct mmap_info *map_info"
+        },
+        {
+          "returnType": "int",
+          "name": "tid_map_resource",
+          "params": "struct file *filp, struct vm_area_struct *vma"
+        },
+        {
+          "returnType": "int",
+          "name": "user_mode_device_init",
+          "params": "struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "get_hw_cap",
+          "params": "u32 *mode, u64 *hw_cap"
+        },
+        {
+          "returnType": "int",
+          "name": "sva_separated_mode_dev_init",
+          "params": "struct ktid_info *entry"
+        },
+        {
+          "returnType": "int",
+          "name": "sva_mode_alloc_tid",
+          "params": "struct proc_manager *manager, struct ummu_tid_info *tid_data, struct ktid_info **entry_out"
+        },
+        {
+          "returnType": "int",
+          "name": "sva_mode_free_tid",
+          "params": "struct proc_manager *manager, struct ummu_tid_info *tid_data"
+        },
+        {
+          "returnType": "int",
+          "name": "sva_mode_plbi",
+          "params": "struct proc_manager *manager, struct ummu_tid_info *tid_data, u32 cmd"
+        },
+        {
+          "returnType": "else",
+          "name": "if",
+          "params": "cmd == UMMU_IOCPLBI_ALL"
+        },
+        {
+          "returnType": "int",
+          "name": "store_tid_to_xa",
+          "params": "unsigned long key, struct ktid_info *entry"
+        },
+        {
+          "returnType": "long",
+          "name": "tid_ioctl",
+          "params": "struct file *filp, u32 cmd, unsigned long arg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_invalidate_tid",
+          "params": "struct mm_struct *mm, u32 tid"
+        },
+        {
+          "returnType": "int",
+          "name": "tid_misc_init",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "tid_misc_exit",
+          "params": "void"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ktid_info"
+        },
+        {
+          "kind": "struct",
+          "name": "mmap_info"
+        },
+        {
+          "kind": "struct",
+          "name": "proc_manager"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/miscdevice.h",
+        "linux/bitfield.h",
+        "linux/mm_types.h",
+        "linux/module.h",
+        "linux/device.h",
+        "linux/ioctl.h",
+        "linux/init.h",
+        "linux/slab.h",
+        "linux/fs.h",
+        "linux/property.h",
+        "ummu_core_priv.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "atomic_t",
+            "name": "mmap_count"
+          },
+          {
+            "type": "struct mutex",
+            "name": "proc_mtx"
+          }
+        ],
+        "lockOperations": {
+          "mutex_lock": 14,
+          "mutex_unlock": 25
+        },
+        "rcu": {},
+        "atomics": {
+          "atomic_dec": 1,
+          "atomic_inc": 1,
+          "atomic_set": 1,
+          "atomic_read": 1
+        },
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/core_iova.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "__attrs_to_prot",
+          "params": "bool coherent, unsigned long attrs"
+        },
+        {
+          "returnType": "long",
+          "name": "iova_bitmap_offset",
+          "params": "struct iova_slot *slot, dma_addr_t iova"
+        },
+        {
+          "returnType": "bool",
+          "name": "check_iova_bitmap_region",
+          "params": "struct iova_slot *slot, unsigned long offset, size_t bits, bool is_empty"
+        },
+        {
+          "returnType": "bool",
+          "name": "check_iova_range",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages"
+        },
+        {
+          "returnType": "dma_addr_t",
+          "name": "domain_alloc_iova",
+          "params": "struct iommu_domain *domain, size_t size, u64 limit, struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "domain_free_iova",
+          "params": "struct iommu_domain *domain, dma_addr_t iova, size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "map_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages, struct page **pages"
+        },
+        {
+          "returnType": "void",
+          "name": "drain_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages"
+        },
+        {
+          "returnType": "void",
+          "name": "free_iova_slot",
+          "params": "struct iova_slot *slot"
+        },
+        {
+          "returnType": "void",
+          "name": "dma_free_iova",
+          "params": "struct iova_slot *slot"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_fill_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages, gfp_t gfp"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_fill_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_drain_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_drain_pages",
+          "params": "struct iova_slot *slot, dma_addr_t iova, unsigned long nr_pages"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "iova_slot"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "dma_alloc_iova",
+        "dma_free_iova",
+        "ummu_core_fill_pages",
+        "ummu_fill_pages",
+        "ummu_core_drain_pages",
+        "ummu_drain_pages"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/dma-map-ops.h",
+        "linux/iova.h",
+        "../../dma-iommu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu-core/core_matt.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "pr_fmt",
+          "params": "fmt) \"[UMMU_CORE][MATT]: \" fmt #include <uapi/linux/ummu_core.h> #include <linux/dma-mapping.h> #include <linux/dma-map-ops.h> #include <linux/overflow.h> #include <linux/slab.h> #include <linux/mm.h> #include \"ummu_core_priv.h\" static struct mm_struct *get_tid_mm(u32 tid"
+        },
+        {
+          "returnType": "bool",
+          "name": "check_tid_mm_matched",
+          "params": "struct ummu_matt_domain *matt_domain"
+        },
+        {
+          "returnType": "int",
+          "name": "sva_matt_inner_map",
+          "params": "u32 tid, unsigned long addr, struct sg_table *sgt, int prot, size_t *mapped"
+        },
+        {
+          "returnType": "void",
+          "name": "sva_matt_inner_unmap",
+          "params": "u32 tid, unsigned long addr, size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_matt_map",
+          "params": "struct ummu_matt_domain *matt_domain, unsigned long addr, struct sg_table *sgt, int prot"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_sva_matt_unmap",
+          "params": "struct ummu_matt_domain *matt_domain, unsigned long addr, size_t size"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "ummu_sva_matt_map",
+        "ummu_sva_matt_unmap"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "uapi/linux/ummu_core.h",
+        "linux/dma-mapping.h",
+        "linux/dma-map-ops.h",
+        "linux/overflow.h",
+        "linux/slab.h",
+        "linux/mm.h",
+        "ummu_core_priv.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu-core/core_tdev.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "void",
+          "name": "ummu_root_release",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_release_dev",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "attr_get_tid",
+          "params": "struct device *dev, u32 *tid"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "tid_val_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "ssize_t",
+          "name": "tid_mode_show",
+          "params": "struct device *dev, struct device_attribute *attr, char *buf"
+        },
+        {
+          "returnType": "int",
+          "name": "alloc_software_node",
+          "params": "struct device *dev, u32 *ptid, struct tdev_attr *attr, const struct software_node *parent"
+        },
+        {
+          "returnType": "int",
+          "name": "init_tdev",
+          "params": "struct tid_dev *tdev, struct tdev_attr *attr, u32 *ptid, struct ummu_core_device *ummu_core"
+        },
+        {
+          "returnType": "void",
+          "name": "set_dma_configure",
+          "params": "struct device *dev, enum dev_dma_attr attr"
+        },
+        {
+          "returnType": "if",
+          "name": "IS_ENABLED",
+          "params": "CONFIG_UB_UMMU_SVA_SEPARATED_PAGES) struct device *ummu_core_alloc_separate_tdev(struct tdev_opt *opt, u32 *ptid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_tdev_release",
+          "params": "struct kref *ref"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_free_tdev",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "tdev_init",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "tdev_exit",
+          "params": "void"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "ummu_core_alloc_tdev",
+        "ummu_alloc_tdev_separated",
+        "ummu_core_alloc_separate_tdev",
+        "ummu_core_free_tdev"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/dma-map-ops.h",
+        "linux/mm_types.h",
+        "linux/module.h",
+        "linux/device.h",
+        "linux/init.h",
+        "linux/sysfs.h",
+        "linux/slab.h",
+        "linux/kref.h",
+        "ummu_core_priv.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [],
+        "lockOperations": {
+          "mutex_lock": 4,
+          "mutex_unlock": 10
+        },
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/core_tid.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "int",
+          "name": "default_tid_alloc",
+          "params": "struct ummu_tid_manager *manager, struct ummu_tid_param *param, u32 *tid"
+        },
+        {
+          "returnType": "void",
+          "name": "default_tid_free",
+          "params": "struct ummu_tid_manager *manager, u32 tid"
+        },
+        {
+          "returnType": "ummu_tid_manager *",
+          "name": "default_manager_alloc",
+          "params": "struct ummu_core_device *core_device, u32 max_tid, u32 min_tid"
+        },
+        {
+          "returnType": "void",
+          "name": "default_manager_free",
+          "params": "struct ummu_tid_manager *manager"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_global_pasid_alloc",
+          "params": "struct ummu_tid_manager *manager, struct ummu_tid_param *param, u32 *tidp"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_global_pasid_free",
+          "params": "struct ummu_tid_manager *manager, u32 tid"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_alloc_tid",
+          "params": "struct ummu_core_device *ummu_core, struct ummu_tid_param *param, u32 *tidp"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_free_tid",
+          "params": "struct ummu_core_device *ummu_core, u32 tid"
+        },
+        {
+          "returnType": "ummu_mapt_mode",
+          "name": "ummu_core_get_mapt_mode",
+          "params": "struct ummu_core_device *ummu_core, u32 tid"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_core_put_device",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_core_get_tid_type",
+          "params": "struct ummu_core_device *ummu_core, u32 tid, u32 *tid_type"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_tid_data"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "ummu_core_alloc_tid",
+        "ummu_core_free_tid",
+        "ummu_core_get_mapt_mode",
+        "ummu_core_get_device",
+        "ummu_core_put_device",
+        "ummu_core_get_tid_type",
+        "ummu_core_tid_ops",
+        "ummu_core_get_tid_ops"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "ummu_trace.h",
+        "linux/ummu_core.h",
+        "ummu_core_priv.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu-core/ummu_core_priv.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "tid_dev"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/platform_device.h",
+        "linux/ummu_core.h",
+        "linux/iommu.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "struct mutex",
+            "name": "sva_mutex"
+          },
+          {
+            "type": "struct mutex",
+            "name": "global_device_lock"
+          }
+        ],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu-core/ummu_trace.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/tracepoint.h",
+        "trace/define_trace.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu.h",
+      "type": "header",
+      "functions": [],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_l1_tct_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_tct_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_tct_desc_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_s1_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_s2_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_ll_queue"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_queue"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_mcmdq"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_evtq"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_capability"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_permq_addr"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_permq_desc"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_permq_context_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_hash_table_cfg"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_device_helper"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_device"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_dev_impl_ops"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_domain_cfgs"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_domain"
+        },
+        {
+          "kind": "struct",
+          "name": "ummu_master"
+        }
+      ],
+      "enums": [
+        {
+          "name": "ummu_device_msi_index"
+        },
+        {
+          "name": "ummu_domain_stage"
+        },
+        {
+          "name": "ummu_sva_mode"
+        },
+        {
+          "name": "ummu_dom_cfg_sync_type"
+        }
+      ],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/bitfield.h",
+        "linux/ummu_core.h",
+        "linux/kernel.h",
+        "linux/sizes.h",
+        "linux/init.h",
+        "linux/list.h",
+        "linux/xarray.h",
+        "perm_table.h"
+      ],
+      "macros": [],
+      "concurrency": {
+        "lockDeclarations": [
+          {
+            "type": "atomic_t",
+            "name": "prod"
+          },
+          {
+            "type": "atomic_t",
+            "name": "cons"
+          },
+          {
+            "type": "atomic_t",
+            "name": "owner_prod"
+          },
+          {
+            "type": "atomic_t",
+            "name": "lock"
+          },
+          {
+            "type": "struct mutex",
+            "name": "permq_rel_mutex"
+          },
+          {
+            "type": "struct mutex",
+            "name": "init_mutex"
+          }
+        ],
+        "lockOperations": {},
+        "rcu": {},
+        "atomics": {},
+        "barriers": {},
+        "writeReadOnce": {},
+        "waitWake": {},
+        "percpu": {},
+        "lockdep": {}
+      }
+    },
+    {
+      "path": "ummu_cfg_v1.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "define",
+          "name": "PAGE_MODE_SEL_EN",
+          "params": "1UL << 0) #define MAPT_CTRL_PAGE_SIZE PAGE_SIZE #define MAPT_QUEUE_NUM_16K 0x4000 #define MAPT_QUEUE_NUM_64K 0x10000 #define UMMU_USER_CONFIG2_OFFSET 0x4c08 #define MCMDQ_MEM_INITING (1UL << 4) #define MCMDQ_MEM_INIT_EN (1UL << 3) static void ummu_cfg_probe_premq_cap(struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_cfg_hw_probe",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_cfg_mcmdq_cfg",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_cfg_impl_init",
+          "params": "struct ummu_device *ummu"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/iopoll.h",
+        "regs.h",
+        "queue.h",
+        "ummu_cfg_v1.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu_cfg_v1.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu_ext.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "__init",
+          "name": "ummu_bypass_dev_setup",
+          "params": "char *str"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_bypass_dev_domain_type",
+          "params": "struct device *dev"
+        },
+        {
+          "returnType": "__init",
+          "name": "ummu_mapt_blk_expan_setup",
+          "params": "char *str"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_get_mapt_blk_exp",
+          "params": "void"
+        },
+        {
+          "returnType": "__init",
+          "name": "ummu_mapt_base_blk_size_setup",
+          "params": "char *p"
+        },
+        {
+          "returnType": "size_t",
+          "name": "ummu_get_mapt_base_blk_size",
+          "params": "void"
+        }
+      ],
+      "structs": [
+        {
+          "kind": "struct",
+          "name": "ummu_bypass_device"
+        }
+      ],
+      "enums": [],
+      "typedefs": [],
+      "exports": [
+        "ummu_bypass_dev_domain_type",
+        "ummu_get_mapt_blk_exp",
+        "ummu_get_mapt_base_blk_size"
+      ],
+      "moduleCalls": [],
+      "includes": [
+        "linux/module.h",
+        "linux/sizes.h",
+        "ub/ubus/ubus.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu_impl.c",
+      "type": "source",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu_impl.h",
+        "ummu_cfg_v1.h",
+        "ubmem-mmu/ubmem_mmu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu_impl.h",
+      "type": "header",
+      "functions": [],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "ummu.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    },
+    {
+      "path": "ummu_main.c",
+      "type": "source",
+      "functions": [
+        {
+          "returnType": "bool",
+          "name": "ummu_sva_separated_enabled",
+          "params": "void"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_write_reg_sync",
+          "params": "struct ummu_device *ummu, u32 val, u32 reg_off, u32 ack_off"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_update_gbpa",
+          "params": "struct ummu_device *ummu, u32 set, u32 clr"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_ioremap",
+          "params": "struct ummu_device *ummu, resource_size_t start, resource_size_t size"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_register",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_unregister",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_init_structures",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "bool",
+          "name": "ummu_first_generation",
+          "params": "void"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_hw_probe_iidr",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_hw_probe_cap0",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_hw_probe_cap1",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_get_ttf",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_get_trans_stage",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_get_pgsize",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_get_oas",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_hw_probe_cap2",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_get_stall_model",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_get_httu",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_get_bbm_level",
+          "params": "struct ummu_device *ummu, u32 reg"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_hw_probe_cap3",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_hw_probe_cap4",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_hw_probe_cap5",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_hw_probe_cap6",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_hw_init",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_sync",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_disable",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_enable",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_set_mem_attr",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_mapt_enable",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_reset",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "void",
+          "name": "release_ummu_dev_res",
+          "params": "void *data"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_ubrt_probe",
+          "params": "struct ummu_device *ummu"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_probe",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "int",
+          "name": "ummu_device_remove",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "void",
+          "name": "ummu_device_shutdown",
+          "params": "struct platform_device *pdev"
+        },
+        {
+          "returnType": "__init",
+          "name": "ummu_driver_register",
+          "params": "struct platform_driver *drv"
+        },
+        {
+          "returnType": "__exit",
+          "name": "ummu_driver_unregister",
+          "params": "struct platform_driver *drv"
+        }
+      ],
+      "structs": [],
+      "enums": [],
+      "typedefs": [],
+      "exports": [],
+      "moduleCalls": [],
+      "includes": [
+        "linux/module.h",
+        "linux/platform_device.h",
+        "linux/iopoll.h",
+        "ub/ubfi/ubfi.h",
+        "linux/acpi.h",
+        "linux/of.h",
+        "linux/mmu_notifier.h",
+        "logic_ummu/logic_ummu.h",
+        "ummu_impl.h",
+        "interrupt.h",
+        "perm_queue.h",
+        "page_table.h",
+        "queue.h",
+        "regs.h",
+        "flush.h",
+        "ummu.h",
+        "attribute.h",
+        "cfg_table.h",
+        "iommu.h",
+        "sva.h",
+        "qos.h",
+        "plat_erratum.h"
+      ],
+      "macros": [],
+      "concurrency": null
+    }
+  ],
+  "kconfig": [],
+  "makefile": {
+    "obj_y": [
+      "ummu-core/"
+    ],
+    "obj_m": []
+  }
+}

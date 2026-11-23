@@ -1,0 +1,488 @@
+{
+  "module": {
+    "path": "drivers/iommu/hisilicon",
+    "name": "hisilicon",
+    "type": "device_driver",
+    "fileCount": {
+      "total": 55,
+      "source": 31,
+      "header": 24
+    },
+    "kconfigOptions": [],
+    "buildTargets": {
+      "obj_y": [
+        "ummu-core/"
+      ],
+      "obj_m": []
+    },
+    "publicApis": [
+      {
+        "name": "ummu_core_device_init",
+        "signature": "int ummu_core_device_init(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_device_deinit",
+        "signature": "void ummu_core_device_deinit(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_device_register",
+        "signature": "int ummu_core_device_register(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_device_unregister",
+        "signature": "void ummu_core_device_unregister(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_dev_config",
+        "signature": "int ummu_core_dev_config(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_get_sva_mode",
+        "signature": "int ummu_get_sva_mode(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_sva_get_features",
+        "signature": "u32 ummu_sva_get_features(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_sva_bind_device",
+        "signature": "ummu_sva_bind_device(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_is_ksva",
+        "signature": "bool ummu_is_ksva(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_is_sva",
+        "signature": "bool ummu_is_sva(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_ksva_bind_device",
+        "signature": "ummu_ksva_bind_device(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_sva_unbind_device",
+        "signature": "void ummu_sva_unbind_device(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_ksva_unbind_device",
+        "signature": "void ummu_ksva_unbind_device(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_sva_grant_range",
+        "signature": "int ummu_sva_grant_range(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_sva_ungrant_range",
+        "signature": "int ummu_sva_ungrant_range(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_get_tid",
+        "signature": "int ummu_get_tid(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_invalidate_cfg_table",
+        "signature": "int ummu_core_invalidate_cfg_table(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_invalidate_cfg",
+        "signature": "int ummu_core_invalidate_cfg(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "ummu_core_tlb_inv_walk",
+        "signature": "void ummu_core_tlb_inv_walk(...)",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "name": "setup_tdev_dma_ops",
+        "signature": "void setup_tdev_dma_ops(...)",
+        "file": "ummu-core/core_common.c"
+      },
+      {
+        "name": "ummu_core_get_domain_by_tid",
+        "signature": "ummu_core_get_domain_by_tid(...)",
+        "file": "ummu-core/core_common.c"
+      },
+      {
+        "name": "global_core_device",
+        "signature": "global_core_device(...)",
+        "file": "ummu-core/core_eid.c"
+      },
+      {
+        "name": "global_device_lock",
+        "signature": "global_device_lock(...)",
+        "file": "ummu-core/core_eid.c"
+      },
+      {
+        "name": "ummu_flush_cached_eid",
+        "signature": "void ummu_flush_cached_eid(...)",
+        "file": "ummu-core/core_eid.c"
+      },
+      {
+        "name": "ummu_core_add_eid",
+        "signature": "int ummu_core_add_eid(...)",
+        "file": "ummu-core/core_eid.c"
+      },
+      {
+        "name": "ummu_core_del_eid",
+        "signature": "void ummu_core_del_eid(...)",
+        "file": "ummu-core/core_eid.c"
+      },
+      {
+        "name": "dma_alloc_iova",
+        "signature": "dma_alloc_iova(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "dma_free_iova",
+        "signature": "void dma_free_iova(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "ummu_core_fill_pages",
+        "signature": "int ummu_core_fill_pages(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "ummu_fill_pages",
+        "signature": "int ummu_fill_pages(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "ummu_core_drain_pages",
+        "signature": "int ummu_core_drain_pages(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "ummu_drain_pages",
+        "signature": "int ummu_drain_pages(...)",
+        "file": "ummu-core/core_iova.c"
+      },
+      {
+        "name": "ummu_sva_matt_map",
+        "signature": "int ummu_sva_matt_map(...)",
+        "file": "ummu-core/core_matt.c"
+      },
+      {
+        "name": "ummu_sva_matt_unmap",
+        "signature": "int ummu_sva_matt_unmap(...)",
+        "file": "ummu-core/core_matt.c"
+      },
+      {
+        "name": "ummu_core_alloc_tdev",
+        "signature": "ummu_core_alloc_tdev(...)",
+        "file": "ummu-core/core_tdev.c"
+      },
+      {
+        "name": "ummu_alloc_tdev_separated",
+        "signature": "ummu_alloc_tdev_separated(...)",
+        "file": "ummu-core/core_tdev.c"
+      },
+      {
+        "name": "ummu_core_alloc_separate_tdev",
+        "signature": "ummu_core_alloc_separate_tdev(...)",
+        "file": "ummu-core/core_tdev.c"
+      },
+      {
+        "name": "ummu_core_free_tdev",
+        "signature": "int ummu_core_free_tdev(...)",
+        "file": "ummu-core/core_tdev.c"
+      },
+      {
+        "name": "ummu_core_alloc_tid",
+        "signature": "int ummu_core_alloc_tid(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_free_tid",
+        "signature": "void ummu_core_free_tid(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_get_mapt_mode",
+        "signature": "ummu_mapt_mode ummu_core_get_mapt_mode(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_get_device",
+        "signature": "ummu_core_get_device(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_put_device",
+        "signature": "void ummu_core_put_device(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_get_tid_type",
+        "signature": "int ummu_core_get_tid_type(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_tid_ops",
+        "signature": "ummu_core_tid_ops(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_core_get_tid_ops",
+        "signature": "ummu_core_get_tid_ops(...)",
+        "file": "ummu-core/core_tid.c"
+      },
+      {
+        "name": "ummu_bypass_dev_domain_type",
+        "signature": "int ummu_bypass_dev_domain_type(...)",
+        "file": "ummu_ext.c"
+      },
+      {
+        "name": "ummu_get_mapt_blk_exp",
+        "signature": "bool ummu_get_mapt_blk_exp(...)",
+        "file": "ummu_ext.c"
+      },
+      {
+        "name": "ummu_get_mapt_base_blk_size",
+        "signature": "size_t ummu_get_mapt_base_blk_size(...)",
+        "file": "ummu_ext.c"
+      }
+    ],
+    "keyStructures": [],
+    "moduleEntryPoints": [
+      {
+        "type": "module_init",
+        "func": "ummu_core_init",
+        "file": "ummu-core/core.c"
+      },
+      {
+        "type": "module_exit",
+        "func": "ummu_core_exit",
+        "file": "ummu-core/core.c"
+      }
+    ],
+    "externalDependencies": [
+      "../../dma-iommu.h",
+      "../../iommu-priv.h",
+      "../regs.h",
+      "../ummu.h",
+      "attribute.h",
+      "cfg_table.h",
+      "flush.h",
+      "interrupt.h",
+      "iommu.h",
+      "linux/acpi.h",
+      "linux/bitfield.h",
+      "linux/bitmap.h",
+      "linux/bitops.h",
+      "linux/cleanup.h",
+      "linux/cpumask.h",
+      "linux/delay.h",
+      "linux/device.h",
+      "linux/dma-map-ops.h",
+      "linux/dma-mapping.h",
+      "linux/err.h",
+      "linux/errno.h",
+      "linux/fs.h",
+      "linux/hash.h",
+      "linux/init.h",
+      "linux/interrupt.h",
+      "linux/io-pgtable.h",
+      "linux/ioctl.h",
+      "linux/iommu.h",
+      "linux/iommufd.h",
+      "linux/iopoll.h",
+      "linux/iova.h",
+      "linux/kernel.h",
+      "linux/kref.h",
+      "linux/kvm_host.h",
+      "linux/list.h",
+      "linux/log2.h",
+      "linux/maple_tree.h",
+      "linux/miscdevice.h",
+      "linux/mm.h",
+      "linux/mm_types.h",
+      "linux/mmu_context.h",
+      "linux/mmu_notifier.h",
+      "linux/module.h",
+      "linux/of.h",
+      "linux/overflow.h",
+      "linux/platform_device.h",
+      "linux/preempt.h",
+      "linux/property.h",
+      "linux/random.h",
+      "linux/refcount.h",
+      "linux/rwsem.h",
+      "linux/sched/mm.h",
+      "linux/sizes.h",
+      "linux/slab.h",
+      "linux/spinlock.h",
+      "linux/string.h",
+      "linux/sysfs.h",
+      "linux/tracepoint.h",
+      "linux/types.h",
+      "linux/ummu_core.h",
+      "linux/uuid.h",
+      "linux/xarray.h",
+      "logic_ummu.h",
+      "logic_ummu/logic_ummu.h",
+      "nested.h",
+      "page_table.h",
+      "perm_queue.h",
+      "perm_table.h",
+      "plat_erratum.h",
+      "qos.h",
+      "queue.h",
+      "regs.h",
+      "seg_mng.h",
+      "seg_tree.h",
+      "sva.h",
+      "trace.h",
+      "trace/define_trace.h",
+      "uapi/linux/hisi_ummu.h",
+      "uapi/linux/iommufd.h",
+      "uapi/linux/ummu_core.h",
+      "ub/ubfi/ubfi.h",
+      "ub/ubus/ubus.h",
+      "ubmem-mmu/ubmem_mmu.h",
+      "ubmem_mmu.h",
+      "ummu.h",
+      "ummu_cfg_v1.h",
+      "ummu_core_priv.h",
+      "ummu_impl.h",
+      "ummu_trace.h"
+    ],
+    "concurrency": {
+      "filesWithConcurrency": 16,
+      "lockDeclarations": [
+        {
+          "type": "struct mutex",
+          "name": "dev_mutex",
+          "file": "logic_ummu/logic_ummu.c"
+        },
+        {
+          "type": "struct rw_semaphore",
+          "name": "rwsem",
+          "file": "logic_ummu/logic_ummu.c"
+        },
+        {
+          "type": "atomic_t",
+          "name": "mapt_blk_cnt",
+          "file": "perm_table.h"
+        },
+        {
+          "type": "spinlock_t",
+          "name": "pte_lock",
+          "file": "ubmem-mmu/ubmem_mmu.c"
+        },
+        {
+          "type": "struct mutex",
+          "name": "map_lock",
+          "file": "ubmem-mmu/ubmem_mmu.c"
+        },
+        {
+          "type": "spinlock_t",
+          "name": "slot_lock",
+          "file": "ubmem-mmu/ubmem_vmmu_main.c"
+        },
+        {
+          "type": "spinlock_t",
+          "name": "lock",
+          "file": "ubmem-mmu/ubmem_vmmu_main.c"
+        },
+        {
+          "type": "atomic_t",
+          "name": "mmap_count",
+          "file": "ummu-core/core_ioctl.c"
+        },
+        {
+          "type": "struct mutex",
+          "name": "proc_mtx",
+          "file": "ummu-core/core_ioctl.c"
+        },
+        {
+          "type": "struct mutex",
+          "name": "sva_mutex",
+          "file": "ummu-core/ummu_core_priv.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "global_device_lock",
+          "file": "ummu-core/ummu_core_priv.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "prod",
+          "file": "ummu.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "cons",
+          "file": "ummu.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "owner_prod",
+          "file": "ummu.h"
+        },
+        {
+          "type": "atomic_t",
+          "name": "lock",
+          "file": "ummu.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "permq_rel_mutex",
+          "file": "ummu.h"
+        },
+        {
+          "type": "struct mutex",
+          "name": "init_mutex",
+          "file": "ummu.h"
+        }
+      ],
+      "lockOperations": {
+        "mutex_lock": 27,
+        "mutex_unlock": 45,
+        "down_write": 2,
+        "up_write": 2,
+        "down_read": 1,
+        "up_read": 1,
+        "read_lock": 2,
+        "read_unlock": 2,
+        "spin_lock": 11,
+        "spin_unlock": 13
+      },
+      "rcu": {},
+      "atomics": {
+        "atomic_set": 3,
+        "atomic_inc": 2,
+        "atomic_dec": 2,
+        "atomic_read": 4
+      },
+      "barriers": {},
+      "writeReadOnce": {
+        "WRITE_ONCE": 15,
+        "READ_ONCE": 6
+      },
+      "waitWake": {},
+      "percpu": {
+        "for_each_possible_cpu": 4
+      }
+    }
+  }
+}
