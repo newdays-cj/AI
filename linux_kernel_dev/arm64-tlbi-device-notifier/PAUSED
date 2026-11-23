@@ -1,0 +1,7 @@
+Temporarily paused at the user's request on 2026-11-09.
+Keep the minimal recovery set: latest patch, authored tests/scripts, configs,
+design/report documents and essential validation evidence.
+Reproducible source/build trees and generated binaries are intentionally omitted.
+Resume only when the user supplies new material and requests continuation.
+Start with 00-暂停与恢复.md. Do not start the proposed next ATC test milestone.
+This is a pause, not abandonment or production acceptance.

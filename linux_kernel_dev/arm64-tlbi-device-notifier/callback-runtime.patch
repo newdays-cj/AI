@@ -1,0 +1,393 @@
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+index 4075ef00c4c9..ce3eb629f464 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva.c
+@@ -11,6 +11,7 @@
+ #include <kunit/visibility.h>
+ 
+ #include "arm-smmu-v3.h"
++#include "arm-smmu-v3-sva-test.h"
+ #include "../../io-pgtable-arm.h"
+ 
+ static DEFINE_MUTEX(sva_lock);
+@@ -129,13 +130,10 @@ EXPORT_SYMBOL_IF_KUNIT(arm_smmu_make_sva_cd);
+  */
+ #define CMDQ_MAX_TLBI_OPS		(1 << (PAGE_SHIFT - 3))
+ 
+-static void arm_smmu_mm_arch_invalidate_secondary_tlbs(struct mmu_notifier *mn,
+-						struct mm_struct *mm,
+-						unsigned long start,
+-						unsigned long end)
++VISIBLE_IF_KUNIT
++size_t arm_smmu_sva_invalidate_size(struct arm_smmu_domain *smmu_domain,
++				    unsigned long start, unsigned long end)
+ {
+-	struct arm_smmu_domain *smmu_domain =
+-		container_of(mn, struct arm_smmu_domain, mmu_notifier);
+ 	size_t size;
+ 
+ 	/*
+@@ -152,15 +150,45 @@ static void arm_smmu_mm_arch_invalidate_secondary_tlbs(struct mmu_notifier *mn,
+ 			size = 0;
+ 	}
+ 
++	return size;
++}
++EXPORT_SYMBOL_IF_KUNIT(arm_smmu_sva_invalidate_size);
++
++static void arm_smmu_mm_invalidate_tlb(struct mmu_notifier *mn,
++				       struct mm_struct *mm,
++				       unsigned long start, unsigned long end)
++{
++	struct arm_smmu_domain *smmu_domain =
++		container_of(mn, struct arm_smmu_domain, mmu_notifier);
++	size_t size = arm_smmu_sva_invalidate_size(smmu_domain, start, end);
++
+ 	if (!size)
+ 		arm_smmu_tlb_inv_asid(smmu_domain->smmu, smmu_domain->cd.asid);
+ 	else
+ 		arm_smmu_tlb_inv_range_asid(start, size, smmu_domain->cd.asid,
+ 					    PAGE_SIZE, false, smmu_domain);
++}
++
++static void arm_smmu_mm_invalidate_atc(struct mmu_notifier *mn,
++				       struct mm_struct *mm,
++				       unsigned long start, unsigned long end)
++{
++	struct arm_smmu_domain *smmu_domain =
++		container_of(mn, struct arm_smmu_domain, mmu_notifier);
++	size_t size = arm_smmu_sva_invalidate_size(smmu_domain, start, end);
+ 
+ 	arm_smmu_atc_inv_domain(smmu_domain, start, size);
+ }
+ 
++static void arm_smmu_mm_arch_invalidate_secondary_tlbs(struct mmu_notifier *mn,
++						       struct mm_struct *mm,
++						       unsigned long start,
++						       unsigned long end)
++{
++	arm_smmu_mm_invalidate_tlb(mn, mm, start, end);
++	arm_smmu_mm_invalidate_atc(mn, mm, start, end);
++}
++
+ static void arm_smmu_mm_release(struct mmu_notifier *mn, struct mm_struct *mm)
+ {
+ 	struct arm_smmu_domain *smmu_domain =
+@@ -204,6 +232,22 @@ static const struct mmu_notifier_ops arm_smmu_mmu_notifier_ops = {
+ 	.free_notifier			= arm_smmu_mmu_notifier_free,
+ };
+ 
++#if IS_ENABLED(CONFIG_KUNIT)
++static const struct mmu_notifier_ops arm_smmu_sva_test_conditional_ops = {
++	.arch_invalidate_secondary_tlbs_conditional = arm_smmu_mm_invalidate_tlb,
++	.arch_invalidate_secondary_tlbs	= arm_smmu_mm_invalidate_atc,
++	.release			= arm_smmu_mm_release,
++	.free_notifier			= arm_smmu_mmu_notifier_free,
++};
++
++const struct mmu_notifier_ops *arm_smmu_sva_test_notifier_ops(bool conditional)
++{
++	return conditional ? &arm_smmu_sva_test_conditional_ops :
++			     &arm_smmu_mmu_notifier_ops;
++}
++EXPORT_SYMBOL_IF_KUNIT(arm_smmu_sva_test_notifier_ops);
++#endif
++
+ bool arm_smmu_sva_supported(struct arm_smmu_device *smmu)
+ {
+ 	unsigned long reg, fld;
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index ff4828a93101..b4c4c500f763 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -33,6 +33,11 @@
+ #include "arm-smmu-v3.h"
+ #include "../../dma-iommu.h"
+ 
++#if IS_ENABLED(CONFIG_KUNIT)
++#include <kunit/static_stub.h>
++#include "arm-smmu-v3-sva-test.h"
++#endif
++
+ #ifdef CONFIG_HISI_VIRTCCA_CODA
+ #include "arm-s-smmu-v3.h"
+ #endif
+@@ -1221,7 +1226,13 @@ static void arm_smmu_page_response(struct device *dev, struct iopf_fault *unused
+ /* Context descriptor manipulation functions */
+ void arm_smmu_tlb_inv_asid(struct arm_smmu_device *smmu, u16 asid)
+ {
+-	struct arm_smmu_cmdq_ent cmd = {
++	struct arm_smmu_cmdq_ent cmd;
++
++#if IS_ENABLED(CONFIG_KUNIT)
++	if (arm_smmu_sva_test_owns(smmu, NULL))
++		KUNIT_STATIC_STUB_REDIRECT(arm_smmu_tlb_inv_asid, smmu, asid);
++#endif
++	cmd = (struct arm_smmu_cmdq_ent) {
+ 		.opcode	= smmu->features & ARM_SMMU_FEAT_E2H ?
+ 			CMDQ_OP_TLBI_EL2_ASID : CMDQ_OP_TLBI_NH_ASID,
+ 		.tlbi.asid = asid,
+@@ -1229,6 +1240,7 @@ void arm_smmu_tlb_inv_asid(struct arm_smmu_device *smmu, u16 asid)
+ 
+ 	arm_smmu_cmdq_issue_cmd_with_sync(smmu, &cmd);
+ }
++EXPORT_SYMBOL_IF_KUNIT(arm_smmu_tlb_inv_asid);
+ 
+ /*
+  * Based on the value of ent report which bits of the STE the HW will access. It
+@@ -2327,6 +2339,11 @@ int arm_smmu_atc_inv_domain(struct arm_smmu_domain *smmu_domain,
+ 	struct arm_smmu_cmdq_ent cmd;
+ 	struct arm_smmu_cmdq_batch cmds;
+ 
++#if IS_ENABLED(CONFIG_KUNIT)
++	if (arm_smmu_sva_test_owns(NULL, smmu_domain))
++		KUNIT_STATIC_STUB_REDIRECT(arm_smmu_atc_inv_domain,
++					   smmu_domain, iova, size);
++#endif
+ 	if (!(smmu_domain->smmu->features & ARM_SMMU_FEAT_ATS))
+ 		return 0;
+ 
+@@ -2381,6 +2398,7 @@ int arm_smmu_atc_inv_domain(struct arm_smmu_domain *smmu_domain,
+ 
+ 	return ret;
+ }
++EXPORT_SYMBOL_IF_KUNIT(arm_smmu_atc_inv_domain);
+ 
+ /* IO_PGTABLE API */
+ static void arm_smmu_tlb_inv_context(void *cookie)
+@@ -2519,7 +2537,14 @@ void arm_smmu_tlb_inv_range_asid(unsigned long iova, size_t size, int asid,
+ 				 size_t granule, bool leaf,
+ 				 struct arm_smmu_domain *smmu_domain)
+ {
+-	struct arm_smmu_cmdq_ent cmd = {
++	struct arm_smmu_cmdq_ent cmd;
++
++#if IS_ENABLED(CONFIG_KUNIT)
++	if (arm_smmu_sva_test_owns(NULL, smmu_domain))
++		KUNIT_STATIC_STUB_REDIRECT(arm_smmu_tlb_inv_range_asid, iova,
++					   size, asid, granule, leaf, smmu_domain);
++#endif
++	cmd = (struct arm_smmu_cmdq_ent) {
+ 		.opcode	= smmu_domain->smmu->features & ARM_SMMU_FEAT_E2H ?
+ 			  CMDQ_OP_TLBI_EL2_VA : CMDQ_OP_TLBI_NH_VA,
+ 		.tlbi = {
+@@ -2530,6 +2555,7 @@ void arm_smmu_tlb_inv_range_asid(unsigned long iova, size_t size, int asid,
+ 
+ 	__arm_smmu_tlb_inv_range(&cmd, iova, size, granule, smmu_domain);
+ }
++EXPORT_SYMBOL_IF_KUNIT(arm_smmu_tlb_inv_range_asid);
+ 
+ static void arm_smmu_tlb_inv_page_nosync(struct iommu_iotlb_gather *gather,
+ 					 unsigned long iova, size_t granule,
+diff --git a/include/linux/mmu_notifier.h b/include/linux/mmu_notifier.h
+index 6e3c857606f1..679aaffe52d5 100644
+--- a/include/linux/mmu_notifier.h
++++ b/include/linux/mmu_notifier.h
+@@ -209,6 +209,18 @@ struct mmu_notifier_ops {
+ 					unsigned long start,
+ 					unsigned long end);
+ 
++	/*
++	 * Called by the post-TLBI dispatcher only when a secondary TLB flush
++	 * is required, before this subscription's legacy callback (if any).
++	 * Like arch_invalidate_secondary_tlbs(), this callback must not sleep
++	 * and must not be combined with invalidate_range_start()/end(). Both
++	 * TLB callbacks may be implemented by the same subscription.
++	 */
++	void (*arch_invalidate_secondary_tlbs_conditional)(struct mmu_notifier *subscription,
++							   struct mm_struct *mm,
++							   unsigned long start,
++							   unsigned long end);
++
+ 	/*
+ 	 * These callbacks are used with the get/put interface to manage the
+ 	 * lifetime of the mmu_notifier memory. alloc_notifier() returns a new
+@@ -297,6 +309,10 @@ mmu_notifier_get(const struct mmu_notifier_ops *ops, struct mm_struct *mm)
+ void mmu_notifier_put(struct mmu_notifier *subscription);
+ void mmu_notifier_synchronize(void);
+ 
++#if IS_ENABLED(CONFIG_KUNIT)
++struct mm_struct *mmu_notifier_test_alloc_mm(void);
++#endif
++
+ extern int mmu_notifier_register(struct mmu_notifier *subscription,
+ 				 struct mm_struct *mm);
+ extern int __mmu_notifier_register(struct mmu_notifier *subscription,
+@@ -398,6 +414,11 @@ extern int __mmu_notifier_invalidate_range_start(struct mmu_notifier_range *r);
+ extern void __mmu_notifier_invalidate_range_end(struct mmu_notifier_range *r);
+ extern void __mmu_notifier_arch_invalidate_secondary_tlbs(struct mm_struct *mm,
+ 					unsigned long start, unsigned long end);
++void
++__mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi(struct mm_struct *mm,
++							unsigned long start,
++							unsigned long end,
++							bool need_tlb);
+ extern bool
+ mmu_notifier_range_update_to_read_only(const struct mmu_notifier_range *range);
+ 
+@@ -490,6 +511,18 @@ static inline void mmu_notifier_arch_invalidate_secondary_tlbs(struct mm_struct
+ 		__mmu_notifier_arch_invalidate_secondary_tlbs(mm, start, end);
+ }
+ 
++/* Caller supplies the secondary TLB decision after completing the CPU TLBI. */
++static inline void
++mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi(struct mm_struct *mm,
++						      unsigned long start,
++						      unsigned long end,
++						      bool need_tlb)
++{
++	if (mm_has_notifiers(mm))
++		__mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi(mm,
++									start, end, need_tlb);
++}
++
+ static inline void mmu_notifier_subscriptions_init(struct mm_struct *mm)
+ {
+ 	mm->notifier_subscriptions = NULL;
+@@ -669,6 +702,14 @@ static inline void mmu_notifier_arch_invalidate_secondary_tlbs(struct mm_struct
+ {
+ }
+ 
++static inline void
++mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi(struct mm_struct *mm,
++						      unsigned long start,
++						      unsigned long end,
++						      bool need_tlb)
++{
++}
++
+ static inline void mmu_notifier_subscriptions_init(struct mm_struct *mm)
+ {
+ }
+diff --git a/mm/mmu_notifier.c b/mm/mmu_notifier.c
+index ec3b068cbbe6..bfc354edd725 100644
+--- a/mm/mmu_notifier.c
++++ b/mm/mmu_notifier.c
+@@ -18,6 +18,7 @@
+ #include <linux/sched.h>
+ #include <linux/sched/mm.h>
+ #include <linux/slab.h>
++#include <kunit/visibility.h>
+ 
+ /* global SRCU for all MMs */
+ DEFINE_STATIC_SRCU(srcu);
+@@ -603,6 +604,40 @@ void __mmu_notifier_arch_invalidate_secondary_tlbs(struct mm_struct *mm,
+ 	srcu_read_unlock(&srcu, id);
+ }
+ 
++void
++__mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi(struct mm_struct *mm,
++							unsigned long start,
++							unsigned long end,
++							bool need_tlb)
++{
++	struct mmu_notifier *subscription;
++	int id;
++
++	id = srcu_read_lock(&srcu);
++	hlist_for_each_entry_rcu(subscription,
++				 &mm->notifier_subscriptions->list, hlist,
++				 srcu_read_lock_held(&srcu)) {
++		const struct mmu_notifier_ops *ops = subscription->ops;
++
++		if (need_tlb && ops->arch_invalidate_secondary_tlbs_conditional)
++			ops->arch_invalidate_secondary_tlbs_conditional(subscription,
++								  mm, start, end);
++		if (ops->arch_invalidate_secondary_tlbs)
++			ops->arch_invalidate_secondary_tlbs(subscription, mm,
++							    start, end);
++	}
++	srcu_read_unlock(&srcu, id);
++}
++EXPORT_SYMBOL_IF_KUNIT(__mmu_notifier_arch_invalidate_secondary_tlbs_post_tlbi);
++
++#if IS_ENABLED(CONFIG_KUNIT)
++struct mm_struct *mmu_notifier_test_alloc_mm(void)
++{
++	return mm_alloc();
++}
++EXPORT_SYMBOL_IF_KUNIT(mmu_notifier_test_alloc_mm);
++#endif
++
+ /*
+  * Same as mmu_notifier_register but here the caller must hold the mmap_lock in
+  * write mode. A NULL mn signals the notifier is being registered for itree
+@@ -618,11 +653,12 @@ int __mmu_notifier_register(struct mmu_notifier *subscription,
+ 	BUG_ON(atomic_read(&mm->mm_users) <= 0);
+ 
+ 	/*
+-	 * Subsystems should only register for invalidate_secondary_tlbs() or
++	 * Subsystems should only register for either secondary TLB callback or
+ 	 * invalidate_range_start()/end() callbacks, not both.
+ 	 */
+ 	if (WARN_ON_ONCE(subscription &&
+-			 (subscription->ops->arch_invalidate_secondary_tlbs &&
++			 ((subscription->ops->arch_invalidate_secondary_tlbs ||
++			   subscription->ops->arch_invalidate_secondary_tlbs_conditional) &&
+ 			 (subscription->ops->invalidate_range_start ||
+ 			  subscription->ops->invalidate_range_end))))
+ 		return -EINVAL;
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva-test.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva-test.h
+new file mode 100644
+index 000000000000..087e8542fb9b
+--- /dev/null
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3-sva-test.h
+@@ -0,0 +1,58 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++#ifndef ARM_SMMU_V3_SVA_TEST_H
++#define ARM_SMMU_V3_SVA_TEST_H
++
++#include <linux/kconfig.h>
++#include <linux/types.h>
++
++struct arm_smmu_domain;
++struct arm_smmu_device;
++struct mmu_notifier_ops;
++
++#if IS_ENABLED(CONFIG_KUNIT)
++#include <kunit/resource.h>
++#include <kunit/test-bug.h>
++#include <linux/preempt.h>
++
++#define ARM_SMMU_SVA_TEST_RESOURCE "arm-smmu-sva-callback-scope"
++
++struct arm_smmu_sva_test_scope {
++	struct arm_smmu_device *smmu;
++	struct arm_smmu_domain *domain;
++	bool run_enabled;
++};
++
++static inline bool arm_smmu_sva_test_owns(const struct arm_smmu_device *smmu,
++					  const struct arm_smmu_domain *domain)
++{
++	struct arm_smmu_sva_test_scope *scope;
++	struct kunit_resource *res;
++	struct kunit *test;
++	bool owns;
++
++	if (!in_task())
++		return false;
++
++	test = kunit_get_current_test();
++	if (!test)
++		return false;
++	if ((!smmu && !domain) || (smmu && domain))
++		return false;
++
++	res = kunit_find_named_resource(test, ARM_SMMU_SVA_TEST_RESOURCE);
++	if (!res)
++		return false;
++
++	scope = res->data;
++	owns = scope->run_enabled &&
++		(smmu ? scope->smmu == smmu : scope->domain == domain);
++	kunit_put_resource(res);
++	return owns;
++}
++
++size_t arm_smmu_sva_invalidate_size(struct arm_smmu_domain *smmu_domain,
++				    unsigned long start, unsigned long end);
++const struct mmu_notifier_ops *arm_smmu_sva_test_notifier_ops(bool conditional);
++#endif
++
++#endif /* ARM_SMMU_V3_SVA_TEST_H */
