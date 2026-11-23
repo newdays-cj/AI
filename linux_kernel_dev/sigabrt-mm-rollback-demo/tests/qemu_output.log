@@ -1,0 +1,2512 @@
+[    0.756165][    T1] pci-host-generic 4010000000.pcie: Memory resource size exceeds max for 32 bits
+[    1.367377][    T1] integrity: Unable to open file: /etc/keys/x509_ima.der (-2)
+[    1.367450][    T1] integrity: Unable to open file: /etc/keys/x509_evm.der (-2)
+CKPT_QEMU_START
+CKPT_KUNIT_LOADED
+[    0.000000][    T0] Booting Linux on physical CPU 0x0000000000 [0x410fd083]
+[    0.000000][    T0] Linux version 6.6.0+ (chenjun@DESKTOP-QABRF7I) (aarch64-buildroot-linux-gnu-gcc.br_real (Buildroot -gb2800531) 14.3.0, GNU ld (GNU Binutils) 2.45.1) #59 SMP Tue Nov 17 23:25:13 CST 2026
+[    0.000000][    T0] KASLR disabled on command line
+[    0.000000][    T0] random: crng init done
+[    0.000000][    T0] Machine model: linux,dummy-virt
+[    0.000000][    T0] efi: UEFI not found.
+[    0.000000][    T0] NUMA: No NUMA configuration found
+[    0.000000][    T0] NUMA: Faking a node at [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000][    T0] NUMA: NODE_DATA [mem 0xbfbd9280-0xbfbe5fff]
+[    0.000000][    T0] Zone ranges:
+[    0.000000][    T0]   DMA      [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000][    T0]   DMA32    empty
+[    0.000000][    T0]   Normal   empty
+[    0.000000][    T0]   Device   empty
+[    0.000000][    T0] Movable zone start for each node
+[    0.000000][    T0] Early memory node ranges
+[    0.000000][    T0]   node   0: [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000][    T0] Initmem setup node 0 [mem 0x0000000040000000-0x00000000bfffffff]
+[    0.000000][    T0] psci: probing for conduit method from DT.
+[    0.000000][    T0] psci: PSCIv1.1 detected in firmware.
+[    0.000000][    T0] psci: Using standard PSCI v0.2 function IDs
+[    0.000000][    T0] psci: Trusted OS migration not required
+[    0.000000][    T0] psci: SMC Calling Convention v1.0
+[    0.000000][    T0] percpu: Embedded 33 pages/cpu s97768 r8192 d29208 u135168
+[    0.000000][    T0] pcpu-alloc: s97768 r8192 d29208 u135168 alloc=33*4096
+[    0.000000][    T0] pcpu-alloc: [0] 0 [0] 1 [0] 2 [0] 3 
+[    0.000000][    T0] Detected PIPT I-cache on CPU0
+[    0.000000][    T0] CPU features: detected: GIC system register CPU interface
+[    0.000000][    T0] CPU features: detected: Spectre-v2
+[    0.000000][    T0] CPU features: detected: Spectre-v3a
+[    0.000000][    T0] CPU features: detected: Spectre-v4
+[    0.000000][    T0] CPU features: detected: Spectre-BHB
+[    0.000000][    T0] CPU features: detected: ARM errata 1165522, 1319367, or 1530923
+[    0.000000][    T0] alternatives: applying boot alternatives
+[    0.000000][    T0] Kernel command line: console=ttyAMA0 rdinit=/ckpt-init nokaslr panic=-1 loglevel=5 CKPT_ROUNDS=100
+[    0.000000][    T0] Unknown kernel command line parameters "CKPT_ROUNDS=100", will be passed to user space.
+[    0.000000][    T0] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000][    T0] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000][    T0] Fallback order for Node 0: 0 
+[    0.000000][    T0] Built 1 zonelists, mobility grouping on.  Total pages: 516096
+[    0.000000][    T0] Policy zone: DMA
+[    0.000000][    T0] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000][    T0] software IO TLB: area num 4.
+[    0.000000][    T0] software IO TLB: mapped [mem 0x00000000b9800000-0x00000000bd800000] (64MB)
+[    0.000000][    T0] Memory: 1925612K/2097152K available (26368K kernel code, 8534K rwdata, 8200K rodata, 2944K init, 9145K bss, 171540K reserved, 0K cma-reserved)
+[    0.000000][    T0] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000][    T0] ftrace: allocating 54553 entries in 216 pages
+[    0.000000][    T0] ftrace: allocated 216 pages with 4 groups
+[    0.000000][    T0] rcu: Hierarchical RCU implementation.
+[    0.000000][    T0] rcu: 	RCU restricting CPUs from NR_CPUS=64 to nr_cpu_ids=4.
+[    0.000000][    T0] 	Rude variant of Tasks RCU enabled.
+[    0.000000][    T0] 	Tracing variant of Tasks RCU enabled.
+[    0.000000][    T0] rcu: RCU calculated value of scheduler-enlistment delay is 25 jiffies.
+[    0.000000][    T0] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+[    0.000000][    T0] NR_IRQS: 64, nr_irqs: 64, preallocated irqs: 0
+[    0.000000][    T0] GICv3: 256 SPIs implemented
+[    0.000000][    T0] GICv3: 0 Extended SPIs implemented
+[    0.000000][    T0] GICv3: GICD_TYPER NMI is not supported.
+[    0.000000][    T0] Root IRQ handler: gic_handle_irq
+[    0.000000][    T0] GICv3: GICv3 features: 16 PPIs
+[    0.000000][    T0] GICv3: CPU0: found redistributor 0 region 0:0x00000000080a0000
+[    0.000000][    T0] ITS [mem 0x08080000-0x0809ffff]
+[    0.000000][    T0] ITS@0x0000000008080000: allocated 8192 Devices @43e00000 (indirect, esz 8, psz 64K, shr 1)
+[    0.000000][    T0] ITS@0x0000000008080000: allocated 8192 Interrupt Collections @43e10000 (flat, esz 8, psz 64K, shr 1)
+[    0.000000][    T0] GICv3: using LPI property table @0x0000000043e20000
+[    0.000000][    T0] GICv3: CPU0: using allocated LPI pending table @0x0000000043e30000
+[    0.000000][    T0] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[    0.000000][    T0] arch_timer: cp15 timer(s) running at 62.50MHz (virt).
+[    0.000000][    T0] clocksource: arch_sys_counter: mask: 0x1ffffffffffffff max_cycles: 0x1cd42e208c, max_idle_ns: 881590405314 ns
+[    0.000070][    T0] sched_clock: 57 bits at 63MHz, resolution 16ns, wraps every 4398046511096ns
+[    0.010796][    T0] Console: colour dummy device 80x25
+[    0.013409][    T0] Calibrating delay loop (skipped), value calculated using timer frequency.. 125.00 BogoMIPS (lpj=250000)
+[    0.013634][    T0] pid_max: default: 32768 minimum: 301
+[    0.015610][    T0] LSM: initializing lsm=lockdown,capability,yama,selinux,bpf,integrity
+[    0.016144][    T0] Yama: becoming mindful.
+[    0.016283][    T0] SELinux:  Initializing.
+[    0.016689][    T0] LSM support for eBPF active
+[    0.019071][    T0] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.019122][    T0] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.061279][    T1] RCU Tasks Rude: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.061612][    T1] RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+[    0.063582][    T1] rcu: Hierarchical SRCU implementation.
+[    0.063617][    T1] rcu: 	Max phase no-delay instances is 1000.
+[    0.068825][    T1] Platform MSI: its@8080000 domain created
+[    0.069241][    T1] PCI/MSI: /intc@8000000/its@8080000 domain created
+[    0.069484][    T1] EFI services will not be available.
+[    0.072817][    T1] smp: Bringing up secondary CPUs ...
+[    0.076883][    T0] Detected PIPT I-cache on CPU1
+[    0.077658][    T0] GICv3: CPU1: found redistributor 1 region 0:0x00000000080c0000
+[    0.077791][    T0] GICv3: CPU1: using allocated LPI pending table @0x0000000043e40000
+[    0.078097][    T0] CPU1: Booted secondary processor 0x0000000001 [0x410fd083]
+[    0.083970][    T0] Detected PIPT I-cache on CPU2
+[    0.084139][    T0] GICv3: CPU2: found redistributor 2 region 0:0x00000000080e0000
+[    0.084250][    T0] GICv3: CPU2: using allocated LPI pending table @0x0000000043e50000
+[    0.084506][    T0] CPU2: Booted secondary processor 0x0000000002 [0x410fd083]
+[    0.086126][    T0] Detected PIPT I-cache on CPU3
+[    0.086273][    T0] GICv3: CPU3: found redistributor 3 region 0:0x0000000008100000
+[    0.086389][    T0] GICv3: CPU3: using allocated LPI pending table @0x0000000043e60000
+[    0.086687][    T0] CPU3: Booted secondary processor 0x0000000003 [0x410fd083]
+[    0.087150][    T1] smp: Brought up 1 node, 4 CPUs
+[    0.087181][    T1] SMP: Total of 4 processors activated.
+[    0.087268][    T1] CPU features: detected: 32-bit EL0 Support
+[    0.087285][    T1] CPU features: detected: 32-bit EL1 Support
+[    0.087374][    T1] CPU features: detected: CRC32 instructions
+[    0.090813][    T1] CPU: All CPU(s) started at EL1
+[    0.090989][    T1] alternatives: applying system-wide alternatives
+[    0.113438][    T1] devtmpfs: initialized
+[    0.126071][    T1] version magic: 0x4234332a
+[    0.145034][    T1] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 7645041785100000 ns
+[    0.145214][    T1] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.148381][    T1] pinctrl core: initialized pinctrl subsystem
+[    0.157929][    T1] DMI not present or invalid.
+[    0.167784][    T1] NET: Registered PF_NETLINK/PF_ROUTE protocol family
+[    0.172798][    T1] DMA: preallocated 256 KiB GFP_KERNEL pool for atomic allocations
+[    0.173105][    T1] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+[    0.173211][    T1] DMA: preallocated 256 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+[    0.173437][    T1] audit: initializing netlink subsys (disabled)
+[    0.175609][   T36] audit: type=2000 audit(0.160:1): state=initialized audit_enabled=0 res=1
+[    0.178533][    T1] thermal_sys: Registered thermal governor 'fair_share'
+[    0.178571][    T1] thermal_sys: Registered thermal governor 'step_wise'
+[    0.178584][    T1] thermal_sys: Registered thermal governor 'user_space'
+[    0.179077][    T1] cpuidle: using governor menu
+[    0.180040][    T1] hw-breakpoint: found 6 breakpoint and 4 watchpoint registers.
+[    0.180875][    T1] ASID allocator initialised with 65536 entries
+[    0.182328][    T1] Serial: AMBA PL011 UART driver
+[    0.202496][    T1] 9000000.pl011: ttyAMA0 at MMIO 0x9000000 (irq = 13, base_baud = 0) is a PL011 rev1
+[    0.203798][    T1] printk: console [ttyAMA0] enabled
+[    0.211885][    T1] Modules: 18912 pages in range for non-PLT usage
+[    0.211937][    T1] Modules: 510432 pages in range for PLT usage
+[    0.218310][    T1] HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.218358][    T1] HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+[    0.218383][    T1] HugeTLB: registered 32.0 MiB page size, pre-allocated 0 pages
+[    0.218390][    T1] HugeTLB: 508 KiB vmemmap can be freed for a 32.0 MiB page
+[    0.218397][    T1] HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.218402][    T1] HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+[    0.218409][    T1] HugeTLB: registered 64.0 KiB page size, pre-allocated 0 pages
+[    0.218414][    T1] HugeTLB: 0 KiB vmemmap can be freed for a 64.0 KiB page
+[    0.229859][    T1] ACPI: Interpreter disabled.
+[    0.230907][    T1] iommu: Default domain type: Translated
+[    0.230955][    T1] iommu: DMA domain TLB invalidation policy: lazy mode
+[    0.233659][    T1] SCSI subsystem initialized
+[    0.235194][    T1] usbcore: registered new interface driver usbfs
+[    0.235493][    T1] usbcore: registered new interface driver hub
+[    0.235702][    T1] usbcore: registered new device driver usb
+[    0.236089][    T1] pps_core: LinuxPPS API ver. 1 registered
+[    0.236111][    T1] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.236173][    T1] PTP clock support registered
+[    0.237532][    T1] EDAC MC: Ver: 3.0.0
+[    0.252257][    T1] NetLabel: Initializing
+[    0.252300][    T1] NetLabel:  domain hash size = 128
+[    0.252315][    T1] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.253249][    T1] NetLabel:  unlabeled traffic allowed by default
+[    0.254528][    T1] vgaarb: loaded
+[    0.257265][    T1] clocksource: Switched to clocksource arch_sys_counter
+[    0.262858][    T1] VFS: Disk quotas dquot_6.6.0
+[    0.263032][    T1] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.267237][    T1] pnp: PnP ACPI: disabled
+[    0.299542][    T1] NET: Registered PF_INET protocol family
+[    0.300906][    T1] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.308865][    T1] tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
+[    0.309219][    T1] Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.309292][    T1] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.309531][    T1] TCP bind hash table entries: 16384 (order: 7, 524288 bytes, linear)
+[    0.309895][    T1] TCP: Hash tables configured (established 16384 bind 16384)
+[    0.312188][    T1] MPTCP token hash table entries: 2048 (order: 4, 49152 bytes, linear)
+[    0.312587][    T1] UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.312891][    T1] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.314868][    T1] NET: Registered PF_UNIX/PF_LOCAL protocol family
+[    0.315360][    T1] NET: Registered PF_XDP protocol family
+[    0.315569][    T1] PCI: CLS 0 bytes, default 64
+[    0.320414][   T11] Trying to unpack rootfs image as initramfs...
+[    0.321663][    T1] kvm [1]: HYP mode not available
+[    0.380590][   T11] Freeing initrd memory: 8100K
+[    0.697986][    T1] Initialise system trusted keyrings
+[    0.700918][    T1] Key type blacklist registered
+[    0.702393][    T1] workingset: timestamp_bits=38 max_order=19 bucket_order=0
+[    0.702689][    T1] zbud: loaded
+[    0.707247][    T1] 9p: Installing v9fs 9p2000 file system support
+[    0.708005][    T1] MFS module loaded
+[    0.713129][    T1] integrity: Platform Keyring initialized
+[    0.739880][    T1] NET: Registered PF_ALG protocol family
+[    0.740185][    T1] Key type asymmetric registered
+[    0.740284][    T1] Asymmetric key parser 'x509' registered
+[    0.740341][    T1] Asymmetric key parser 'pgp' registered
+[    0.741596][    T1] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 246)
+[    0.743023][    T1] io scheduler mq-deadline registered
+[    0.743102][    T1] io scheduler kyber registered
+[    0.743269][    T1] io scheduler bfq registered
+[    0.752864][    T1] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    0.754035][    T1] pci-host-generic 4010000000.pcie: host bridge /pcie@10000000 ranges:
+[    0.754821][    T1] pci-host-generic 4010000000.pcie:       IO 0x003eff0000..0x003effffff -> 0x0000000000
+[    0.755470][    T1] pci-host-generic 4010000000.pcie:      MEM 0x0010000000..0x003efeffff -> 0x0010000000
+[    0.755554][    T1] pci-host-generic 4010000000.pcie:      MEM 0x8000000000..0xffffffffff -> 0x8000000000
+[    0.756165][    T1] pci-host-generic 4010000000.pcie: Memory resource size exceeds max for 32 bits
+[    0.757989][    T1] pci-host-generic 4010000000.pcie: ECAM at [mem 0x4010000000-0x401fffffff] for [bus 00-ff]
+[    0.759442][    T1] pci-host-generic 4010000000.pcie: PCI host bridge to bus 0000:00
+[    0.759701][    T1] pci_bus 0000:00: root bus resource [bus 00-ff]
+[    0.759812][    T1] pci_bus 0000:00: root bus resource [io  0x0000-0xffff]
+[    0.759851][    T1] pci_bus 0000:00: root bus resource [mem 0x10000000-0x3efeffff]
+[    0.759862][    T1] pci_bus 0000:00: root bus resource [mem 0x8000000000-0xffffffffff]
+[    0.761979][    T1] pci 0000:00:00.0: [1b36:0008] type 00 class 0x060000
+[    0.767012][    T1] pci 0000:00:01.0: [1af4:1000] type 00 class 0x020000
+[    0.767272][    T1] pci 0000:00:01.0: BAR 0 [io  0x0000-0x001f]
+[    0.767337][    T1] pci 0000:00:01.0: BAR 1 [mem 0x00000000-0x00000fff]
+[    0.767385][    T1] pci 0000:00:01.0: BAR 4 [mem 0x00000000-0x00003fff 64bit pref]
+[    0.767453][    T1] pci 0000:00:01.0: ROM [mem 0x00000000-0x0007ffff pref]
+[    0.767833][    T1] pci 0000:00:02.0: [1af4:1009] type 00 class 0x000200
+[    0.767879][    T1] pci 0000:00:02.0: BAR 0 [io  0x0000-0x003f]
+[    0.767893][    T1] pci 0000:00:02.0: BAR 1 [mem 0x00000000-0x00000fff]
+[    0.767905][    T1] pci 0000:00:02.0: BAR 4 [mem 0x00000000-0x00003fff 64bit pref]
+[    0.770008][    T1] pci 0000:00:01.0: ROM [mem 0x10000000-0x1007ffff pref]: assigned
+[    0.770253][    T1] pci 0000:00:01.0: BAR 4 [mem 0x8000000000-0x8000003fff 64bit pref]: assigned
+[    0.770400][    T1] pci 0000:00:02.0: BAR 4 [mem 0x8000004000-0x8000007fff 64bit pref]: assigned
+[    0.770437][    T1] pci 0000:00:01.0: BAR 1 [mem 0x10080000-0x10080fff]: assigned
+[    0.770481][    T1] pci 0000:00:02.0: BAR 1 [mem 0x10081000-0x10081fff]: assigned
+[    0.770507][    T1] pci 0000:00:02.0: BAR 0 [io  0x1000-0x103f]: assigned
+[    0.770547][    T1] pci 0000:00:01.0: BAR 0 [io  0x1040-0x105f]: assigned
+[    0.780792][    T1] virtio-pci 0000:00:01.0: enabling device (0000 -> 0003)
+[    0.784304][    T1] virtio-pci 0000:00:02.0: enabling device (0000 -> 0003)
+[    0.786898][    T1] Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+[    0.791556][    T1] Serial: AMBA driver
+[    0.795841][    T1] rdac: device handler registered
+[    0.796589][    T1] hp_sw: device handler registered
+[    0.796631][    T1] emc: device handler registered
+[    0.797368][    T1] alua: device handler registered
+[    0.803712][    T1] mousedev: PS/2 mouse device common for all mice
+[    0.807551][    T1] hid: raw HID events driver (C) Jiri Kosina
+[    0.809269][    T1] usbcore: registered new interface driver usbhid
+[    0.809297][    T1] usbhid: USB HID core driver
+[    0.813552][    T1] hw perfevents: enabled with armv8_pmuv3 PMU driver, 7 (8000003f) counters available
+[    0.815859][    T1] Initializing XFRM netlink socket
+[    0.816503][    T1] NET: Registered PF_INET6 protocol family
+[    0.818729][   T10] watchdog: Delayed init of the lockup detector failed: -19
+[    0.818772][   T10] watchdog: Hard watchdog permanently disabled
+[    0.828382][    T1] Segment Routing with IPv6
+[    0.828582][    T1] In-situ OAM (IOAM) with IPv6
+[    0.829707][    T1] NET: Registered PF_PACKET protocol family
+[    0.830999][    T1] 9pnet: Installing 9P2000 support
+[    0.864062][    T1] registered taskstats version 1
+[    0.869404][    T1] Loading compiled-in X.509 certificates
+[    0.962177][    T1] Loaded X.509 cert 'Build time autogenerated kernel key: 54e5a7202132dbde01c85614cffb3ff3bcddd77f'
+[    0.962306][    T1] Load PGP public keys
+[    0.976087][    T1] Demotion targets for Node 0: null
+[    1.083457][    T1] Key type encrypted registered
+[    1.084195][    T1] ima: IMA RoT initializing tpm
+[    1.084270][    T1] ima: No RoT found, activating RoT-bypass!
+[    1.084385][    T1] Loading compiled-in module X.509 certificates
+[    1.087106][    T1] Loaded X.509 cert 'Build time autogenerated kernel key: 54e5a7202132dbde01c85614cffb3ff3bcddd77f'
+[    1.087222][    T1] ima: Allocated hash algorithm: sha256
+[    1.089344][    T1] ima: No architecture policies found
+[    1.089982][    T1] evm: Initialising EVM extended attributes:
+[    1.090011][    T1] evm: security.selinux
+[    1.090045][    T1] evm: security.SMACK64 (disabled)
+[    1.090052][    T1] evm: security.SMACK64EXEC (disabled)
+[    1.090057][    T1] evm: security.SMACK64TRANSMUTE (disabled)
+[    1.090063][    T1] evm: security.SMACK64MMAP (disabled)
+[    1.090068][    T1] evm: security.apparmor
+[    1.090073][    T1] evm: security.ima
+[    1.090078][    T1] evm: security.capability
+[    1.090091][    T1] evm: HMAC attrs: 0x1
+[    1.359427][    T1] clk: Disabling unused clocks
+[    1.359948][    T1] KTAP version 1
+[    1.359974][    T1] 1..0
+[    1.366058][    T1] uart-pl011 9000000.pl011: no DMA platform data
+[    1.367377][    T1] integrity: Unable to open file: /etc/keys/x509_ima.der (-2)
+[    1.367450][    T1] integrity: Unable to open file: /etc/keys/x509_evm.der (-2)
+[    1.467253][    T1] Freeing unused kernel memory: 2944K
+[    1.468589][    T1] Run /ckpt-init as init process
+[    1.468722][    T1]   with arguments:
+[    1.468772][    T1]     /ckpt-init
+[    1.468794][    T1]   with environment:
+[    1.468813][    T1]     HOME=/
+[    1.468829][    T1]     TERM=linux
+[    1.468835][    T1]     CKPT_ROUNDS=100
+[    1.688125][  T149] task_checkpoint_test: module verification failed: signature and/or required key missing - tainting kernel
+[    1.697814][  T149] KTAP version 1
+[    1.697870][  T149] 1..1
+[    1.698252][  T149]     KTAP version 1
+[    1.698280][  T149]     # Subtest: task-checkpoint-contract
+[    1.698424][  T149]     # module: task_checkpoint_test
+[    1.698680][  T149]     1..2
+[    1.701254][  T149]     ok 1 checkpoint_clone_contract
+[    1.702544][  T149]     ok 2 checkpoint_futex_contract
+[    1.702647][  T149] # task-checkpoint-contract: pass:2 fail:0 skip:0 total:2
+[    1.702692][  T149] # Totals: pass:2 fail:0 skip:0 total:2
+[    1.702789][  T149] ok 1 task-checkpoint-contract
+checkpoint demo libc=2.43
+RESTORED mode=0 pid=157 tids=157,159,160
+PASS round=0 mode=0 leader abort
+RESTORED mode=1 pid=162 tids=162,164,165
+PASS round=0 mode=1 new thread abort
+RESTORED mode=2 pid=167 tids=167,169,170
+PASS round=0 mode=2 original worker abort
+RESTORED mode=3 pid=172 tids=172,174,175
+PASS round=0 mode=3 retained leader restore
+RESTORED mode=4 pid=177 tids=177,179,180
+PASS round=0 mode=4 all originals held
+RESTORED mode=5 pid=182 tids=182,184,185
+PASS round=0 mode=5 detached restore
+PASS round=0 mode=6 drop held worker
+PASS round=0 mode=7 admission errors
+PASS round=0 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=196 tids=196,198,199
+PASS round=0 mode=9 STOP/CONT with held worker
+PASS round=0 mode=10 DROP with retained leader
+RESTORED mode=11 pid=206 tids=206,208,209
+PASS round=0 mode=11 shared ABRT/HELD race
+PASS round=0 mode=12 SIGQUIT preserves native fatal cause
+PASS round=0 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=218 tids=218,220,221
+PASS round=1 mode=0 leader abort
+RESTORED mode=1 pid=223 tids=223,225,226
+PASS round=1 mode=1 new thread abort
+RESTORED mode=2 pid=228 tids=228,230,231
+PASS round=1 mode=2 original worker abort
+RESTORED mode=3 pid=233 tids=233,235,236
+PASS round=1 mode=3 retained leader restore
+RESTORED mode=4 pid=238 tids=238,240,241
+PASS round=1 mode=4 all originals held
+RESTORED mode=5 pid=243 tids=243,245,246
+PASS round=1 mode=5 detached restore
+PASS round=1 mode=6 drop held worker
+PASS round=1 mode=7 admission errors
+PASS round=1 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=257 tids=257,259,260
+PASS round=1 mode=9 STOP/CONT with held worker
+PASS round=1 mode=10 DROP with retained leader
+RESTORED mode=11 pid=267 tids=267,269,270
+PASS round=1 mode=11 shared ABRT/HELD race
+PASS round=1 mode=12 SIGQUIT preserves native fatal cause
+PASS round=1 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=279 tids=279,281,282
+PASS round=2 mode=0 leader abort
+RESTORED mode=1 pid=284 tids=284,286,287
+PASS round=2 mode=1 new thread abort
+RESTORED mode=2 pid=289 tids=289,291,292
+PASS round=2 mode=2 original worker abort
+RESTORED mode=3 pid=294 tids=294,296,297
+PASS round=2 mode=3 retained leader restore
+RESTORED mode=4 pid=299 tids=299,301,302
+PASS round=2 mode=4 all originals held
+RESTORED mode=5 pid=304 tids=304,306,307
+PASS round=2 mode=5 detached restore
+PASS round=2 mode=6 drop held worker
+PASS round=2 mode=7 admission errors
+PASS round=2 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=318 tids=318,320,321
+PASS round=2 mode=9 STOP/CONT with held worker
+PASS round=2 mode=10 DROP with retained leader
+RESTORED mode=11 pid=328 tids=328,330,331
+PASS round=2 mode=11 shared ABRT/HELD race
+PASS round=2 mode=12 SIGQUIT preserves native fatal cause
+PASS round=2 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=340 tids=340,342,343
+PASS round=3 mode=0 leader abort
+RESTORED mode=1 pid=345 tids=345,347,348
+PASS round=3 mode=1 new thread abort
+RESTORED mode=2 pid=350 tids=350,352,353
+PASS round=3 mode=2 original worker abort
+RESTORED mode=3 pid=355 tids=355,357,358
+PASS round=3 mode=3 retained leader restore
+RESTORED mode=4 pid=360 tids=360,362,363
+PASS round=3 mode=4 all originals held
+RESTORED mode=5 pid=365 tids=365,367,368
+PASS round=3 mode=5 detached restore
+PASS round=3 mode=6 drop held worker
+PASS round=3 mode=7 admission errors
+PASS round=3 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=379 tids=379,381,382
+PASS round=3 mode=9 STOP/CONT with held worker
+PASS round=3 mode=10 DROP with retained leader
+RESTORED mode=11 pid=389 tids=389,391,392
+PASS round=3 mode=11 shared ABRT/HELD race
+PASS round=3 mode=12 SIGQUIT preserves native fatal cause
+PASS round=3 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=401 tids=401,403,404
+PASS round=4 mode=0 leader abort
+RESTORED mode=1 pid=406 tids=406,408,409
+PASS round=4 mode=1 new thread abort
+RESTORED mode=2 pid=411 tids=411,413,414
+PASS round=4 mode=2 original worker abort
+RESTORED mode=3 pid=416 tids=416,418,419
+PASS round=4 mode=3 retained leader restore
+RESTORED mode=4 pid=421 tids=421,423,424
+PASS round=4 mode=4 all originals held
+RESTORED mode=5 pid=426 tids=426,428,429
+PASS round=4 mode=5 detached restore
+PASS round=4 mode=6 drop held worker
+PASS round=4 mode=7 admission errors
+PASS round=4 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=440 tids=440,442,443
+PASS round=4 mode=9 STOP/CONT with held worker
+PASS round=4 mode=10 DROP with retained leader
+RESTORED mode=11 pid=450 tids=450,452,453
+PASS round=4 mode=11 shared ABRT/HELD race
+PASS round=4 mode=12 SIGQUIT preserves native fatal cause
+PASS round=4 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=462 tids=462,464,465
+PASS round=5 mode=0 leader abort
+RESTORED mode=1 pid=467 tids=467,469,470
+PASS round=5 mode=1 new thread abort
+RESTORED mode=2 pid=472 tids=472,474,475
+PASS round=5 mode=2 original worker abort
+RESTORED mode=3 pid=477 tids=477,479,480
+PASS round=5 mode=3 retained leader restore
+RESTORED mode=4 pid=482 tids=482,484,485
+PASS round=5 mode=4 all originals held
+RESTORED mode=5 pid=487 tids=487,489,490
+PASS round=5 mode=5 detached restore
+PASS round=5 mode=6 drop held worker
+PASS round=5 mode=7 admission errors
+PASS round=5 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=501 tids=501,503,504
+PASS round=5 mode=9 STOP/CONT with held worker
+PASS round=5 mode=10 DROP with retained leader
+RESTORED mode=11 pid=511 tids=511,513,514
+PASS round=5 mode=11 shared ABRT/HELD race
+PASS round=5 mode=12 SIGQUIT preserves native fatal cause
+PASS round=5 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=523 tids=523,525,526
+PASS round=6 mode=0 leader abort
+RESTORED mode=1 pid=528 tids=528,530,531
+PASS round=6 mode=1 new thread abort
+RESTORED mode=2 pid=533 tids=533,535,536
+PASS round=6 mode=2 original worker abort
+RESTORED mode=3 pid=538 tids=538,540,541
+PASS round=6 mode=3 retained leader restore
+RESTORED mode=4 pid=543 tids=543,545,546
+PASS round=6 mode=4 all originals held
+RESTORED mode=5 pid=548 tids=548,550,551
+PASS round=6 mode=5 detached restore
+PASS round=6 mode=6 drop held worker
+PASS round=6 mode=7 admission errors
+PASS round=6 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=562 tids=562,564,565
+PASS round=6 mode=9 STOP/CONT with held worker
+PASS round=6 mode=10 DROP with retained leader
+RESTORED mode=11 pid=572 tids=572,574,575
+PASS round=6 mode=11 shared ABRT/HELD race
+PASS round=6 mode=12 SIGQUIT preserves native fatal cause
+PASS round=6 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=584 tids=584,586,587
+PASS round=7 mode=0 leader abort
+RESTORED mode=1 pid=589 tids=589,591,592
+PASS round=7 mode=1 new thread abort
+RESTORED mode=2 pid=594 tids=594,596,597
+PASS round=7 mode=2 original worker abort
+RESTORED mode=3 pid=599 tids=599,601,602
+PASS round=7 mode=3 retained leader restore
+RESTORED mode=4 pid=604 tids=604,606,607
+PASS round=7 mode=4 all originals held
+RESTORED mode=5 pid=609 tids=609,611,612
+PASS round=7 mode=5 detached restore
+PASS round=7 mode=6 drop held worker
+PASS round=7 mode=7 admission errors
+PASS round=7 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=623 tids=623,625,626
+PASS round=7 mode=9 STOP/CONT with held worker
+PASS round=7 mode=10 DROP with retained leader
+RESTORED mode=11 pid=633 tids=633,635,636
+PASS round=7 mode=11 shared ABRT/HELD race
+PASS round=7 mode=12 SIGQUIT preserves native fatal cause
+PASS round=7 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=645 tids=645,647,648
+PASS round=8 mode=0 leader abort
+RESTORED mode=1 pid=650 tids=650,652,653
+PASS round=8 mode=1 new thread abort
+RESTORED mode=2 pid=655 tids=655,657,658
+PASS round=8 mode=2 original worker abort
+RESTORED mode=3 pid=660 tids=660,662,663
+PASS round=8 mode=3 retained leader restore
+RESTORED mode=4 pid=665 tids=665,667,668
+PASS round=8 mode=4 all originals held
+RESTORED mode=5 pid=670 tids=670,672,673
+PASS round=8 mode=5 detached restore
+PASS round=8 mode=6 drop held worker
+PASS round=8 mode=7 admission errors
+PASS round=8 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=684 tids=684,686,687
+PASS round=8 mode=9 STOP/CONT with held worker
+PASS round=8 mode=10 DROP with retained leader
+RESTORED mode=11 pid=694 tids=694,696,697
+PASS round=8 mode=11 shared ABRT/HELD race
+PASS round=8 mode=12 SIGQUIT preserves native fatal cause
+PASS round=8 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=706 tids=706,708,709
+PASS round=9 mode=0 leader abort
+RESTORED mode=1 pid=711 tids=711,713,714
+PASS round=9 mode=1 new thread abort
+RESTORED mode=2 pid=716 tids=716,718,719
+PASS round=9 mode=2 original worker abort
+RESTORED mode=3 pid=721 tids=721,723,724
+PASS round=9 mode=3 retained leader restore
+RESTORED mode=4 pid=726 tids=726,728,729
+PASS round=9 mode=4 all originals held
+RESTORED mode=5 pid=731 tids=731,733,734
+PASS round=9 mode=5 detached restore
+PASS round=9 mode=6 drop held worker
+PASS round=9 mode=7 admission errors
+PASS round=9 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=745 tids=745,747,748
+PASS round=9 mode=9 STOP/CONT with held worker
+PASS round=9 mode=10 DROP with retained leader
+RESTORED mode=11 pid=755 tids=755,757,758
+PASS round=9 mode=11 shared ABRT/HELD race
+PASS round=9 mode=12 SIGQUIT preserves native fatal cause
+PASS round=9 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=767 tids=767,769,770
+PASS round=10 mode=0 leader abort
+RESTORED mode=1 pid=772 tids=772,774,775
+PASS round=10 mode=1 new thread abort
+RESTORED mode=2 pid=777 tids=777,779,780
+PASS round=10 mode=2 original worker abort
+RESTORED mode=3 pid=782 tids=782,784,785
+PASS round=10 mode=3 retained leader restore
+RESTORED mode=4 pid=787 tids=787,789,790
+PASS round=10 mode=4 all originals held
+RESTORED mode=5 pid=792 tids=792,794,795
+PASS round=10 mode=5 detached restore
+PASS round=10 mode=6 drop held worker
+PASS round=10 mode=7 admission errors
+PASS round=10 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=806 tids=806,808,809
+PASS round=10 mode=9 STOP/CONT with held worker
+PASS round=10 mode=10 DROP with retained leader
+RESTORED mode=11 pid=816 tids=816,818,819
+PASS round=10 mode=11 shared ABRT/HELD race
+PASS round=10 mode=12 SIGQUIT preserves native fatal cause
+PASS round=10 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=828 tids=828,830,831
+PASS round=11 mode=0 leader abort
+RESTORED mode=1 pid=833 tids=833,835,836
+PASS round=11 mode=1 new thread abort
+RESTORED mode=2 pid=838 tids=838,840,841
+PASS round=11 mode=2 original worker abort
+RESTORED mode=3 pid=843 tids=843,845,846
+PASS round=11 mode=3 retained leader restore
+RESTORED mode=4 pid=848 tids=848,850,851
+PASS round=11 mode=4 all originals held
+RESTORED mode=5 pid=853 tids=853,855,856
+PASS round=11 mode=5 detached restore
+PASS round=11 mode=6 drop held worker
+PASS round=11 mode=7 admission errors
+PASS round=11 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=867 tids=867,869,870
+PASS round=11 mode=9 STOP/CONT with held worker
+PASS round=11 mode=10 DROP with retained leader
+RESTORED mode=11 pid=877 tids=877,879,880
+PASS round=11 mode=11 shared ABRT/HELD race
+PASS round=11 mode=12 SIGQUIT preserves native fatal cause
+PASS round=11 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=889 tids=889,891,892
+PASS round=12 mode=0 leader abort
+RESTORED mode=1 pid=894 tids=894,896,897
+PASS round=12 mode=1 new thread abort
+RESTORED mode=2 pid=899 tids=899,901,902
+PASS round=12 mode=2 original worker abort
+RESTORED mode=3 pid=904 tids=904,906,907
+PASS round=12 mode=3 retained leader restore
+RESTORED mode=4 pid=909 tids=909,911,912
+PASS round=12 mode=4 all originals held
+RESTORED mode=5 pid=914 tids=914,916,917
+PASS round=12 mode=5 detached restore
+PASS round=12 mode=6 drop held worker
+PASS round=12 mode=7 admission errors
+PASS round=12 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=928 tids=928,930,931
+PASS round=12 mode=9 STOP/CONT with held worker
+PASS round=12 mode=10 DROP with retained leader
+RESTORED mode=11 pid=938 tids=938,940,941
+PASS round=12 mode=11 shared ABRT/HELD race
+PASS round=12 mode=12 SIGQUIT preserves native fatal cause
+PASS round=12 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=950 tids=950,952,953
+PASS round=13 mode=0 leader abort
+RESTORED mode=1 pid=955 tids=955,957,958
+PASS round=13 mode=1 new thread abort
+RESTORED mode=2 pid=960 tids=960,962,963
+PASS round=13 mode=2 original worker abort
+RESTORED mode=3 pid=965 tids=965,967,968
+PASS round=13 mode=3 retained leader restore
+RESTORED mode=4 pid=970 tids=970,972,973
+PASS round=13 mode=4 all originals held
+RESTORED mode=5 pid=975 tids=975,977,978
+PASS round=13 mode=5 detached restore
+PASS round=13 mode=6 drop held worker
+PASS round=13 mode=7 admission errors
+PASS round=13 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=989 tids=989,991,992
+PASS round=13 mode=9 STOP/CONT with held worker
+PASS round=13 mode=10 DROP with retained leader
+RESTORED mode=11 pid=999 tids=999,1001,1002
+PASS round=13 mode=11 shared ABRT/HELD race
+PASS round=13 mode=12 SIGQUIT preserves native fatal cause
+PASS round=13 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1011 tids=1011,1013,1014
+PASS round=14 mode=0 leader abort
+RESTORED mode=1 pid=1016 tids=1016,1018,1019
+PASS round=14 mode=1 new thread abort
+RESTORED mode=2 pid=1021 tids=1021,1023,1024
+PASS round=14 mode=2 original worker abort
+RESTORED mode=3 pid=1026 tids=1026,1028,1029
+PASS round=14 mode=3 retained leader restore
+RESTORED mode=4 pid=1031 tids=1031,1033,1034
+PASS round=14 mode=4 all originals held
+RESTORED mode=5 pid=1036 tids=1036,1038,1039
+PASS round=14 mode=5 detached restore
+PASS round=14 mode=6 drop held worker
+PASS round=14 mode=7 admission errors
+PASS round=14 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1050 tids=1050,1052,1053
+PASS round=14 mode=9 STOP/CONT with held worker
+PASS round=14 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1060 tids=1060,1062,1063
+PASS round=14 mode=11 shared ABRT/HELD race
+PASS round=14 mode=12 SIGQUIT preserves native fatal cause
+PASS round=14 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1072 tids=1072,1074,1075
+PASS round=15 mode=0 leader abort
+RESTORED mode=1 pid=1077 tids=1077,1079,1080
+PASS round=15 mode=1 new thread abort
+RESTORED mode=2 pid=1082 tids=1082,1084,1085
+PASS round=15 mode=2 original worker abort
+RESTORED mode=3 pid=1087 tids=1087,1089,1090
+PASS round=15 mode=3 retained leader restore
+RESTORED mode=4 pid=1092 tids=1092,1094,1095
+PASS round=15 mode=4 all originals held
+RESTORED mode=5 pid=1097 tids=1097,1099,1100
+PASS round=15 mode=5 detached restore
+PASS round=15 mode=6 drop held worker
+PASS round=15 mode=7 admission errors
+PASS round=15 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1111 tids=1111,1113,1114
+PASS round=15 mode=9 STOP/CONT with held worker
+PASS round=15 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1121 tids=1121,1123,1124
+PASS round=15 mode=11 shared ABRT/HELD race
+PASS round=15 mode=12 SIGQUIT preserves native fatal cause
+PASS round=15 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1133 tids=1133,1135,1136
+PASS round=16 mode=0 leader abort
+RESTORED mode=1 pid=1138 tids=1138,1140,1141
+PASS round=16 mode=1 new thread abort
+RESTORED mode=2 pid=1143 tids=1143,1145,1146
+PASS round=16 mode=2 original worker abort
+RESTORED mode=3 pid=1148 tids=1148,1150,1151
+PASS round=16 mode=3 retained leader restore
+RESTORED mode=4 pid=1153 tids=1153,1155,1156
+PASS round=16 mode=4 all originals held
+RESTORED mode=5 pid=1158 tids=1158,1160,1161
+PASS round=16 mode=5 detached restore
+PASS round=16 mode=6 drop held worker
+PASS round=16 mode=7 admission errors
+PASS round=16 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1172 tids=1172,1174,1175
+PASS round=16 mode=9 STOP/CONT with held worker
+PASS round=16 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1182 tids=1182,1184,1185
+PASS round=16 mode=11 shared ABRT/HELD race
+PASS round=16 mode=12 SIGQUIT preserves native fatal cause
+PASS round=16 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1194 tids=1194,1196,1197
+PASS round=17 mode=0 leader abort
+RESTORED mode=1 pid=1199 tids=1199,1201,1202
+PASS round=17 mode=1 new thread abort
+RESTORED mode=2 pid=1204 tids=1204,1206,1207
+PASS round=17 mode=2 original worker abort
+RESTORED mode=3 pid=1209 tids=1209,1211,1212
+PASS round=17 mode=3 retained leader restore
+RESTORED mode=4 pid=1214 tids=1214,1216,1217
+PASS round=17 mode=4 all originals held
+RESTORED mode=5 pid=1219 tids=1219,1221,1222
+PASS round=17 mode=5 detached restore
+PASS round=17 mode=6 drop held worker
+PASS round=17 mode=7 admission errors
+PASS round=17 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1233 tids=1233,1235,1236
+PASS round=17 mode=9 STOP/CONT with held worker
+PASS round=17 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1243 tids=1243,1245,1246
+PASS round=17 mode=11 shared ABRT/HELD race
+PASS round=17 mode=12 SIGQUIT preserves native fatal cause
+PASS round=17 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1255 tids=1255,1257,1258
+PASS round=18 mode=0 leader abort
+RESTORED mode=1 pid=1260 tids=1260,1262,1263
+PASS round=18 mode=1 new thread abort
+RESTORED mode=2 pid=1265 tids=1265,1267,1268
+PASS round=18 mode=2 original worker abort
+RESTORED mode=3 pid=1270 tids=1270,1272,1273
+PASS round=18 mode=3 retained leader restore
+RESTORED mode=4 pid=1275 tids=1275,1277,1278
+PASS round=18 mode=4 all originals held
+RESTORED mode=5 pid=1280 tids=1280,1282,1283
+PASS round=18 mode=5 detached restore
+PASS round=18 mode=6 drop held worker
+PASS round=18 mode=7 admission errors
+PASS round=18 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1294 tids=1294,1296,1297
+PASS round=18 mode=9 STOP/CONT with held worker
+PASS round=18 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1304 tids=1304,1306,1307
+PASS round=18 mode=11 shared ABRT/HELD race
+PASS round=18 mode=12 SIGQUIT preserves native fatal cause
+PASS round=18 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1316 tids=1316,1318,1319
+PASS round=19 mode=0 leader abort
+RESTORED mode=1 pid=1321 tids=1321,1323,1324
+PASS round=19 mode=1 new thread abort
+RESTORED mode=2 pid=1326 tids=1326,1328,1329
+PASS round=19 mode=2 original worker abort
+RESTORED mode=3 pid=1331 tids=1331,1333,1334
+PASS round=19 mode=3 retained leader restore
+RESTORED mode=4 pid=1336 tids=1336,1338,1339
+PASS round=19 mode=4 all originals held
+RESTORED mode=5 pid=1341 tids=1341,1343,1344
+PASS round=19 mode=5 detached restore
+PASS round=19 mode=6 drop held worker
+PASS round=19 mode=7 admission errors
+PASS round=19 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1355 tids=1355,1357,1358
+PASS round=19 mode=9 STOP/CONT with held worker
+PASS round=19 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1365 tids=1365,1367,1368
+PASS round=19 mode=11 shared ABRT/HELD race
+PASS round=19 mode=12 SIGQUIT preserves native fatal cause
+PASS round=19 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1377 tids=1377,1379,1380
+PASS round=20 mode=0 leader abort
+RESTORED mode=1 pid=1382 tids=1382,1384,1385
+PASS round=20 mode=1 new thread abort
+RESTORED mode=2 pid=1387 tids=1387,1389,1390
+PASS round=20 mode=2 original worker abort
+RESTORED mode=3 pid=1392 tids=1392,1394,1395
+PASS round=20 mode=3 retained leader restore
+RESTORED mode=4 pid=1397 tids=1397,1399,1400
+PASS round=20 mode=4 all originals held
+RESTORED mode=5 pid=1402 tids=1402,1404,1405
+PASS round=20 mode=5 detached restore
+PASS round=20 mode=6 drop held worker
+PASS round=20 mode=7 admission errors
+PASS round=20 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1416 tids=1416,1418,1419
+PASS round=20 mode=9 STOP/CONT with held worker
+PASS round=20 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1426 tids=1426,1428,1429
+PASS round=20 mode=11 shared ABRT/HELD race
+PASS round=20 mode=12 SIGQUIT preserves native fatal cause
+PASS round=20 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1438 tids=1438,1440,1441
+PASS round=21 mode=0 leader abort
+RESTORED mode=1 pid=1443 tids=1443,1445,1446
+PASS round=21 mode=1 new thread abort
+RESTORED mode=2 pid=1448 tids=1448,1450,1451
+PASS round=21 mode=2 original worker abort
+RESTORED mode=3 pid=1453 tids=1453,1455,1456
+PASS round=21 mode=3 retained leader restore
+RESTORED mode=4 pid=1458 tids=1458,1460,1461
+PASS round=21 mode=4 all originals held
+RESTORED mode=5 pid=1463 tids=1463,1465,1466
+PASS round=21 mode=5 detached restore
+PASS round=21 mode=6 drop held worker
+PASS round=21 mode=7 admission errors
+PASS round=21 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1477 tids=1477,1479,1480
+PASS round=21 mode=9 STOP/CONT with held worker
+PASS round=21 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1487 tids=1487,1489,1490
+PASS round=21 mode=11 shared ABRT/HELD race
+PASS round=21 mode=12 SIGQUIT preserves native fatal cause
+PASS round=21 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1499 tids=1499,1501,1502
+PASS round=22 mode=0 leader abort
+RESTORED mode=1 pid=1504 tids=1504,1506,1507
+PASS round=22 mode=1 new thread abort
+RESTORED mode=2 pid=1509 tids=1509,1511,1512
+PASS round=22 mode=2 original worker abort
+RESTORED mode=3 pid=1514 tids=1514,1516,1517
+PASS round=22 mode=3 retained leader restore
+RESTORED mode=4 pid=1519 tids=1519,1521,1522
+PASS round=22 mode=4 all originals held
+RESTORED mode=5 pid=1524 tids=1524,1526,1527
+PASS round=22 mode=5 detached restore
+PASS round=22 mode=6 drop held worker
+PASS round=22 mode=7 admission errors
+PASS round=22 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1538 tids=1538,1540,1541
+PASS round=22 mode=9 STOP/CONT with held worker
+PASS round=22 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1548 tids=1548,1550,1551
+PASS round=22 mode=11 shared ABRT/HELD race
+PASS round=22 mode=12 SIGQUIT preserves native fatal cause
+PASS round=22 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1560 tids=1560,1562,1563
+PASS round=23 mode=0 leader abort
+RESTORED mode=1 pid=1565 tids=1565,1567,1568
+PASS round=23 mode=1 new thread abort
+RESTORED mode=2 pid=1570 tids=1570,1572,1573
+PASS round=23 mode=2 original worker abort
+RESTORED mode=3 pid=1575 tids=1575,1577,1578
+PASS round=23 mode=3 retained leader restore
+RESTORED mode=4 pid=1580 tids=1580,1582,1583
+PASS round=23 mode=4 all originals held
+RESTORED mode=5 pid=1585 tids=1585,1587,1588
+PASS round=23 mode=5 detached restore
+PASS round=23 mode=6 drop held worker
+PASS round=23 mode=7 admission errors
+PASS round=23 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1599 tids=1599,1601,1602
+PASS round=23 mode=9 STOP/CONT with held worker
+PASS round=23 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1609 tids=1609,1611,1612
+PASS round=23 mode=11 shared ABRT/HELD race
+PASS round=23 mode=12 SIGQUIT preserves native fatal cause
+PASS round=23 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1621 tids=1621,1623,1624
+PASS round=24 mode=0 leader abort
+RESTORED mode=1 pid=1626 tids=1626,1628,1629
+PASS round=24 mode=1 new thread abort
+RESTORED mode=2 pid=1631 tids=1631,1633,1634
+PASS round=24 mode=2 original worker abort
+RESTORED mode=3 pid=1636 tids=1636,1638,1639
+PASS round=24 mode=3 retained leader restore
+RESTORED mode=4 pid=1641 tids=1641,1643,1644
+PASS round=24 mode=4 all originals held
+RESTORED mode=5 pid=1646 tids=1646,1648,1649
+PASS round=24 mode=5 detached restore
+PASS round=24 mode=6 drop held worker
+PASS round=24 mode=7 admission errors
+PASS round=24 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1660 tids=1660,1662,1663
+PASS round=24 mode=9 STOP/CONT with held worker
+PASS round=24 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1670 tids=1670,1672,1673
+PASS round=24 mode=11 shared ABRT/HELD race
+PASS round=24 mode=12 SIGQUIT preserves native fatal cause
+PASS round=24 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1682 tids=1682,1684,1685
+PASS round=25 mode=0 leader abort
+RESTORED mode=1 pid=1687 tids=1687,1689,1690
+PASS round=25 mode=1 new thread abort
+RESTORED mode=2 pid=1692 tids=1692,1694,1695
+PASS round=25 mode=2 original worker abort
+RESTORED mode=3 pid=1697 tids=1697,1699,1700
+PASS round=25 mode=3 retained leader restore
+RESTORED mode=4 pid=1702 tids=1702,1704,1705
+PASS round=25 mode=4 all originals held
+RESTORED mode=5 pid=1707 tids=1707,1709,1710
+PASS round=25 mode=5 detached restore
+PASS round=25 mode=6 drop held worker
+PASS round=25 mode=7 admission errors
+PASS round=25 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1721 tids=1721,1723,1724
+PASS round=25 mode=9 STOP/CONT with held worker
+PASS round=25 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1731 tids=1731,1733,1734
+PASS round=25 mode=11 shared ABRT/HELD race
+PASS round=25 mode=12 SIGQUIT preserves native fatal cause
+PASS round=25 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1743 tids=1743,1745,1746
+PASS round=26 mode=0 leader abort
+RESTORED mode=1 pid=1748 tids=1748,1750,1751
+PASS round=26 mode=1 new thread abort
+RESTORED mode=2 pid=1753 tids=1753,1755,1756
+PASS round=26 mode=2 original worker abort
+RESTORED mode=3 pid=1758 tids=1758,1760,1761
+PASS round=26 mode=3 retained leader restore
+RESTORED mode=4 pid=1763 tids=1763,1765,1766
+PASS round=26 mode=4 all originals held
+RESTORED mode=5 pid=1768 tids=1768,1770,1771
+PASS round=26 mode=5 detached restore
+PASS round=26 mode=6 drop held worker
+PASS round=26 mode=7 admission errors
+PASS round=26 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1782 tids=1782,1784,1785
+PASS round=26 mode=9 STOP/CONT with held worker
+PASS round=26 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1792 tids=1792,1794,1795
+PASS round=26 mode=11 shared ABRT/HELD race
+PASS round=26 mode=12 SIGQUIT preserves native fatal cause
+PASS round=26 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1804 tids=1804,1806,1807
+PASS round=27 mode=0 leader abort
+RESTORED mode=1 pid=1809 tids=1809,1811,1812
+PASS round=27 mode=1 new thread abort
+RESTORED mode=2 pid=1814 tids=1814,1816,1817
+PASS round=27 mode=2 original worker abort
+RESTORED mode=3 pid=1819 tids=1819,1821,1822
+PASS round=27 mode=3 retained leader restore
+RESTORED mode=4 pid=1824 tids=1824,1826,1827
+PASS round=27 mode=4 all originals held
+RESTORED mode=5 pid=1829 tids=1829,1831,1832
+PASS round=27 mode=5 detached restore
+PASS round=27 mode=6 drop held worker
+PASS round=27 mode=7 admission errors
+PASS round=27 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1843 tids=1843,1845,1846
+PASS round=27 mode=9 STOP/CONT with held worker
+PASS round=27 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1853 tids=1853,1855,1856
+PASS round=27 mode=11 shared ABRT/HELD race
+PASS round=27 mode=12 SIGQUIT preserves native fatal cause
+PASS round=27 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1865 tids=1865,1867,1868
+PASS round=28 mode=0 leader abort
+RESTORED mode=1 pid=1870 tids=1870,1872,1873
+PASS round=28 mode=1 new thread abort
+RESTORED mode=2 pid=1875 tids=1875,1877,1878
+PASS round=28 mode=2 original worker abort
+RESTORED mode=3 pid=1880 tids=1880,1882,1883
+PASS round=28 mode=3 retained leader restore
+RESTORED mode=4 pid=1885 tids=1885,1887,1888
+PASS round=28 mode=4 all originals held
+RESTORED mode=5 pid=1890 tids=1890,1892,1893
+PASS round=28 mode=5 detached restore
+PASS round=28 mode=6 drop held worker
+PASS round=28 mode=7 admission errors
+PASS round=28 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1904 tids=1904,1906,1907
+PASS round=28 mode=9 STOP/CONT with held worker
+PASS round=28 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1914 tids=1914,1916,1917
+PASS round=28 mode=11 shared ABRT/HELD race
+PASS round=28 mode=12 SIGQUIT preserves native fatal cause
+PASS round=28 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1926 tids=1926,1928,1929
+PASS round=29 mode=0 leader abort
+RESTORED mode=1 pid=1931 tids=1931,1933,1934
+PASS round=29 mode=1 new thread abort
+RESTORED mode=2 pid=1936 tids=1936,1938,1939
+PASS round=29 mode=2 original worker abort
+RESTORED mode=3 pid=1941 tids=1941,1943,1944
+PASS round=29 mode=3 retained leader restore
+RESTORED mode=4 pid=1946 tids=1946,1948,1949
+PASS round=29 mode=4 all originals held
+RESTORED mode=5 pid=1951 tids=1951,1953,1954
+PASS round=29 mode=5 detached restore
+PASS round=29 mode=6 drop held worker
+PASS round=29 mode=7 admission errors
+PASS round=29 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=1965 tids=1965,1967,1968
+PASS round=29 mode=9 STOP/CONT with held worker
+PASS round=29 mode=10 DROP with retained leader
+RESTORED mode=11 pid=1975 tids=1975,1977,1978
+PASS round=29 mode=11 shared ABRT/HELD race
+PASS round=29 mode=12 SIGQUIT preserves native fatal cause
+PASS round=29 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=1987 tids=1987,1989,1990
+PASS round=30 mode=0 leader abort
+RESTORED mode=1 pid=1992 tids=1992,1994,1995
+PASS round=30 mode=1 new thread abort
+RESTORED mode=2 pid=1997 tids=1997,1999,2000
+PASS round=30 mode=2 original worker abort
+RESTORED mode=3 pid=2002 tids=2002,2004,2005
+PASS round=30 mode=3 retained leader restore
+RESTORED mode=4 pid=2007 tids=2007,2009,2010
+PASS round=30 mode=4 all originals held
+RESTORED mode=5 pid=2012 tids=2012,2014,2015
+PASS round=30 mode=5 detached restore
+PASS round=30 mode=6 drop held worker
+PASS round=30 mode=7 admission errors
+PASS round=30 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2026 tids=2026,2028,2029
+PASS round=30 mode=9 STOP/CONT with held worker
+PASS round=30 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2036 tids=2036,2038,2039
+PASS round=30 mode=11 shared ABRT/HELD race
+PASS round=30 mode=12 SIGQUIT preserves native fatal cause
+PASS round=30 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2048 tids=2048,2050,2051
+PASS round=31 mode=0 leader abort
+RESTORED mode=1 pid=2053 tids=2053,2055,2056
+PASS round=31 mode=1 new thread abort
+RESTORED mode=2 pid=2058 tids=2058,2060,2061
+PASS round=31 mode=2 original worker abort
+RESTORED mode=3 pid=2063 tids=2063,2065,2066
+PASS round=31 mode=3 retained leader restore
+RESTORED mode=4 pid=2068 tids=2068,2070,2071
+PASS round=31 mode=4 all originals held
+RESTORED mode=5 pid=2073 tids=2073,2075,2076
+PASS round=31 mode=5 detached restore
+PASS round=31 mode=6 drop held worker
+PASS round=31 mode=7 admission errors
+PASS round=31 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2087 tids=2087,2089,2090
+PASS round=31 mode=9 STOP/CONT with held worker
+PASS round=31 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2097 tids=2097,2099,2100
+PASS round=31 mode=11 shared ABRT/HELD race
+PASS round=31 mode=12 SIGQUIT preserves native fatal cause
+PASS round=31 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2109 tids=2109,2111,2112
+PASS round=32 mode=0 leader abort
+RESTORED mode=1 pid=2114 tids=2114,2116,2117
+PASS round=32 mode=1 new thread abort
+RESTORED mode=2 pid=2119 tids=2119,2121,2122
+PASS round=32 mode=2 original worker abort
+RESTORED mode=3 pid=2124 tids=2124,2126,2127
+PASS round=32 mode=3 retained leader restore
+RESTORED mode=4 pid=2129 tids=2129,2131,2132
+PASS round=32 mode=4 all originals held
+RESTORED mode=5 pid=2134 tids=2134,2136,2137
+PASS round=32 mode=5 detached restore
+PASS round=32 mode=6 drop held worker
+PASS round=32 mode=7 admission errors
+PASS round=32 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2148 tids=2148,2150,2151
+PASS round=32 mode=9 STOP/CONT with held worker
+PASS round=32 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2158 tids=2158,2160,2161
+PASS round=32 mode=11 shared ABRT/HELD race
+PASS round=32 mode=12 SIGQUIT preserves native fatal cause
+PASS round=32 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2170 tids=2170,2172,2173
+PASS round=33 mode=0 leader abort
+RESTORED mode=1 pid=2175 tids=2175,2177,2178
+PASS round=33 mode=1 new thread abort
+RESTORED mode=2 pid=2180 tids=2180,2182,2183
+PASS round=33 mode=2 original worker abort
+RESTORED mode=3 pid=2185 tids=2185,2187,2188
+PASS round=33 mode=3 retained leader restore
+RESTORED mode=4 pid=2190 tids=2190,2192,2193
+PASS round=33 mode=4 all originals held
+RESTORED mode=5 pid=2195 tids=2195,2197,2198
+PASS round=33 mode=5 detached restore
+PASS round=33 mode=6 drop held worker
+PASS round=33 mode=7 admission errors
+PASS round=33 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2209 tids=2209,2211,2212
+PASS round=33 mode=9 STOP/CONT with held worker
+PASS round=33 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2219 tids=2219,2221,2222
+PASS round=33 mode=11 shared ABRT/HELD race
+PASS round=33 mode=12 SIGQUIT preserves native fatal cause
+PASS round=33 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2231 tids=2231,2233,2234
+PASS round=34 mode=0 leader abort
+RESTORED mode=1 pid=2236 tids=2236,2238,2239
+PASS round=34 mode=1 new thread abort
+RESTORED mode=2 pid=2241 tids=2241,2243,2244
+PASS round=34 mode=2 original worker abort
+RESTORED mode=3 pid=2246 tids=2246,2248,2249
+PASS round=34 mode=3 retained leader restore
+RESTORED mode=4 pid=2251 tids=2251,2253,2254
+PASS round=34 mode=4 all originals held
+RESTORED mode=5 pid=2256 tids=2256,2258,2259
+PASS round=34 mode=5 detached restore
+PASS round=34 mode=6 drop held worker
+PASS round=34 mode=7 admission errors
+PASS round=34 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2270 tids=2270,2272,2273
+PASS round=34 mode=9 STOP/CONT with held worker
+PASS round=34 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2280 tids=2280,2282,2283
+PASS round=34 mode=11 shared ABRT/HELD race
+PASS round=34 mode=12 SIGQUIT preserves native fatal cause
+PASS round=34 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2292 tids=2292,2294,2295
+PASS round=35 mode=0 leader abort
+RESTORED mode=1 pid=2297 tids=2297,2299,2300
+PASS round=35 mode=1 new thread abort
+RESTORED mode=2 pid=2302 tids=2302,2304,2305
+PASS round=35 mode=2 original worker abort
+RESTORED mode=3 pid=2307 tids=2307,2309,2310
+PASS round=35 mode=3 retained leader restore
+RESTORED mode=4 pid=2312 tids=2312,2314,2315
+PASS round=35 mode=4 all originals held
+RESTORED mode=5 pid=2317 tids=2317,2319,2320
+PASS round=35 mode=5 detached restore
+PASS round=35 mode=6 drop held worker
+PASS round=35 mode=7 admission errors
+PASS round=35 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2331 tids=2331,2333,2334
+PASS round=35 mode=9 STOP/CONT with held worker
+PASS round=35 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2341 tids=2341,2343,2344
+PASS round=35 mode=11 shared ABRT/HELD race
+PASS round=35 mode=12 SIGQUIT preserves native fatal cause
+PASS round=35 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2353 tids=2353,2355,2356
+PASS round=36 mode=0 leader abort
+RESTORED mode=1 pid=2358 tids=2358,2360,2361
+PASS round=36 mode=1 new thread abort
+RESTORED mode=2 pid=2363 tids=2363,2365,2366
+PASS round=36 mode=2 original worker abort
+RESTORED mode=3 pid=2368 tids=2368,2370,2371
+PASS round=36 mode=3 retained leader restore
+RESTORED mode=4 pid=2373 tids=2373,2375,2376
+PASS round=36 mode=4 all originals held
+RESTORED mode=5 pid=2378 tids=2378,2380,2381
+PASS round=36 mode=5 detached restore
+PASS round=36 mode=6 drop held worker
+PASS round=36 mode=7 admission errors
+PASS round=36 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2392 tids=2392,2394,2395
+PASS round=36 mode=9 STOP/CONT with held worker
+PASS round=36 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2402 tids=2402,2404,2405
+PASS round=36 mode=11 shared ABRT/HELD race
+PASS round=36 mode=12 SIGQUIT preserves native fatal cause
+PASS round=36 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2414 tids=2414,2416,2417
+PASS round=37 mode=0 leader abort
+RESTORED mode=1 pid=2419 tids=2419,2421,2422
+PASS round=37 mode=1 new thread abort
+RESTORED mode=2 pid=2424 tids=2424,2426,2427
+PASS round=37 mode=2 original worker abort
+RESTORED mode=3 pid=2429 tids=2429,2431,2432
+PASS round=37 mode=3 retained leader restore
+RESTORED mode=4 pid=2434 tids=2434,2436,2437
+PASS round=37 mode=4 all originals held
+RESTORED mode=5 pid=2439 tids=2439,2441,2442
+PASS round=37 mode=5 detached restore
+PASS round=37 mode=6 drop held worker
+PASS round=37 mode=7 admission errors
+PASS round=37 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2453 tids=2453,2455,2456
+PASS round=37 mode=9 STOP/CONT with held worker
+PASS round=37 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2463 tids=2463,2465,2466
+PASS round=37 mode=11 shared ABRT/HELD race
+PASS round=37 mode=12 SIGQUIT preserves native fatal cause
+PASS round=37 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2475 tids=2475,2477,2478
+PASS round=38 mode=0 leader abort
+RESTORED mode=1 pid=2480 tids=2480,2482,2483
+PASS round=38 mode=1 new thread abort
+RESTORED mode=2 pid=2485 tids=2485,2487,2488
+PASS round=38 mode=2 original worker abort
+RESTORED mode=3 pid=2490 tids=2490,2492,2493
+PASS round=38 mode=3 retained leader restore
+RESTORED mode=4 pid=2495 tids=2495,2497,2498
+PASS round=38 mode=4 all originals held
+RESTORED mode=5 pid=2500 tids=2500,2502,2503
+PASS round=38 mode=5 detached restore
+PASS round=38 mode=6 drop held worker
+PASS round=38 mode=7 admission errors
+PASS round=38 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2514 tids=2514,2516,2517
+PASS round=38 mode=9 STOP/CONT with held worker
+PASS round=38 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2524 tids=2524,2526,2527
+PASS round=38 mode=11 shared ABRT/HELD race
+PASS round=38 mode=12 SIGQUIT preserves native fatal cause
+PASS round=38 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2536 tids=2536,2538,2539
+PASS round=39 mode=0 leader abort
+RESTORED mode=1 pid=2541 tids=2541,2543,2544
+PASS round=39 mode=1 new thread abort
+RESTORED mode=2 pid=2546 tids=2546,2548,2549
+PASS round=39 mode=2 original worker abort
+RESTORED mode=3 pid=2551 tids=2551,2553,2554
+PASS round=39 mode=3 retained leader restore
+RESTORED mode=4 pid=2556 tids=2556,2558,2559
+PASS round=39 mode=4 all originals held
+RESTORED mode=5 pid=2561 tids=2561,2563,2564
+PASS round=39 mode=5 detached restore
+PASS round=39 mode=6 drop held worker
+PASS round=39 mode=7 admission errors
+PASS round=39 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2575 tids=2575,2577,2578
+PASS round=39 mode=9 STOP/CONT with held worker
+PASS round=39 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2585 tids=2585,2587,2588
+PASS round=39 mode=11 shared ABRT/HELD race
+PASS round=39 mode=12 SIGQUIT preserves native fatal cause
+PASS round=39 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2597 tids=2597,2599,2600
+PASS round=40 mode=0 leader abort
+RESTORED mode=1 pid=2602 tids=2602,2604,2605
+PASS round=40 mode=1 new thread abort
+RESTORED mode=2 pid=2607 tids=2607,2609,2610
+PASS round=40 mode=2 original worker abort
+RESTORED mode=3 pid=2612 tids=2612,2614,2615
+PASS round=40 mode=3 retained leader restore
+RESTORED mode=4 pid=2617 tids=2617,2619,2620
+PASS round=40 mode=4 all originals held
+RESTORED mode=5 pid=2622 tids=2622,2624,2625
+PASS round=40 mode=5 detached restore
+PASS round=40 mode=6 drop held worker
+PASS round=40 mode=7 admission errors
+PASS round=40 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2636 tids=2636,2638,2639
+PASS round=40 mode=9 STOP/CONT with held worker
+PASS round=40 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2646 tids=2646,2648,2649
+PASS round=40 mode=11 shared ABRT/HELD race
+PASS round=40 mode=12 SIGQUIT preserves native fatal cause
+PASS round=40 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2658 tids=2658,2660,2661
+PASS round=41 mode=0 leader abort
+RESTORED mode=1 pid=2663 tids=2663,2665,2666
+PASS round=41 mode=1 new thread abort
+RESTORED mode=2 pid=2668 tids=2668,2670,2671
+PASS round=41 mode=2 original worker abort
+RESTORED mode=3 pid=2673 tids=2673,2675,2676
+PASS round=41 mode=3 retained leader restore
+RESTORED mode=4 pid=2678 tids=2678,2680,2681
+PASS round=41 mode=4 all originals held
+RESTORED mode=5 pid=2683 tids=2683,2685,2686
+PASS round=41 mode=5 detached restore
+PASS round=41 mode=6 drop held worker
+PASS round=41 mode=7 admission errors
+PASS round=41 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2697 tids=2697,2699,2700
+PASS round=41 mode=9 STOP/CONT with held worker
+PASS round=41 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2707 tids=2707,2709,2710
+PASS round=41 mode=11 shared ABRT/HELD race
+PASS round=41 mode=12 SIGQUIT preserves native fatal cause
+PASS round=41 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2719 tids=2719,2721,2722
+PASS round=42 mode=0 leader abort
+RESTORED mode=1 pid=2724 tids=2724,2726,2727
+PASS round=42 mode=1 new thread abort
+RESTORED mode=2 pid=2729 tids=2729,2731,2732
+PASS round=42 mode=2 original worker abort
+RESTORED mode=3 pid=2734 tids=2734,2736,2737
+PASS round=42 mode=3 retained leader restore
+RESTORED mode=4 pid=2739 tids=2739,2741,2742
+PASS round=42 mode=4 all originals held
+RESTORED mode=5 pid=2744 tids=2744,2746,2747
+PASS round=42 mode=5 detached restore
+PASS round=42 mode=6 drop held worker
+PASS round=42 mode=7 admission errors
+PASS round=42 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2758 tids=2758,2760,2761
+PASS round=42 mode=9 STOP/CONT with held worker
+PASS round=42 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2768 tids=2768,2770,2771
+PASS round=42 mode=11 shared ABRT/HELD race
+PASS round=42 mode=12 SIGQUIT preserves native fatal cause
+PASS round=42 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2780 tids=2780,2782,2783
+PASS round=43 mode=0 leader abort
+RESTORED mode=1 pid=2785 tids=2785,2787,2788
+PASS round=43 mode=1 new thread abort
+RESTORED mode=2 pid=2790 tids=2790,2792,2793
+PASS round=43 mode=2 original worker abort
+RESTORED mode=3 pid=2795 tids=2795,2797,2798
+PASS round=43 mode=3 retained leader restore
+RESTORED mode=4 pid=2800 tids=2800,2802,2803
+PASS round=43 mode=4 all originals held
+RESTORED mode=5 pid=2805 tids=2805,2807,2808
+PASS round=43 mode=5 detached restore
+PASS round=43 mode=6 drop held worker
+PASS round=43 mode=7 admission errors
+PASS round=43 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2819 tids=2819,2821,2822
+PASS round=43 mode=9 STOP/CONT with held worker
+PASS round=43 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2829 tids=2829,2831,2832
+PASS round=43 mode=11 shared ABRT/HELD race
+PASS round=43 mode=12 SIGQUIT preserves native fatal cause
+PASS round=43 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2841 tids=2841,2843,2844
+PASS round=44 mode=0 leader abort
+RESTORED mode=1 pid=2846 tids=2846,2848,2849
+PASS round=44 mode=1 new thread abort
+RESTORED mode=2 pid=2851 tids=2851,2853,2854
+PASS round=44 mode=2 original worker abort
+RESTORED mode=3 pid=2856 tids=2856,2858,2859
+PASS round=44 mode=3 retained leader restore
+RESTORED mode=4 pid=2861 tids=2861,2863,2864
+PASS round=44 mode=4 all originals held
+RESTORED mode=5 pid=2866 tids=2866,2868,2869
+PASS round=44 mode=5 detached restore
+PASS round=44 mode=6 drop held worker
+PASS round=44 mode=7 admission errors
+PASS round=44 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2880 tids=2880,2882,2883
+PASS round=44 mode=9 STOP/CONT with held worker
+PASS round=44 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2890 tids=2890,2892,2893
+PASS round=44 mode=11 shared ABRT/HELD race
+PASS round=44 mode=12 SIGQUIT preserves native fatal cause
+PASS round=44 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2902 tids=2902,2904,2905
+PASS round=45 mode=0 leader abort
+RESTORED mode=1 pid=2907 tids=2907,2909,2910
+PASS round=45 mode=1 new thread abort
+RESTORED mode=2 pid=2912 tids=2912,2914,2915
+PASS round=45 mode=2 original worker abort
+RESTORED mode=3 pid=2917 tids=2917,2919,2920
+PASS round=45 mode=3 retained leader restore
+RESTORED mode=4 pid=2922 tids=2922,2924,2925
+PASS round=45 mode=4 all originals held
+RESTORED mode=5 pid=2927 tids=2927,2929,2930
+PASS round=45 mode=5 detached restore
+PASS round=45 mode=6 drop held worker
+PASS round=45 mode=7 admission errors
+PASS round=45 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=2941 tids=2941,2943,2944
+PASS round=45 mode=9 STOP/CONT with held worker
+PASS round=45 mode=10 DROP with retained leader
+RESTORED mode=11 pid=2951 tids=2951,2953,2954
+PASS round=45 mode=11 shared ABRT/HELD race
+PASS round=45 mode=12 SIGQUIT preserves native fatal cause
+PASS round=45 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=2963 tids=2963,2965,2966
+PASS round=46 mode=0 leader abort
+RESTORED mode=1 pid=2968 tids=2968,2970,2971
+PASS round=46 mode=1 new thread abort
+RESTORED mode=2 pid=2973 tids=2973,2975,2976
+PASS round=46 mode=2 original worker abort
+RESTORED mode=3 pid=2978 tids=2978,2980,2981
+PASS round=46 mode=3 retained leader restore
+RESTORED mode=4 pid=2983 tids=2983,2985,2986
+PASS round=46 mode=4 all originals held
+RESTORED mode=5 pid=2988 tids=2988,2990,2991
+PASS round=46 mode=5 detached restore
+PASS round=46 mode=6 drop held worker
+PASS round=46 mode=7 admission errors
+PASS round=46 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3002 tids=3002,3004,3005
+PASS round=46 mode=9 STOP/CONT with held worker
+PASS round=46 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3012 tids=3012,3014,3015
+PASS round=46 mode=11 shared ABRT/HELD race
+PASS round=46 mode=12 SIGQUIT preserves native fatal cause
+PASS round=46 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3024 tids=3024,3026,3027
+PASS round=47 mode=0 leader abort
+RESTORED mode=1 pid=3029 tids=3029,3031,3032
+PASS round=47 mode=1 new thread abort
+RESTORED mode=2 pid=3034 tids=3034,3036,3037
+PASS round=47 mode=2 original worker abort
+RESTORED mode=3 pid=3039 tids=3039,3041,3042
+PASS round=47 mode=3 retained leader restore
+RESTORED mode=4 pid=3044 tids=3044,3046,3047
+PASS round=47 mode=4 all originals held
+RESTORED mode=5 pid=3049 tids=3049,3051,3052
+PASS round=47 mode=5 detached restore
+PASS round=47 mode=6 drop held worker
+PASS round=47 mode=7 admission errors
+PASS round=47 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3063 tids=3063,3065,3066
+PASS round=47 mode=9 STOP/CONT with held worker
+PASS round=47 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3073 tids=3073,3075,3076
+PASS round=47 mode=11 shared ABRT/HELD race
+PASS round=47 mode=12 SIGQUIT preserves native fatal cause
+PASS round=47 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3085 tids=3085,3087,3088
+PASS round=48 mode=0 leader abort
+RESTORED mode=1 pid=3090 tids=3090,3092,3093
+PASS round=48 mode=1 new thread abort
+RESTORED mode=2 pid=3095 tids=3095,3097,3098
+PASS round=48 mode=2 original worker abort
+RESTORED mode=3 pid=3100 tids=3100,3102,3103
+PASS round=48 mode=3 retained leader restore
+RESTORED mode=4 pid=3105 tids=3105,3107,3108
+PASS round=48 mode=4 all originals held
+RESTORED mode=5 pid=3110 tids=3110,3112,3113
+PASS round=48 mode=5 detached restore
+PASS round=48 mode=6 drop held worker
+PASS round=48 mode=7 admission errors
+PASS round=48 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3124 tids=3124,3126,3127
+PASS round=48 mode=9 STOP/CONT with held worker
+PASS round=48 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3134 tids=3134,3136,3137
+PASS round=48 mode=11 shared ABRT/HELD race
+PASS round=48 mode=12 SIGQUIT preserves native fatal cause
+PASS round=48 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3146 tids=3146,3148,3149
+PASS round=49 mode=0 leader abort
+RESTORED mode=1 pid=3151 tids=3151,3153,3154
+PASS round=49 mode=1 new thread abort
+RESTORED mode=2 pid=3156 tids=3156,3158,3159
+PASS round=49 mode=2 original worker abort
+RESTORED mode=3 pid=3161 tids=3161,3163,3164
+PASS round=49 mode=3 retained leader restore
+RESTORED mode=4 pid=3166 tids=3166,3168,3169
+PASS round=49 mode=4 all originals held
+RESTORED mode=5 pid=3171 tids=3171,3173,3174
+PASS round=49 mode=5 detached restore
+PASS round=49 mode=6 drop held worker
+PASS round=49 mode=7 admission errors
+PASS round=49 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3185 tids=3185,3187,3188
+PASS round=49 mode=9 STOP/CONT with held worker
+PASS round=49 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3195 tids=3195,3197,3198
+PASS round=49 mode=11 shared ABRT/HELD race
+PASS round=49 mode=12 SIGQUIT preserves native fatal cause
+PASS round=49 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3207 tids=3207,3209,3210
+PASS round=50 mode=0 leader abort
+RESTORED mode=1 pid=3212 tids=3212,3214,3215
+PASS round=50 mode=1 new thread abort
+RESTORED mode=2 pid=3217 tids=3217,3219,3220
+PASS round=50 mode=2 original worker abort
+RESTORED mode=3 pid=3222 tids=3222,3224,3225
+PASS round=50 mode=3 retained leader restore
+RESTORED mode=4 pid=3227 tids=3227,3229,3230
+PASS round=50 mode=4 all originals held
+RESTORED mode=5 pid=3232 tids=3232,3234,3235
+PASS round=50 mode=5 detached restore
+PASS round=50 mode=6 drop held worker
+PASS round=50 mode=7 admission errors
+PASS round=50 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3246 tids=3246,3248,3249
+PASS round=50 mode=9 STOP/CONT with held worker
+PASS round=50 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3256 tids=3256,3258,3259
+PASS round=50 mode=11 shared ABRT/HELD race
+PASS round=50 mode=12 SIGQUIT preserves native fatal cause
+PASS round=50 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3268 tids=3268,3270,3271
+PASS round=51 mode=0 leader abort
+RESTORED mode=1 pid=3273 tids=3273,3275,3276
+PASS round=51 mode=1 new thread abort
+RESTORED mode=2 pid=3278 tids=3278,3280,3281
+PASS round=51 mode=2 original worker abort
+RESTORED mode=3 pid=3283 tids=3283,3285,3286
+PASS round=51 mode=3 retained leader restore
+RESTORED mode=4 pid=3288 tids=3288,3290,3291
+PASS round=51 mode=4 all originals held
+RESTORED mode=5 pid=3293 tids=3293,3295,3296
+PASS round=51 mode=5 detached restore
+PASS round=51 mode=6 drop held worker
+PASS round=51 mode=7 admission errors
+PASS round=51 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3307 tids=3307,3309,3310
+PASS round=51 mode=9 STOP/CONT with held worker
+PASS round=51 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3317 tids=3317,3319,3320
+PASS round=51 mode=11 shared ABRT/HELD race
+PASS round=51 mode=12 SIGQUIT preserves native fatal cause
+PASS round=51 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3329 tids=3329,3331,3332
+PASS round=52 mode=0 leader abort
+RESTORED mode=1 pid=3334 tids=3334,3336,3337
+PASS round=52 mode=1 new thread abort
+RESTORED mode=2 pid=3339 tids=3339,3341,3342
+PASS round=52 mode=2 original worker abort
+RESTORED mode=3 pid=3344 tids=3344,3346,3347
+PASS round=52 mode=3 retained leader restore
+RESTORED mode=4 pid=3349 tids=3349,3351,3352
+PASS round=52 mode=4 all originals held
+RESTORED mode=5 pid=3354 tids=3354,3356,3357
+PASS round=52 mode=5 detached restore
+PASS round=52 mode=6 drop held worker
+PASS round=52 mode=7 admission errors
+PASS round=52 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3368 tids=3368,3370,3371
+PASS round=52 mode=9 STOP/CONT with held worker
+PASS round=52 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3378 tids=3378,3380,3381
+PASS round=52 mode=11 shared ABRT/HELD race
+PASS round=52 mode=12 SIGQUIT preserves native fatal cause
+PASS round=52 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3390 tids=3390,3392,3393
+PASS round=53 mode=0 leader abort
+RESTORED mode=1 pid=3395 tids=3395,3397,3398
+PASS round=53 mode=1 new thread abort
+RESTORED mode=2 pid=3400 tids=3400,3402,3403
+PASS round=53 mode=2 original worker abort
+RESTORED mode=3 pid=3405 tids=3405,3407,3408
+PASS round=53 mode=3 retained leader restore
+RESTORED mode=4 pid=3410 tids=3410,3412,3413
+PASS round=53 mode=4 all originals held
+RESTORED mode=5 pid=3415 tids=3415,3417,3418
+PASS round=53 mode=5 detached restore
+PASS round=53 mode=6 drop held worker
+PASS round=53 mode=7 admission errors
+PASS round=53 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3429 tids=3429,3431,3432
+PASS round=53 mode=9 STOP/CONT with held worker
+PASS round=53 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3439 tids=3439,3441,3442
+PASS round=53 mode=11 shared ABRT/HELD race
+PASS round=53 mode=12 SIGQUIT preserves native fatal cause
+PASS round=53 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3451 tids=3451,3453,3454
+PASS round=54 mode=0 leader abort
+RESTORED mode=1 pid=3456 tids=3456,3458,3459
+PASS round=54 mode=1 new thread abort
+RESTORED mode=2 pid=3461 tids=3461,3463,3464
+PASS round=54 mode=2 original worker abort
+RESTORED mode=3 pid=3466 tids=3466,3468,3469
+PASS round=54 mode=3 retained leader restore
+RESTORED mode=4 pid=3471 tids=3471,3473,3474
+PASS round=54 mode=4 all originals held
+RESTORED mode=5 pid=3476 tids=3476,3478,3479
+PASS round=54 mode=5 detached restore
+PASS round=54 mode=6 drop held worker
+PASS round=54 mode=7 admission errors
+PASS round=54 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3490 tids=3490,3492,3493
+PASS round=54 mode=9 STOP/CONT with held worker
+PASS round=54 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3500 tids=3500,3502,3503
+PASS round=54 mode=11 shared ABRT/HELD race
+PASS round=54 mode=12 SIGQUIT preserves native fatal cause
+PASS round=54 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3512 tids=3512,3514,3515
+PASS round=55 mode=0 leader abort
+RESTORED mode=1 pid=3517 tids=3517,3519,3520
+PASS round=55 mode=1 new thread abort
+RESTORED mode=2 pid=3522 tids=3522,3524,3525
+PASS round=55 mode=2 original worker abort
+RESTORED mode=3 pid=3527 tids=3527,3529,3530
+PASS round=55 mode=3 retained leader restore
+RESTORED mode=4 pid=3532 tids=3532,3534,3535
+PASS round=55 mode=4 all originals held
+RESTORED mode=5 pid=3537 tids=3537,3539,3540
+PASS round=55 mode=5 detached restore
+PASS round=55 mode=6 drop held worker
+PASS round=55 mode=7 admission errors
+PASS round=55 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3551 tids=3551,3553,3554
+PASS round=55 mode=9 STOP/CONT with held worker
+PASS round=55 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3561 tids=3561,3563,3564
+PASS round=55 mode=11 shared ABRT/HELD race
+PASS round=55 mode=12 SIGQUIT preserves native fatal cause
+PASS round=55 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3573 tids=3573,3575,3576
+PASS round=56 mode=0 leader abort
+RESTORED mode=1 pid=3578 tids=3578,3580,3581
+PASS round=56 mode=1 new thread abort
+RESTORED mode=2 pid=3583 tids=3583,3585,3586
+PASS round=56 mode=2 original worker abort
+RESTORED mode=3 pid=3588 tids=3588,3590,3591
+PASS round=56 mode=3 retained leader restore
+RESTORED mode=4 pid=3593 tids=3593,3595,3596
+PASS round=56 mode=4 all originals held
+RESTORED mode=5 pid=3598 tids=3598,3600,3601
+PASS round=56 mode=5 detached restore
+PASS round=56 mode=6 drop held worker
+PASS round=56 mode=7 admission errors
+PASS round=56 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3612 tids=3612,3614,3615
+PASS round=56 mode=9 STOP/CONT with held worker
+PASS round=56 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3622 tids=3622,3624,3625
+PASS round=56 mode=11 shared ABRT/HELD race
+PASS round=56 mode=12 SIGQUIT preserves native fatal cause
+PASS round=56 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3634 tids=3634,3636,3637
+PASS round=57 mode=0 leader abort
+RESTORED mode=1 pid=3639 tids=3639,3641,3642
+PASS round=57 mode=1 new thread abort
+RESTORED mode=2 pid=3644 tids=3644,3646,3647
+PASS round=57 mode=2 original worker abort
+RESTORED mode=3 pid=3649 tids=3649,3651,3652
+PASS round=57 mode=3 retained leader restore
+RESTORED mode=4 pid=3654 tids=3654,3656,3657
+PASS round=57 mode=4 all originals held
+RESTORED mode=5 pid=3659 tids=3659,3661,3662
+PASS round=57 mode=5 detached restore
+PASS round=57 mode=6 drop held worker
+PASS round=57 mode=7 admission errors
+PASS round=57 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3673 tids=3673,3675,3676
+PASS round=57 mode=9 STOP/CONT with held worker
+PASS round=57 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3683 tids=3683,3685,3686
+PASS round=57 mode=11 shared ABRT/HELD race
+PASS round=57 mode=12 SIGQUIT preserves native fatal cause
+PASS round=57 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3695 tids=3695,3697,3698
+PASS round=58 mode=0 leader abort
+RESTORED mode=1 pid=3700 tids=3700,3702,3703
+PASS round=58 mode=1 new thread abort
+RESTORED mode=2 pid=3705 tids=3705,3707,3708
+PASS round=58 mode=2 original worker abort
+RESTORED mode=3 pid=3710 tids=3710,3712,3713
+PASS round=58 mode=3 retained leader restore
+RESTORED mode=4 pid=3715 tids=3715,3717,3718
+PASS round=58 mode=4 all originals held
+RESTORED mode=5 pid=3720 tids=3720,3722,3723
+PASS round=58 mode=5 detached restore
+PASS round=58 mode=6 drop held worker
+PASS round=58 mode=7 admission errors
+PASS round=58 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3734 tids=3734,3736,3737
+PASS round=58 mode=9 STOP/CONT with held worker
+PASS round=58 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3744 tids=3744,3746,3747
+PASS round=58 mode=11 shared ABRT/HELD race
+PASS round=58 mode=12 SIGQUIT preserves native fatal cause
+PASS round=58 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3756 tids=3756,3758,3759
+PASS round=59 mode=0 leader abort
+RESTORED mode=1 pid=3761 tids=3761,3763,3764
+PASS round=59 mode=1 new thread abort
+RESTORED mode=2 pid=3766 tids=3766,3768,3769
+PASS round=59 mode=2 original worker abort
+RESTORED mode=3 pid=3771 tids=3771,3773,3774
+PASS round=59 mode=3 retained leader restore
+RESTORED mode=4 pid=3776 tids=3776,3778,3779
+PASS round=59 mode=4 all originals held
+RESTORED mode=5 pid=3781 tids=3781,3783,3784
+PASS round=59 mode=5 detached restore
+PASS round=59 mode=6 drop held worker
+PASS round=59 mode=7 admission errors
+PASS round=59 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3795 tids=3795,3797,3798
+PASS round=59 mode=9 STOP/CONT with held worker
+PASS round=59 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3805 tids=3805,3807,3808
+PASS round=59 mode=11 shared ABRT/HELD race
+PASS round=59 mode=12 SIGQUIT preserves native fatal cause
+PASS round=59 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3817 tids=3817,3819,3820
+PASS round=60 mode=0 leader abort
+RESTORED mode=1 pid=3822 tids=3822,3824,3825
+PASS round=60 mode=1 new thread abort
+RESTORED mode=2 pid=3827 tids=3827,3829,3830
+PASS round=60 mode=2 original worker abort
+RESTORED mode=3 pid=3832 tids=3832,3834,3835
+PASS round=60 mode=3 retained leader restore
+RESTORED mode=4 pid=3837 tids=3837,3839,3840
+PASS round=60 mode=4 all originals held
+RESTORED mode=5 pid=3842 tids=3842,3844,3845
+PASS round=60 mode=5 detached restore
+PASS round=60 mode=6 drop held worker
+PASS round=60 mode=7 admission errors
+PASS round=60 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3856 tids=3856,3858,3859
+PASS round=60 mode=9 STOP/CONT with held worker
+PASS round=60 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3866 tids=3866,3868,3869
+PASS round=60 mode=11 shared ABRT/HELD race
+PASS round=60 mode=12 SIGQUIT preserves native fatal cause
+PASS round=60 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3878 tids=3878,3880,3881
+PASS round=61 mode=0 leader abort
+RESTORED mode=1 pid=3883 tids=3883,3885,3886
+PASS round=61 mode=1 new thread abort
+RESTORED mode=2 pid=3888 tids=3888,3890,3891
+PASS round=61 mode=2 original worker abort
+RESTORED mode=3 pid=3893 tids=3893,3895,3896
+PASS round=61 mode=3 retained leader restore
+RESTORED mode=4 pid=3898 tids=3898,3900,3901
+PASS round=61 mode=4 all originals held
+RESTORED mode=5 pid=3903 tids=3903,3905,3906
+PASS round=61 mode=5 detached restore
+PASS round=61 mode=6 drop held worker
+PASS round=61 mode=7 admission errors
+PASS round=61 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3917 tids=3917,3919,3920
+PASS round=61 mode=9 STOP/CONT with held worker
+PASS round=61 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3927 tids=3927,3929,3930
+PASS round=61 mode=11 shared ABRT/HELD race
+PASS round=61 mode=12 SIGQUIT preserves native fatal cause
+PASS round=61 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=3939 tids=3939,3941,3942
+PASS round=62 mode=0 leader abort
+RESTORED mode=1 pid=3944 tids=3944,3946,3947
+PASS round=62 mode=1 new thread abort
+RESTORED mode=2 pid=3949 tids=3949,3951,3952
+PASS round=62 mode=2 original worker abort
+RESTORED mode=3 pid=3954 tids=3954,3956,3957
+PASS round=62 mode=3 retained leader restore
+RESTORED mode=4 pid=3959 tids=3959,3961,3962
+PASS round=62 mode=4 all originals held
+RESTORED mode=5 pid=3964 tids=3964,3966,3967
+PASS round=62 mode=5 detached restore
+PASS round=62 mode=6 drop held worker
+PASS round=62 mode=7 admission errors
+PASS round=62 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=3978 tids=3978,3980,3981
+PASS round=62 mode=9 STOP/CONT with held worker
+PASS round=62 mode=10 DROP with retained leader
+RESTORED mode=11 pid=3988 tids=3988,3990,3991
+PASS round=62 mode=11 shared ABRT/HELD race
+PASS round=62 mode=12 SIGQUIT preserves native fatal cause
+PASS round=62 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4000 tids=4000,4002,4003
+PASS round=63 mode=0 leader abort
+RESTORED mode=1 pid=4005 tids=4005,4007,4008
+PASS round=63 mode=1 new thread abort
+RESTORED mode=2 pid=4010 tids=4010,4012,4013
+PASS round=63 mode=2 original worker abort
+RESTORED mode=3 pid=4015 tids=4015,4017,4018
+PASS round=63 mode=3 retained leader restore
+RESTORED mode=4 pid=4020 tids=4020,4022,4023
+PASS round=63 mode=4 all originals held
+RESTORED mode=5 pid=4025 tids=4025,4027,4028
+PASS round=63 mode=5 detached restore
+PASS round=63 mode=6 drop held worker
+PASS round=63 mode=7 admission errors
+PASS round=63 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4039 tids=4039,4041,4042
+PASS round=63 mode=9 STOP/CONT with held worker
+PASS round=63 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4049 tids=4049,4051,4052
+PASS round=63 mode=11 shared ABRT/HELD race
+PASS round=63 mode=12 SIGQUIT preserves native fatal cause
+PASS round=63 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4061 tids=4061,4063,4064
+PASS round=64 mode=0 leader abort
+RESTORED mode=1 pid=4066 tids=4066,4068,4069
+PASS round=64 mode=1 new thread abort
+RESTORED mode=2 pid=4071 tids=4071,4073,4074
+PASS round=64 mode=2 original worker abort
+RESTORED mode=3 pid=4076 tids=4076,4078,4079
+PASS round=64 mode=3 retained leader restore
+RESTORED mode=4 pid=4081 tids=4081,4083,4084
+PASS round=64 mode=4 all originals held
+RESTORED mode=5 pid=4086 tids=4086,4088,4089
+PASS round=64 mode=5 detached restore
+PASS round=64 mode=6 drop held worker
+PASS round=64 mode=7 admission errors
+PASS round=64 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4100 tids=4100,4102,4103
+PASS round=64 mode=9 STOP/CONT with held worker
+PASS round=64 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4110 tids=4110,4112,4113
+PASS round=64 mode=11 shared ABRT/HELD race
+PASS round=64 mode=12 SIGQUIT preserves native fatal cause
+PASS round=64 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4122 tids=4122,4124,4125
+PASS round=65 mode=0 leader abort
+RESTORED mode=1 pid=4127 tids=4127,4129,4130
+PASS round=65 mode=1 new thread abort
+RESTORED mode=2 pid=4132 tids=4132,4134,4135
+PASS round=65 mode=2 original worker abort
+RESTORED mode=3 pid=4137 tids=4137,4139,4140
+PASS round=65 mode=3 retained leader restore
+RESTORED mode=4 pid=4142 tids=4142,4144,4145
+PASS round=65 mode=4 all originals held
+RESTORED mode=5 pid=4147 tids=4147,4149,4150
+PASS round=65 mode=5 detached restore
+PASS round=65 mode=6 drop held worker
+PASS round=65 mode=7 admission errors
+PASS round=65 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4161 tids=4161,4163,4164
+PASS round=65 mode=9 STOP/CONT with held worker
+PASS round=65 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4171 tids=4171,4173,4174
+PASS round=65 mode=11 shared ABRT/HELD race
+PASS round=65 mode=12 SIGQUIT preserves native fatal cause
+PASS round=65 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4183 tids=4183,4185,4186
+PASS round=66 mode=0 leader abort
+RESTORED mode=1 pid=4188 tids=4188,4190,4191
+PASS round=66 mode=1 new thread abort
+RESTORED mode=2 pid=4193 tids=4193,4195,4196
+PASS round=66 mode=2 original worker abort
+RESTORED mode=3 pid=4198 tids=4198,4200,4201
+PASS round=66 mode=3 retained leader restore
+RESTORED mode=4 pid=4203 tids=4203,4205,4206
+PASS round=66 mode=4 all originals held
+RESTORED mode=5 pid=4208 tids=4208,4210,4211
+PASS round=66 mode=5 detached restore
+PASS round=66 mode=6 drop held worker
+PASS round=66 mode=7 admission errors
+PASS round=66 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4222 tids=4222,4224,4225
+PASS round=66 mode=9 STOP/CONT with held worker
+PASS round=66 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4232 tids=4232,4234,4235
+PASS round=66 mode=11 shared ABRT/HELD race
+PASS round=66 mode=12 SIGQUIT preserves native fatal cause
+PASS round=66 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4244 tids=4244,4246,4247
+PASS round=67 mode=0 leader abort
+RESTORED mode=1 pid=4249 tids=4249,4251,4252
+PASS round=67 mode=1 new thread abort
+RESTORED mode=2 pid=4254 tids=4254,4256,4257
+PASS round=67 mode=2 original worker abort
+RESTORED mode=3 pid=4259 tids=4259,4261,4262
+PASS round=67 mode=3 retained leader restore
+RESTORED mode=4 pid=4264 tids=4264,4266,4267
+PASS round=67 mode=4 all originals held
+RESTORED mode=5 pid=4269 tids=4269,4271,4272
+PASS round=67 mode=5 detached restore
+PASS round=67 mode=6 drop held worker
+PASS round=67 mode=7 admission errors
+PASS round=67 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4283 tids=4283,4285,4286
+PASS round=67 mode=9 STOP/CONT with held worker
+PASS round=67 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4293 tids=4293,4295,4296
+PASS round=67 mode=11 shared ABRT/HELD race
+PASS round=67 mode=12 SIGQUIT preserves native fatal cause
+PASS round=67 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4305 tids=4305,4307,4308
+PASS round=68 mode=0 leader abort
+RESTORED mode=1 pid=4310 tids=4310,4312,4313
+PASS round=68 mode=1 new thread abort
+RESTORED mode=2 pid=4315 tids=4315,4317,4318
+PASS round=68 mode=2 original worker abort
+RESTORED mode=3 pid=4320 tids=4320,4322,4323
+PASS round=68 mode=3 retained leader restore
+RESTORED mode=4 pid=4325 tids=4325,4327,4328
+PASS round=68 mode=4 all originals held
+RESTORED mode=5 pid=4330 tids=4330,4332,4333
+PASS round=68 mode=5 detached restore
+PASS round=68 mode=6 drop held worker
+PASS round=68 mode=7 admission errors
+PASS round=68 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4344 tids=4344,4346,4347
+PASS round=68 mode=9 STOP/CONT with held worker
+PASS round=68 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4354 tids=4354,4356,4357
+PASS round=68 mode=11 shared ABRT/HELD race
+PASS round=68 mode=12 SIGQUIT preserves native fatal cause
+PASS round=68 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4366 tids=4366,4368,4369
+PASS round=69 mode=0 leader abort
+RESTORED mode=1 pid=4371 tids=4371,4373,4374
+PASS round=69 mode=1 new thread abort
+RESTORED mode=2 pid=4376 tids=4376,4378,4379
+PASS round=69 mode=2 original worker abort
+RESTORED mode=3 pid=4381 tids=4381,4383,4384
+PASS round=69 mode=3 retained leader restore
+RESTORED mode=4 pid=4386 tids=4386,4388,4389
+PASS round=69 mode=4 all originals held
+RESTORED mode=5 pid=4391 tids=4391,4393,4394
+PASS round=69 mode=5 detached restore
+PASS round=69 mode=6 drop held worker
+PASS round=69 mode=7 admission errors
+PASS round=69 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4405 tids=4405,4407,4408
+PASS round=69 mode=9 STOP/CONT with held worker
+PASS round=69 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4415 tids=4415,4417,4418
+PASS round=69 mode=11 shared ABRT/HELD race
+PASS round=69 mode=12 SIGQUIT preserves native fatal cause
+PASS round=69 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4427 tids=4427,4429,4430
+PASS round=70 mode=0 leader abort
+RESTORED mode=1 pid=4432 tids=4432,4434,4435
+PASS round=70 mode=1 new thread abort
+RESTORED mode=2 pid=4437 tids=4437,4439,4440
+PASS round=70 mode=2 original worker abort
+RESTORED mode=3 pid=4442 tids=4442,4444,4445
+PASS round=70 mode=3 retained leader restore
+RESTORED mode=4 pid=4447 tids=4447,4449,4450
+PASS round=70 mode=4 all originals held
+RESTORED mode=5 pid=4452 tids=4452,4454,4455
+PASS round=70 mode=5 detached restore
+PASS round=70 mode=6 drop held worker
+PASS round=70 mode=7 admission errors
+PASS round=70 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4466 tids=4466,4468,4469
+PASS round=70 mode=9 STOP/CONT with held worker
+PASS round=70 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4476 tids=4476,4478,4479
+PASS round=70 mode=11 shared ABRT/HELD race
+PASS round=70 mode=12 SIGQUIT preserves native fatal cause
+PASS round=70 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4488 tids=4488,4490,4491
+PASS round=71 mode=0 leader abort
+RESTORED mode=1 pid=4493 tids=4493,4495,4496
+PASS round=71 mode=1 new thread abort
+RESTORED mode=2 pid=4498 tids=4498,4500,4501
+PASS round=71 mode=2 original worker abort
+RESTORED mode=3 pid=4503 tids=4503,4505,4506
+PASS round=71 mode=3 retained leader restore
+RESTORED mode=4 pid=4508 tids=4508,4510,4511
+PASS round=71 mode=4 all originals held
+RESTORED mode=5 pid=4513 tids=4513,4515,4516
+PASS round=71 mode=5 detached restore
+PASS round=71 mode=6 drop held worker
+PASS round=71 mode=7 admission errors
+PASS round=71 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4527 tids=4527,4529,4530
+PASS round=71 mode=9 STOP/CONT with held worker
+PASS round=71 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4537 tids=4537,4539,4540
+PASS round=71 mode=11 shared ABRT/HELD race
+PASS round=71 mode=12 SIGQUIT preserves native fatal cause
+PASS round=71 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4549 tids=4549,4551,4552
+PASS round=72 mode=0 leader abort
+RESTORED mode=1 pid=4554 tids=4554,4556,4557
+PASS round=72 mode=1 new thread abort
+RESTORED mode=2 pid=4559 tids=4559,4561,4562
+PASS round=72 mode=2 original worker abort
+RESTORED mode=3 pid=4564 tids=4564,4566,4567
+PASS round=72 mode=3 retained leader restore
+RESTORED mode=4 pid=4569 tids=4569,4571,4572
+PASS round=72 mode=4 all originals held
+RESTORED mode=5 pid=4574 tids=4574,4576,4577
+PASS round=72 mode=5 detached restore
+PASS round=72 mode=6 drop held worker
+PASS round=72 mode=7 admission errors
+PASS round=72 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4588 tids=4588,4590,4591
+PASS round=72 mode=9 STOP/CONT with held worker
+PASS round=72 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4598 tids=4598,4600,4601
+PASS round=72 mode=11 shared ABRT/HELD race
+PASS round=72 mode=12 SIGQUIT preserves native fatal cause
+PASS round=72 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4610 tids=4610,4612,4613
+PASS round=73 mode=0 leader abort
+RESTORED mode=1 pid=4615 tids=4615,4617,4618
+PASS round=73 mode=1 new thread abort
+RESTORED mode=2 pid=4620 tids=4620,4622,4623
+PASS round=73 mode=2 original worker abort
+RESTORED mode=3 pid=4625 tids=4625,4627,4628
+PASS round=73 mode=3 retained leader restore
+RESTORED mode=4 pid=4630 tids=4630,4632,4633
+PASS round=73 mode=4 all originals held
+RESTORED mode=5 pid=4635 tids=4635,4637,4638
+PASS round=73 mode=5 detached restore
+PASS round=73 mode=6 drop held worker
+PASS round=73 mode=7 admission errors
+PASS round=73 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4649 tids=4649,4651,4652
+PASS round=73 mode=9 STOP/CONT with held worker
+PASS round=73 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4659 tids=4659,4661,4662
+PASS round=73 mode=11 shared ABRT/HELD race
+PASS round=73 mode=12 SIGQUIT preserves native fatal cause
+PASS round=73 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4671 tids=4671,4673,4674
+PASS round=74 mode=0 leader abort
+RESTORED mode=1 pid=4676 tids=4676,4678,4679
+PASS round=74 mode=1 new thread abort
+RESTORED mode=2 pid=4681 tids=4681,4683,4684
+PASS round=74 mode=2 original worker abort
+RESTORED mode=3 pid=4686 tids=4686,4688,4689
+PASS round=74 mode=3 retained leader restore
+RESTORED mode=4 pid=4691 tids=4691,4693,4694
+PASS round=74 mode=4 all originals held
+RESTORED mode=5 pid=4696 tids=4696,4698,4699
+PASS round=74 mode=5 detached restore
+PASS round=74 mode=6 drop held worker
+PASS round=74 mode=7 admission errors
+PASS round=74 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4710 tids=4710,4712,4713
+PASS round=74 mode=9 STOP/CONT with held worker
+PASS round=74 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4720 tids=4720,4722,4723
+PASS round=74 mode=11 shared ABRT/HELD race
+PASS round=74 mode=12 SIGQUIT preserves native fatal cause
+PASS round=74 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4732 tids=4732,4734,4735
+PASS round=75 mode=0 leader abort
+RESTORED mode=1 pid=4737 tids=4737,4739,4740
+PASS round=75 mode=1 new thread abort
+RESTORED mode=2 pid=4742 tids=4742,4744,4745
+PASS round=75 mode=2 original worker abort
+RESTORED mode=3 pid=4747 tids=4747,4749,4750
+PASS round=75 mode=3 retained leader restore
+RESTORED mode=4 pid=4752 tids=4752,4754,4755
+PASS round=75 mode=4 all originals held
+RESTORED mode=5 pid=4757 tids=4757,4759,4760
+PASS round=75 mode=5 detached restore
+PASS round=75 mode=6 drop held worker
+PASS round=75 mode=7 admission errors
+PASS round=75 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4771 tids=4771,4773,4774
+PASS round=75 mode=9 STOP/CONT with held worker
+PASS round=75 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4781 tids=4781,4783,4784
+PASS round=75 mode=11 shared ABRT/HELD race
+PASS round=75 mode=12 SIGQUIT preserves native fatal cause
+PASS round=75 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4793 tids=4793,4795,4796
+PASS round=76 mode=0 leader abort
+RESTORED mode=1 pid=4798 tids=4798,4800,4801
+PASS round=76 mode=1 new thread abort
+RESTORED mode=2 pid=4803 tids=4803,4805,4806
+PASS round=76 mode=2 original worker abort
+RESTORED mode=3 pid=4808 tids=4808,4810,4811
+PASS round=76 mode=3 retained leader restore
+RESTORED mode=4 pid=4813 tids=4813,4815,4816
+PASS round=76 mode=4 all originals held
+RESTORED mode=5 pid=4818 tids=4818,4820,4821
+PASS round=76 mode=5 detached restore
+PASS round=76 mode=6 drop held worker
+PASS round=76 mode=7 admission errors
+PASS round=76 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4832 tids=4832,4834,4835
+PASS round=76 mode=9 STOP/CONT with held worker
+PASS round=76 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4842 tids=4842,4844,4845
+PASS round=76 mode=11 shared ABRT/HELD race
+PASS round=76 mode=12 SIGQUIT preserves native fatal cause
+PASS round=76 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4854 tids=4854,4856,4857
+PASS round=77 mode=0 leader abort
+RESTORED mode=1 pid=4859 tids=4859,4861,4862
+PASS round=77 mode=1 new thread abort
+RESTORED mode=2 pid=4864 tids=4864,4866,4867
+PASS round=77 mode=2 original worker abort
+RESTORED mode=3 pid=4869 tids=4869,4871,4872
+PASS round=77 mode=3 retained leader restore
+RESTORED mode=4 pid=4874 tids=4874,4876,4877
+PASS round=77 mode=4 all originals held
+RESTORED mode=5 pid=4879 tids=4879,4881,4882
+PASS round=77 mode=5 detached restore
+PASS round=77 mode=6 drop held worker
+PASS round=77 mode=7 admission errors
+PASS round=77 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4893 tids=4893,4895,4896
+PASS round=77 mode=9 STOP/CONT with held worker
+PASS round=77 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4903 tids=4903,4905,4906
+PASS round=77 mode=11 shared ABRT/HELD race
+PASS round=77 mode=12 SIGQUIT preserves native fatal cause
+PASS round=77 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4915 tids=4915,4917,4918
+PASS round=78 mode=0 leader abort
+RESTORED mode=1 pid=4920 tids=4920,4922,4923
+PASS round=78 mode=1 new thread abort
+RESTORED mode=2 pid=4925 tids=4925,4927,4928
+PASS round=78 mode=2 original worker abort
+RESTORED mode=3 pid=4930 tids=4930,4932,4933
+PASS round=78 mode=3 retained leader restore
+RESTORED mode=4 pid=4935 tids=4935,4937,4938
+PASS round=78 mode=4 all originals held
+RESTORED mode=5 pid=4940 tids=4940,4942,4943
+PASS round=78 mode=5 detached restore
+PASS round=78 mode=6 drop held worker
+PASS round=78 mode=7 admission errors
+PASS round=78 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=4954 tids=4954,4956,4957
+PASS round=78 mode=9 STOP/CONT with held worker
+PASS round=78 mode=10 DROP with retained leader
+RESTORED mode=11 pid=4964 tids=4964,4966,4967
+PASS round=78 mode=11 shared ABRT/HELD race
+PASS round=78 mode=12 SIGQUIT preserves native fatal cause
+PASS round=78 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=4976 tids=4976,4978,4979
+PASS round=79 mode=0 leader abort
+RESTORED mode=1 pid=4981 tids=4981,4983,4984
+PASS round=79 mode=1 new thread abort
+RESTORED mode=2 pid=4986 tids=4986,4988,4989
+PASS round=79 mode=2 original worker abort
+RESTORED mode=3 pid=4991 tids=4991,4993,4994
+PASS round=79 mode=3 retained leader restore
+RESTORED mode=4 pid=4996 tids=4996,4998,4999
+PASS round=79 mode=4 all originals held
+RESTORED mode=5 pid=5001 tids=5001,5003,5004
+PASS round=79 mode=5 detached restore
+PASS round=79 mode=6 drop held worker
+PASS round=79 mode=7 admission errors
+PASS round=79 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5015 tids=5015,5017,5018
+PASS round=79 mode=9 STOP/CONT with held worker
+PASS round=79 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5025 tids=5025,5027,5028
+PASS round=79 mode=11 shared ABRT/HELD race
+PASS round=79 mode=12 SIGQUIT preserves native fatal cause
+PASS round=79 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5037 tids=5037,5039,5040
+PASS round=80 mode=0 leader abort
+RESTORED mode=1 pid=5042 tids=5042,5044,5045
+PASS round=80 mode=1 new thread abort
+RESTORED mode=2 pid=5047 tids=5047,5049,5050
+PASS round=80 mode=2 original worker abort
+RESTORED mode=3 pid=5052 tids=5052,5054,5055
+PASS round=80 mode=3 retained leader restore
+RESTORED mode=4 pid=5057 tids=5057,5059,5060
+PASS round=80 mode=4 all originals held
+RESTORED mode=5 pid=5062 tids=5062,5064,5065
+PASS round=80 mode=5 detached restore
+PASS round=80 mode=6 drop held worker
+PASS round=80 mode=7 admission errors
+PASS round=80 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5076 tids=5076,5078,5079
+PASS round=80 mode=9 STOP/CONT with held worker
+PASS round=80 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5086 tids=5086,5088,5089
+PASS round=80 mode=11 shared ABRT/HELD race
+PASS round=80 mode=12 SIGQUIT preserves native fatal cause
+PASS round=80 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5098 tids=5098,5100,5101
+PASS round=81 mode=0 leader abort
+RESTORED mode=1 pid=5103 tids=5103,5105,5106
+PASS round=81 mode=1 new thread abort
+RESTORED mode=2 pid=5108 tids=5108,5110,5111
+PASS round=81 mode=2 original worker abort
+RESTORED mode=3 pid=5113 tids=5113,5115,5116
+PASS round=81 mode=3 retained leader restore
+RESTORED mode=4 pid=5118 tids=5118,5120,5121
+PASS round=81 mode=4 all originals held
+RESTORED mode=5 pid=5123 tids=5123,5125,5126
+PASS round=81 mode=5 detached restore
+PASS round=81 mode=6 drop held worker
+PASS round=81 mode=7 admission errors
+PASS round=81 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5137 tids=5137,5139,5140
+PASS round=81 mode=9 STOP/CONT with held worker
+PASS round=81 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5147 tids=5147,5149,5150
+PASS round=81 mode=11 shared ABRT/HELD race
+PASS round=81 mode=12 SIGQUIT preserves native fatal cause
+PASS round=81 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5159 tids=5159,5161,5162
+PASS round=82 mode=0 leader abort
+RESTORED mode=1 pid=5164 tids=5164,5166,5167
+PASS round=82 mode=1 new thread abort
+RESTORED mode=2 pid=5169 tids=5169,5171,5172
+PASS round=82 mode=2 original worker abort
+RESTORED mode=3 pid=5174 tids=5174,5176,5177
+PASS round=82 mode=3 retained leader restore
+RESTORED mode=4 pid=5179 tids=5179,5181,5182
+PASS round=82 mode=4 all originals held
+RESTORED mode=5 pid=5184 tids=5184,5186,5187
+PASS round=82 mode=5 detached restore
+PASS round=82 mode=6 drop held worker
+PASS round=82 mode=7 admission errors
+PASS round=82 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5198 tids=5198,5200,5201
+PASS round=82 mode=9 STOP/CONT with held worker
+PASS round=82 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5208 tids=5208,5210,5211
+PASS round=82 mode=11 shared ABRT/HELD race
+PASS round=82 mode=12 SIGQUIT preserves native fatal cause
+PASS round=82 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5220 tids=5220,5222,5223
+PASS round=83 mode=0 leader abort
+RESTORED mode=1 pid=5225 tids=5225,5227,5228
+PASS round=83 mode=1 new thread abort
+RESTORED mode=2 pid=5230 tids=5230,5232,5233
+PASS round=83 mode=2 original worker abort
+RESTORED mode=3 pid=5235 tids=5235,5237,5238
+PASS round=83 mode=3 retained leader restore
+RESTORED mode=4 pid=5240 tids=5240,5242,5243
+PASS round=83 mode=4 all originals held
+RESTORED mode=5 pid=5245 tids=5245,5247,5248
+PASS round=83 mode=5 detached restore
+PASS round=83 mode=6 drop held worker
+PASS round=83 mode=7 admission errors
+PASS round=83 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5259 tids=5259,5261,5262
+PASS round=83 mode=9 STOP/CONT with held worker
+PASS round=83 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5269 tids=5269,5271,5272
+PASS round=83 mode=11 shared ABRT/HELD race
+PASS round=83 mode=12 SIGQUIT preserves native fatal cause
+PASS round=83 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5281 tids=5281,5283,5284
+PASS round=84 mode=0 leader abort
+RESTORED mode=1 pid=5286 tids=5286,5288,5289
+PASS round=84 mode=1 new thread abort
+RESTORED mode=2 pid=5291 tids=5291,5293,5294
+PASS round=84 mode=2 original worker abort
+RESTORED mode=3 pid=5296 tids=5296,5298,5299
+PASS round=84 mode=3 retained leader restore
+RESTORED mode=4 pid=5301 tids=5301,5303,5304
+PASS round=84 mode=4 all originals held
+RESTORED mode=5 pid=5306 tids=5306,5308,5309
+PASS round=84 mode=5 detached restore
+PASS round=84 mode=6 drop held worker
+PASS round=84 mode=7 admission errors
+PASS round=84 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5320 tids=5320,5322,5323
+PASS round=84 mode=9 STOP/CONT with held worker
+PASS round=84 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5330 tids=5330,5332,5333
+PASS round=84 mode=11 shared ABRT/HELD race
+PASS round=84 mode=12 SIGQUIT preserves native fatal cause
+PASS round=84 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5342 tids=5342,5344,5345
+PASS round=85 mode=0 leader abort
+RESTORED mode=1 pid=5347 tids=5347,5349,5350
+PASS round=85 mode=1 new thread abort
+RESTORED mode=2 pid=5352 tids=5352,5354,5355
+PASS round=85 mode=2 original worker abort
+RESTORED mode=3 pid=5357 tids=5357,5359,5360
+PASS round=85 mode=3 retained leader restore
+RESTORED mode=4 pid=5362 tids=5362,5364,5365
+PASS round=85 mode=4 all originals held
+RESTORED mode=5 pid=5367 tids=5367,5369,5370
+PASS round=85 mode=5 detached restore
+PASS round=85 mode=6 drop held worker
+PASS round=85 mode=7 admission errors
+PASS round=85 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5381 tids=5381,5383,5384
+PASS round=85 mode=9 STOP/CONT with held worker
+PASS round=85 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5391 tids=5391,5393,5394
+PASS round=85 mode=11 shared ABRT/HELD race
+PASS round=85 mode=12 SIGQUIT preserves native fatal cause
+PASS round=85 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5403 tids=5403,5405,5406
+PASS round=86 mode=0 leader abort
+RESTORED mode=1 pid=5408 tids=5408,5410,5411
+PASS round=86 mode=1 new thread abort
+RESTORED mode=2 pid=5413 tids=5413,5415,5416
+PASS round=86 mode=2 original worker abort
+RESTORED mode=3 pid=5418 tids=5418,5420,5421
+PASS round=86 mode=3 retained leader restore
+RESTORED mode=4 pid=5423 tids=5423,5425,5426
+PASS round=86 mode=4 all originals held
+RESTORED mode=5 pid=5428 tids=5428,5430,5431
+PASS round=86 mode=5 detached restore
+PASS round=86 mode=6 drop held worker
+PASS round=86 mode=7 admission errors
+PASS round=86 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5442 tids=5442,5444,5445
+PASS round=86 mode=9 STOP/CONT with held worker
+PASS round=86 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5452 tids=5452,5454,5455
+PASS round=86 mode=11 shared ABRT/HELD race
+PASS round=86 mode=12 SIGQUIT preserves native fatal cause
+PASS round=86 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5464 tids=5464,5466,5467
+PASS round=87 mode=0 leader abort
+RESTORED mode=1 pid=5469 tids=5469,5471,5472
+PASS round=87 mode=1 new thread abort
+RESTORED mode=2 pid=5474 tids=5474,5476,5477
+PASS round=87 mode=2 original worker abort
+RESTORED mode=3 pid=5479 tids=5479,5481,5482
+PASS round=87 mode=3 retained leader restore
+RESTORED mode=4 pid=5484 tids=5484,5486,5487
+PASS round=87 mode=4 all originals held
+RESTORED mode=5 pid=5489 tids=5489,5491,5492
+PASS round=87 mode=5 detached restore
+PASS round=87 mode=6 drop held worker
+PASS round=87 mode=7 admission errors
+PASS round=87 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5503 tids=5503,5505,5506
+PASS round=87 mode=9 STOP/CONT with held worker
+PASS round=87 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5513 tids=5513,5515,5516
+PASS round=87 mode=11 shared ABRT/HELD race
+PASS round=87 mode=12 SIGQUIT preserves native fatal cause
+PASS round=87 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5525 tids=5525,5527,5528
+PASS round=88 mode=0 leader abort
+RESTORED mode=1 pid=5530 tids=5530,5532,5533
+PASS round=88 mode=1 new thread abort
+RESTORED mode=2 pid=5535 tids=5535,5537,5538
+PASS round=88 mode=2 original worker abort
+RESTORED mode=3 pid=5540 tids=5540,5542,5543
+PASS round=88 mode=3 retained leader restore
+RESTORED mode=4 pid=5545 tids=5545,5547,5548
+PASS round=88 mode=4 all originals held
+RESTORED mode=5 pid=5550 tids=5550,5552,5553
+PASS round=88 mode=5 detached restore
+PASS round=88 mode=6 drop held worker
+PASS round=88 mode=7 admission errors
+PASS round=88 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5564 tids=5564,5566,5567
+PASS round=88 mode=9 STOP/CONT with held worker
+PASS round=88 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5574 tids=5574,5576,5577
+PASS round=88 mode=11 shared ABRT/HELD race
+PASS round=88 mode=12 SIGQUIT preserves native fatal cause
+PASS round=88 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5586 tids=5586,5588,5589
+PASS round=89 mode=0 leader abort
+RESTORED mode=1 pid=5591 tids=5591,5593,5594
+PASS round=89 mode=1 new thread abort
+RESTORED mode=2 pid=5596 tids=5596,5598,5599
+PASS round=89 mode=2 original worker abort
+RESTORED mode=3 pid=5601 tids=5601,5603,5604
+PASS round=89 mode=3 retained leader restore
+RESTORED mode=4 pid=5606 tids=5606,5608,5609
+PASS round=89 mode=4 all originals held
+RESTORED mode=5 pid=5611 tids=5611,5613,5614
+PASS round=89 mode=5 detached restore
+PASS round=89 mode=6 drop held worker
+PASS round=89 mode=7 admission errors
+PASS round=89 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5625 tids=5625,5627,5628
+PASS round=89 mode=9 STOP/CONT with held worker
+PASS round=89 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5635 tids=5635,5637,5638
+PASS round=89 mode=11 shared ABRT/HELD race
+PASS round=89 mode=12 SIGQUIT preserves native fatal cause
+PASS round=89 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5647 tids=5647,5649,5650
+PASS round=90 mode=0 leader abort
+RESTORED mode=1 pid=5652 tids=5652,5654,5655
+PASS round=90 mode=1 new thread abort
+RESTORED mode=2 pid=5657 tids=5657,5659,5660
+PASS round=90 mode=2 original worker abort
+RESTORED mode=3 pid=5662 tids=5662,5664,5665
+PASS round=90 mode=3 retained leader restore
+RESTORED mode=4 pid=5667 tids=5667,5669,5670
+PASS round=90 mode=4 all originals held
+RESTORED mode=5 pid=5672 tids=5672,5674,5675
+PASS round=90 mode=5 detached restore
+PASS round=90 mode=6 drop held worker
+PASS round=90 mode=7 admission errors
+PASS round=90 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5686 tids=5686,5688,5689
+PASS round=90 mode=9 STOP/CONT with held worker
+PASS round=90 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5696 tids=5696,5698,5699
+PASS round=90 mode=11 shared ABRT/HELD race
+PASS round=90 mode=12 SIGQUIT preserves native fatal cause
+PASS round=90 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5708 tids=5708,5710,5711
+PASS round=91 mode=0 leader abort
+RESTORED mode=1 pid=5713 tids=5713,5715,5716
+PASS round=91 mode=1 new thread abort
+RESTORED mode=2 pid=5718 tids=5718,5720,5721
+PASS round=91 mode=2 original worker abort
+RESTORED mode=3 pid=5723 tids=5723,5725,5726
+PASS round=91 mode=3 retained leader restore
+RESTORED mode=4 pid=5728 tids=5728,5730,5731
+PASS round=91 mode=4 all originals held
+RESTORED mode=5 pid=5733 tids=5733,5735,5736
+PASS round=91 mode=5 detached restore
+PASS round=91 mode=6 drop held worker
+PASS round=91 mode=7 admission errors
+PASS round=91 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5747 tids=5747,5749,5750
+PASS round=91 mode=9 STOP/CONT with held worker
+PASS round=91 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5757 tids=5757,5759,5760
+PASS round=91 mode=11 shared ABRT/HELD race
+PASS round=91 mode=12 SIGQUIT preserves native fatal cause
+PASS round=91 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5769 tids=5769,5771,5772
+PASS round=92 mode=0 leader abort
+RESTORED mode=1 pid=5774 tids=5774,5776,5777
+PASS round=92 mode=1 new thread abort
+RESTORED mode=2 pid=5779 tids=5779,5781,5782
+PASS round=92 mode=2 original worker abort
+RESTORED mode=3 pid=5784 tids=5784,5786,5787
+PASS round=92 mode=3 retained leader restore
+RESTORED mode=4 pid=5789 tids=5789,5791,5792
+PASS round=92 mode=4 all originals held
+RESTORED mode=5 pid=5794 tids=5794,5796,5797
+PASS round=92 mode=5 detached restore
+PASS round=92 mode=6 drop held worker
+PASS round=92 mode=7 admission errors
+PASS round=92 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5808 tids=5808,5810,5811
+PASS round=92 mode=9 STOP/CONT with held worker
+PASS round=92 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5818 tids=5818,5820,5821
+PASS round=92 mode=11 shared ABRT/HELD race
+PASS round=92 mode=12 SIGQUIT preserves native fatal cause
+PASS round=92 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5830 tids=5830,5832,5833
+PASS round=93 mode=0 leader abort
+RESTORED mode=1 pid=5835 tids=5835,5837,5838
+PASS round=93 mode=1 new thread abort
+RESTORED mode=2 pid=5840 tids=5840,5842,5843
+PASS round=93 mode=2 original worker abort
+RESTORED mode=3 pid=5845 tids=5845,5847,5848
+PASS round=93 mode=3 retained leader restore
+RESTORED mode=4 pid=5850 tids=5850,5852,5853
+PASS round=93 mode=4 all originals held
+RESTORED mode=5 pid=5855 tids=5855,5857,5858
+PASS round=93 mode=5 detached restore
+PASS round=93 mode=6 drop held worker
+PASS round=93 mode=7 admission errors
+PASS round=93 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5869 tids=5869,5871,5872
+PASS round=93 mode=9 STOP/CONT with held worker
+PASS round=93 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5879 tids=5879,5881,5882
+PASS round=93 mode=11 shared ABRT/HELD race
+PASS round=93 mode=12 SIGQUIT preserves native fatal cause
+PASS round=93 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5891 tids=5891,5893,5894
+PASS round=94 mode=0 leader abort
+RESTORED mode=1 pid=5896 tids=5896,5898,5899
+PASS round=94 mode=1 new thread abort
+RESTORED mode=2 pid=5901 tids=5901,5903,5904
+PASS round=94 mode=2 original worker abort
+RESTORED mode=3 pid=5906 tids=5906,5908,5909
+PASS round=94 mode=3 retained leader restore
+RESTORED mode=4 pid=5911 tids=5911,5913,5914
+PASS round=94 mode=4 all originals held
+RESTORED mode=5 pid=5916 tids=5916,5918,5919
+PASS round=94 mode=5 detached restore
+PASS round=94 mode=6 drop held worker
+PASS round=94 mode=7 admission errors
+PASS round=94 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5930 tids=5930,5932,5933
+PASS round=94 mode=9 STOP/CONT with held worker
+PASS round=94 mode=10 DROP with retained leader
+RESTORED mode=11 pid=5940 tids=5940,5942,5943
+PASS round=94 mode=11 shared ABRT/HELD race
+PASS round=94 mode=12 SIGQUIT preserves native fatal cause
+PASS round=94 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=5952 tids=5952,5954,5955
+PASS round=95 mode=0 leader abort
+RESTORED mode=1 pid=5957 tids=5957,5959,5960
+PASS round=95 mode=1 new thread abort
+RESTORED mode=2 pid=5962 tids=5962,5964,5965
+PASS round=95 mode=2 original worker abort
+RESTORED mode=3 pid=5967 tids=5967,5969,5970
+PASS round=95 mode=3 retained leader restore
+RESTORED mode=4 pid=5972 tids=5972,5974,5975
+PASS round=95 mode=4 all originals held
+RESTORED mode=5 pid=5977 tids=5977,5979,5980
+PASS round=95 mode=5 detached restore
+PASS round=95 mode=6 drop held worker
+PASS round=95 mode=7 admission errors
+PASS round=95 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=5991 tids=5991,5993,5994
+PASS round=95 mode=9 STOP/CONT with held worker
+PASS round=95 mode=10 DROP with retained leader
+RESTORED mode=11 pid=6001 tids=6001,6003,6004
+PASS round=95 mode=11 shared ABRT/HELD race
+PASS round=95 mode=12 SIGQUIT preserves native fatal cause
+PASS round=95 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=6013 tids=6013,6015,6016
+PASS round=96 mode=0 leader abort
+RESTORED mode=1 pid=6018 tids=6018,6020,6021
+PASS round=96 mode=1 new thread abort
+RESTORED mode=2 pid=6023 tids=6023,6025,6026
+PASS round=96 mode=2 original worker abort
+RESTORED mode=3 pid=6028 tids=6028,6030,6031
+PASS round=96 mode=3 retained leader restore
+RESTORED mode=4 pid=6033 tids=6033,6035,6036
+PASS round=96 mode=4 all originals held
+RESTORED mode=5 pid=6038 tids=6038,6040,6041
+PASS round=96 mode=5 detached restore
+PASS round=96 mode=6 drop held worker
+PASS round=96 mode=7 admission errors
+PASS round=96 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=6052 tids=6052,6054,6055
+PASS round=96 mode=9 STOP/CONT with held worker
+PASS round=96 mode=10 DROP with retained leader
+RESTORED mode=11 pid=6062 tids=6062,6064,6065
+PASS round=96 mode=11 shared ABRT/HELD race
+PASS round=96 mode=12 SIGQUIT preserves native fatal cause
+PASS round=96 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=6074 tids=6074,6076,6077
+PASS round=97 mode=0 leader abort
+RESTORED mode=1 pid=6079 tids=6079,6081,6082
+PASS round=97 mode=1 new thread abort
+RESTORED mode=2 pid=6084 tids=6084,6086,6087
+PASS round=97 mode=2 original worker abort
+RESTORED mode=3 pid=6089 tids=6089,6091,6092
+PASS round=97 mode=3 retained leader restore
+RESTORED mode=4 pid=6094 tids=6094,6096,6097
+PASS round=97 mode=4 all originals held
+RESTORED mode=5 pid=6099 tids=6099,6101,6102
+PASS round=97 mode=5 detached restore
+PASS round=97 mode=6 drop held worker
+PASS round=97 mode=7 admission errors
+PASS round=97 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=6113 tids=6113,6115,6116
+PASS round=97 mode=9 STOP/CONT with held worker
+PASS round=97 mode=10 DROP with retained leader
+RESTORED mode=11 pid=6123 tids=6123,6125,6126
+PASS round=97 mode=11 shared ABRT/HELD race
+PASS round=97 mode=12 SIGQUIT preserves native fatal cause
+PASS round=97 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=6135 tids=6135,6137,6138
+PASS round=98 mode=0 leader abort
+RESTORED mode=1 pid=6140 tids=6140,6142,6143
+PASS round=98 mode=1 new thread abort
+RESTORED mode=2 pid=6145 tids=6145,6147,6148
+PASS round=98 mode=2 original worker abort
+RESTORED mode=3 pid=6150 tids=6150,6152,6153
+PASS round=98 mode=3 retained leader restore
+RESTORED mode=4 pid=6155 tids=6155,6157,6158
+PASS round=98 mode=4 all originals held
+RESTORED mode=5 pid=6160 tids=6160,6162,6163
+PASS round=98 mode=5 detached restore
+PASS round=98 mode=6 drop held worker
+PASS round=98 mode=7 admission errors
+PASS round=98 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=6174 tids=6174,6176,6177
+PASS round=98 mode=9 STOP/CONT with held worker
+PASS round=98 mode=10 DROP with retained leader
+RESTORED mode=11 pid=6184 tids=6184,6186,6187
+PASS round=98 mode=11 shared ABRT/HELD race
+PASS round=98 mode=12 SIGQUIT preserves native fatal cause
+PASS round=98 mode=13 SIGTERM preserves native fatal cause
+RESTORED mode=0 pid=6196 tids=6196,6198,6199
+PASS round=99 mode=0 leader abort
+RESTORED mode=1 pid=6201 tids=6201,6203,6204
+PASS round=99 mode=1 new thread abort
+RESTORED mode=2 pid=6206 tids=6206,6208,6209
+PASS round=99 mode=2 original worker abort
+RESTORED mode=3 pid=6211 tids=6211,6213,6214
+PASS round=99 mode=3 retained leader restore
+RESTORED mode=4 pid=6216 tids=6216,6218,6219
+PASS round=99 mode=4 all originals held
+RESTORED mode=5 pid=6221 tids=6221,6223,6224
+PASS round=99 mode=5 detached restore
+PASS round=99 mode=6 drop held worker
+PASS round=99 mode=7 admission errors
+PASS round=99 mode=8 SIGKILL releases held tasks
+RESTORED mode=9 pid=6235 tids=6235,6237,6238
+PASS round=99 mode=9 STOP/CONT with held worker
+PASS round=99 mode=10 DROP with retained leader
+RESTORED mode=11 pid=6245 tids=6245,6247,6248
+PASS round=99 mode=11 shared ABRT/HELD race
+PASS round=99 mode=12 SIGQUIT preserves native fatal cause
+PASS round=99 mode=13 SIGTERM preserves native fatal cause
+CKPT_RESULT PASS 1400/1400
+PASS edge=0
+PASS edge=1
+PASS edge=2
+PASS edge=3
+PASS edge=4
+PASS edge=5
+PASS edge=6
+PASS edge=7
+PASS edge=8
+PASS edge=9
+CKPT_EDGES PASS 10/10
+PASS external=v2 ptrace/migrate/freeze/thaw
+PASS external=v1 ptrace/migrate/freeze/thaw
+CKPT_EXTERNAL PASS 2/2
+CKPT_QEMU_EXIT=0
+CKPT_LIVE_GROUPS=0
+CKPT_HELD_TASKS=0
+CKPT_GCOV_COLLECTED
+[   47.793525][ T6296] reboot: Power down

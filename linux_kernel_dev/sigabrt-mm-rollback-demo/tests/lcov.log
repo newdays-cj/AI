@@ -1,0 +1,25 @@
+Capturing coverage data from /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov
+geninfo cmd: '/usr/bin/geninfo /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov --output-filename /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/coverage.info --gcov-tool /home/chenjun/tools/buildroot/output/host/bin/aarch64-buildroot-linux-gnu-gcov --base-directory /home/chenjun/Git/OLK-6.6-2 --rc geninfo_unexecuted_blocks=1 --include */kernel/task_checkpoint.c --include */kernel/task_checkpoint_test.c --memory 0 --branch-coverage'
+Found gcov version: 14.3.0
+Using intermediate gcov format
+Writing temporary data to /tmp/geninfo_datrz1j
+Scanning /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov for .gcda files ...
+Found 3 data files in /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov
+Processing /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint_test.gcda
+Processing /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint.gcda
+Processing /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/task_checkpoint.gcda
+Excluded data for 52 files due to include/exclude options
+Finished .info-file creation
+Found 3 entries.
+Found common filename prefix "/home/chenjun/Git/OLK-6.6-2"
+Generating output.
+Processing file arch/arm64/kernel/task_checkpoint.c
+  lines=43 hit=43 functions=3 hit=3 branches=32 hit=18
+Processing file kernel/task_checkpoint_test.c
+  lines=23 hit=23 functions=2 hit=2 branches=34 hit=19
+Processing file kernel/task_checkpoint.c
+  lines=635 hit=578 functions=42 hit=42 branches=594 hit=390
+Overall coverage rate:
+  lines......: 91.9% (644 of 701 lines)
+  functions......: 100.0% (47 of 47 functions)
+  branches......: 64.7% (427 of 660 branches)

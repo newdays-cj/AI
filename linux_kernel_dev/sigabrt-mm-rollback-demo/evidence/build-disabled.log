@@ -1,0 +1,5 @@
+Using /home/chenjun/tools/qemu_arm64_defconfig as base
+Merging /home/chenjun/workspace/sigabrt-mm-rollback-demo/disabled.config
+#
+# merged configuration written to /home/chenjun/workspace/sigabrt-mm-rollback-demo/.config.disabled (needs make)
+#

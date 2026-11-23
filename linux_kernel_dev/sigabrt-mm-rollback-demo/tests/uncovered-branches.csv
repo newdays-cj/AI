@@ -1,0 +1,234 @@
+file,line,block,branch,count,source
+arch/arm64/kernel/task_checkpoint.c,15,0,0,0,	if (is_compat_task() || test_thread_flag(TIF_SVE) ||
+arch/arm64/kernel/task_checkpoint.c,15,0,3,0,	if (is_compat_task() || test_thread_flag(TIF_SVE) ||
+arch/arm64/kernel/task_checkpoint.c,16,0,0,0,	    test_thread_flag(TIF_SME) || current->thread.svcr ||
+arch/arm64/kernel/task_checkpoint.c,16,0,3,0,	    test_thread_flag(TIF_SME) || current->thread.svcr ||
+arch/arm64/kernel/task_checkpoint.c,16,0,5,0,	    test_thread_flag(TIF_SME) || current->thread.svcr ||
+arch/arm64/kernel/task_checkpoint.c,17,0,0,0,	    current->thread.fp_type == FP_STATE_SVE)
+arch/arm64/kernel/task_checkpoint.c,20,0,0,0,	if (current->thread.mte_ctrl)
+arch/arm64/kernel/task_checkpoint.c,28,0,0,0,			if (current->thread.debug.hbp_break[i])
+arch/arm64/kernel/task_checkpoint.c,31,0,0,0,			if (current->thread.debug.hbp_watch[i])
+arch/arm64/kernel/task_checkpoint.c,42,0,1,0,	if (ret)
+arch/arm64/kernel/task_checkpoint.c,62,0,1,0,	if (ret)
+arch/arm64/kernel/task_checkpoint.c,69,0,1,0,"	if (!valid_user_regs(&regs->user_regs, current))"
+arch/arm64/kernel/task_checkpoint.c,79,e0,1,0,	current->thread.keys_user = state->keys;
+arch/arm64/kernel/task_checkpoint.c,80,e0,1,0,	ptrauth_keys_install_user(&current->thread.keys_user);
+kernel/task_checkpoint.c,111,0,0,0,	atomic_inc(&checkpoint_exit_waiters);
+kernel/task_checkpoint.c,112,0,2,0,	while (atomic_read(&checkpoint_exit_pause) && !fatal_signal_pending(current))
+kernel/task_checkpoint.c,114,0,0,0,	atomic_dec(&checkpoint_exit_waiters);
+kernel/task_checkpoint.c,119,0,0,0,"	atomic_add(delta, &checkpoint_live_groups);"
+kernel/task_checkpoint.c,124,0,0,0,"	atomic_add(delta, &checkpoint_held_tasks);"
+kernel/task_checkpoint.c,129,0,0,0,"	return atomic_cmpxchg(&checkpoint_fail_stage, stage, 0) == stage;"
+kernel/task_checkpoint.c,152,0,0,0,		put_task_struct(cp->entry[i].task);
+kernel/task_checkpoint.c,166,0,0,0,	if (refcount_dec_and_test(&cp->refs))
+kernel/task_checkpoint.c,176,0,2,0,	if (cp && !refcount_inc_not_zero(&cp->refs))
+kernel/task_checkpoint.c,184,0,6,0,	return !!rcu_access_pointer(task->signal->checkpoint);
+kernel/task_checkpoint.c,189,0,0,0,	return down_read_trylock(&task_ckpt_enroll_sem) ? 0 : -EBUSY;
+kernel/task_checkpoint.c,243,0,0,0,		set_notify_signal(cp->entry[i].task);
+kernel/task_checkpoint.c,254,0,1,0,	    !(phase == CKPT_DROPPING && cp->phase == PR_CKPT_RESTORING) &&
+kernel/task_checkpoint.c,255,0,1,0,	    !(phase == CKPT_CANCELLED && cp->phase != PR_CKPT_COLLECTING)) {
+kernel/task_checkpoint.c,285,0,1,0,	    !current->signal->core_state)
+kernel/task_checkpoint.c,295,0,1,0,"	sigorsets(&set, &current->pending.signal,"
+kernel/task_checkpoint.c,296,0,1,0,		  &current->signal->shared_pending.signal);
+kernel/task_checkpoint.c,297,0,1,0,"	sigdelset(&set, SIGABRT);"
+kernel/task_checkpoint.c,298,0,1,0,	return !sigisemptyset(&set) ||
+kernel/task_checkpoint.c,299,0,1,0,	       (current->signal->flags & (SIGNAL_GROUP_EXIT | SIGNAL_STOP_STOPPED)) ||
+kernel/task_checkpoint.c,299,0,2,0,	       (current->signal->flags & (SIGNAL_GROUP_EXIT | SIGNAL_STOP_STOPPED)) ||
+kernel/task_checkpoint.c,300,0,0,0,	       (current->jobctl & JOBCTL_STOP_PENDING);
+kernel/task_checkpoint.c,308,0,0,0,	if (current->signal->flags & (SIGNAL_GROUP_EXIT | SIGNAL_STOP_STOPPED))
+kernel/task_checkpoint.c,314,0,0,0,			  &task->signal->shared_pending.signal);
+kernel/task_checkpoint.c,315,0,0,0,"		sigdelset(&set, SIGABRT);"
+kernel/task_checkpoint.c,316,0,0,0,		if (!sigisemptyset(&set) || task_is_stopped_or_traced(task) ||
+kernel/task_checkpoint.c,316,0,2,0,		if (!sigisemptyset(&set) || task_is_stopped_or_traced(task) ||
+kernel/task_checkpoint.c,317,0,0,0,		    task->jobctl & JOBCTL_STOP_PENDING)
+kernel/task_checkpoint.c,325,0,0,0,	struct robust_list_head __user *head = current->robust_list;
+kernel/task_checkpoint.c,328,0,0,0,	if (!list_empty(&current->pi_state_list))
+kernel/task_checkpoint.c,330,0,1,0,	if (!head)
+kernel/task_checkpoint.c,332,0,1,0,"	if (get_user(next, &head->list.next) ||"
+kernel/task_checkpoint.c,332,e0,3,0,"	if (get_user(next, &head->list.next) ||"
+kernel/task_checkpoint.c,333,0,1,0,"	    get_user(pending, &head->list_op_pending))"
+kernel/task_checkpoint.c,333,e0,3,0,"	    get_user(pending, &head->list_op_pending))"
+kernel/task_checkpoint.c,335,0,0,0,	return next == &head->list && !pending ? 0 : -EOPNOTSUPP;
+kernel/task_checkpoint.c,335,0,2,0,	return next == &head->list && !pending ? 0 : -EOPNOTSUPP;
+kernel/task_checkpoint.c,340,0,1,0,	return io_is_uring_fops(file) ? -EOPNOTSUPP : 0;
+kernel/task_checkpoint.c,350,0,0,0,	if (atomic64_read(&mm->pinned_vm))
+kernel/task_checkpoint.c,356,0,0,0,"	if (iterate_fd(current->files, 0, ckpt_file_check, NULL))"
+kernel/task_checkpoint.c,358,e0,0,0,	mmap_read_lock(mm);
+kernel/task_checkpoint.c,364,0,1,0,		    userfaultfd_armed(vma)) {
+kernel/task_checkpoint.c,369,0,1,0,		if (vma->vm_flags & VM_MTE) {
+kernel/task_checkpoint.c,375,e0,0,0,	mmap_read_unlock(mm);
+kernel/task_checkpoint.c,383,0,0,0,	if (task_work_pending(current))
+kernel/task_checkpoint.c,386,0,0,0,	if (current->io_uring)
+kernel/task_checkpoint.c,390,0,1,0,	if (ret)
+kernel/task_checkpoint.c,393,0,1,0,	if (ret)
+kernel/task_checkpoint.c,395,0,1,0,	entry->tid = current->clear_child_tid;
+kernel/task_checkpoint.c,402,0,1,0,	if (current->rseq) {
+kernel/task_checkpoint.c,405,0,1,0,"		if (get_user(cs, &current->rseq->rseq_cs))"
+kernel/task_checkpoint.c,405,e0,2,0,"		if (get_user(cs, &current->rseq->rseq_cs))"
+kernel/task_checkpoint.c,407,0,0,0,		if (cs)
+kernel/task_checkpoint.c,429,0,1,0,	if (is_child_reaper(task_pid(current)) || !current->mm)
+kernel/task_checkpoint.c,429,0,3,0,	if (is_child_reaper(task_pid(current)) || !current->mm)
+kernel/task_checkpoint.c,432,0,1,0,	if (!cp)
+kernel/task_checkpoint.c,438,0,0,0,	cp->epoch = atomic_long_inc_return(&checkpoint_epoch);
+kernel/task_checkpoint.c,439,0,0,0,	if ((long)cp->epoch <= 0) {
+kernel/task_checkpoint.c,448,0,0,0,	if (task_ckpt_busy(current)) {
+kernel/task_checkpoint.c,452,0,1,0,	if (current->signal->flags || current->signal->nr_threads != expected) {
+kernel/task_checkpoint.c,457,0,3,0,"		if (!same_thread_group(task, current) &&"
+kernel/task_checkpoint.c,458,0,1,0,		    (task->mm == current->mm || task->files == current->files ||
+kernel/task_checkpoint.c,458,0,3,0,		    (task->mm == current->mm || task->files == current->files ||
+kernel/task_checkpoint.c,458,0,4,0,		    (task->mm == current->mm || task->files == current->files ||
+kernel/task_checkpoint.c,459,0,0,0,		     task->sighand == current->sighand))
+kernel/task_checkpoint.c,464,0,1,0,		if (task->ptrace || task->flags & (PF_EXITING | PF_USER_WORKER) ||
+kernel/task_checkpoint.c,464,0,3,0,		if (task->ptrace || task->flags & (PF_EXITING | PF_USER_WORKER) ||
+kernel/task_checkpoint.c,464,0,5,0,		if (task->ptrace || task->flags & (PF_EXITING | PF_USER_WORKER) ||
+kernel/task_checkpoint.c,465,0,1,0,		    task->mm != current->mm || task->jobctl ||
+kernel/task_checkpoint.c,465,0,3,0,		    task->mm != current->mm || task->jobctl ||
+kernel/task_checkpoint.c,466,0,1,0,		    task->seccomp.mode || task_is_stopped_or_traced(task) ||
+kernel/task_checkpoint.c,466,0,3,0,		    task->seccomp.mode || task_is_stopped_or_traced(task) ||
+kernel/task_checkpoint.c,467,0,0,0,		    freezing(task) || cgroup_task_frozen(task))
+kernel/task_checkpoint.c,467,0,1,0,		    freezing(task) || cgroup_task_frozen(task))
+kernel/task_checkpoint.c,467,0,2,0,		    freezing(task) || cgroup_task_frozen(task))
+kernel/task_checkpoint.c,478,0,0,0,		get_task_struct(task);
+kernel/task_checkpoint.c,482,0,0,0,	if (cp->nr != expected) {
+kernel/task_checkpoint.c,486,0,0,0,	cp->old_mm = current->mm;
+kernel/task_checkpoint.c,487,0,0,0,	mmget(cp->old_mm);
+kernel/task_checkpoint.c,496,0,0,0,	read_unlock(&tasklist_lock);
+kernel/task_checkpoint.c,507,0,1,0,	struct task_ckpt_entry *entry = current->checkpoint_entry;
+kernel/task_checkpoint.c,512,0,1,0,	if (!entry || READ_ONCE(cp->phase) != PR_CKPT_COLLECTING)
+kernel/task_checkpoint.c,512,0,3,0,	if (!entry || READ_ONCE(cp->phase) != PR_CKPT_COLLECTING)
+kernel/task_checkpoint.c,514,0,1,0,	if (entry->arrived)
+kernel/task_checkpoint.c,517,0,0,0,	if (ret)
+kernel/task_checkpoint.c,520,0,0,0,	if (cp->phase != PR_CKPT_COLLECTING) {
+kernel/task_checkpoint.c,530,0,0,0,	last = atomic_inc_return(&cp->arrived) == cp->nr;
+kernel/task_checkpoint.c,541,0,0,0,		if (!mm) {
+kernel/task_checkpoint.c,546,0,1,0,		if (cp->phase == PR_CKPT_COLLECTING &&
+kernel/task_checkpoint.c,547,0,1,0,"		    time_before(jiffies, cp->deadline)) {"
+kernel/task_checkpoint.c,549,0,1,0,"			memcpy(cp->action, current->sighand->action, sizeof(cp->action));"
+kernel/task_checkpoint.c,549,0,2,0,"			memcpy(cp->action, current->sighand->action, sizeof(cp->action));"
+kernel/task_checkpoint.c,549,0,4,0,"			memcpy(cp->action, current->sighand->action, sizeof(cp->action));"
+kernel/task_checkpoint.c,549,0,5,0,"			memcpy(cp->action, current->sighand->action, sizeof(cp->action));"
+kernel/task_checkpoint.c,554,0,0,0,		if (mm)
+kernel/task_checkpoint.c,556,0,0,0,		if (READ_ONCE(cp->phase) == PR_CKPT_COLLECTING) {
+kernel/task_checkpoint.c,562,0,0,0,	clear_notify_signal();
+kernel/task_checkpoint.c,563,0,1,0,"	ret = wait_event_interruptible_timeout(cp->wait,"
+kernel/task_checkpoint.c,563,0,2,0,"	ret = wait_event_interruptible_timeout(cp->wait,"
+kernel/task_checkpoint.c,563,0,7,0,"	ret = wait_event_interruptible_timeout(cp->wait,"
+kernel/task_checkpoint.c,563,0,8,0,"	ret = wait_event_interruptible_timeout(cp->wait,"
+kernel/task_checkpoint.c,563,0,12,0,"	ret = wait_event_interruptible_timeout(cp->wait,"
+kernel/task_checkpoint.c,567,0,0,0,	if (ret <= 0) {
+kernel/task_checkpoint.c,568,0,0,-,		ret = ret ? -EINTR : -ETIMEDOUT;
+kernel/task_checkpoint.c,568,0,1,-,		ret = ret ? -EINTR : -ETIMEDOUT;
+kernel/task_checkpoint.c,571,0,0,0,	return READ_ONCE(cp->phase) == PR_CKPT_ARMED ? 0 : cp->error;
+kernel/task_checkpoint.c,616,0,0,0,		if (READ_ONCE(cp->phase) == PR_CKPT_RESTORING) {
+kernel/task_checkpoint.c,620,0,0,0,"		if (!ckpt_detach(cp, CKPT_DROPPING, -ECANCELED)) {"
+kernel/task_checkpoint.c,627,0,0,0,			if (fatal_signal_pending(current)) {
+kernel/task_checkpoint.c,631,0,0,0,"			if (time_after_eq(jiffies, deadline)) {"
+kernel/task_checkpoint.c,655,0,1,0,	if (flags & ~allowed || exit_signal || set_tid_size)
+kernel/task_checkpoint.c,657,0,0,0,	return (flags & required) == required ? 0 : -EINVAL;
+kernel/task_checkpoint.c,675,0,1,0,					  args->set_tid_size);
+kernel/task_checkpoint.c,677,0,1,0,	if (cp->phase != PR_CKPT_ARMED)
+kernel/task_checkpoint.c,679,0,1,0,	else if (flags_ret)
+kernel/task_checkpoint.c,681,0,1,0,	else if (current->signal->nr_threads + atomic_read(&cp->cloning) >=
+kernel/task_checkpoint.c,685,0,0,0,		atomic_inc(&cp->cloning);
+kernel/task_checkpoint.c,687,0,0,0,	if (ret)
+kernel/task_checkpoint.c,699,0,1,0,	if (!IS_ERR(task) &&
+kernel/task_checkpoint.c,700,0,1,0,	    (cp->phase == PR_CKPT_ARMED || cp->phase == PR_CKPT_RESTORING)) {
+kernel/task_checkpoint.c,701,0,0,0,		atomic_inc(&cp->newborn);
+kernel/task_checkpoint.c,703,0,0,0,		if (cp->phase == PR_CKPT_RESTORING)
+kernel/task_checkpoint.c,704,0,0,-,			set_notify_signal(task);
+kernel/task_checkpoint.c,704,e0,1,-,			set_notify_signal(task);
+kernel/task_checkpoint.c,706,0,0,0,	atomic_dec(&cp->cloning);
+kernel/task_checkpoint.c,716,0,3,0,	if (cp && !task->checkpoint_entry) {
+kernel/task_checkpoint.c,717,0,0,0,		atomic_dec(&cp->newborn);
+kernel/task_checkpoint.c,730,0,1,0,	if (cp->phase == PR_CKPT_COLLECTING || current->checkpoint_entry)
+kernel/task_checkpoint.c,732,0,1,0,	else if (cp->phase == PR_CKPT_ARMED && --cp->active == 0)
+kernel/task_checkpoint.c,732,0,2,0,	else if (cp->phase == PR_CKPT_ARMED && --cp->active == 0)
+kernel/task_checkpoint.c,732,0,3,0,	else if (cp->phase == PR_CKPT_ARMED && --cp->active == 0)
+kernel/task_checkpoint.c,742,0,1,0,"	if (time_after_eq(jiffies, cp->deadline) || fatal_signal_pending(current)) {"
+kernel/task_checkpoint.c,742,0,2,0,"	if (time_after_eq(jiffies, cp->deadline) || fatal_signal_pending(current)) {"
+kernel/task_checkpoint.c,746,0,0,0,	clear_notify_signal();
+kernel/task_checkpoint.c,762,0,1,0,	current->mm = mm;
+kernel/task_checkpoint.c,764,0,1,0,"	activate_mm(old, mm);"
+kernel/task_checkpoint.c,776,0,0,0,	struct task_ckpt_entry *entry = current->checkpoint_entry;
+kernel/task_checkpoint.c,782,0,0,0,	if (task_work_pending(current))
+kernel/task_checkpoint.c,788,0,2,0,	if (entry && arm64_ckpt_validate()) {
+kernel/task_checkpoint.c,794,0,1,0,	if (!bad)
+kernel/task_checkpoint.c,796,0,3,0,	if (entry && !entry->quiet) {
+kernel/task_checkpoint.c,798,0,0,0,		atomic_inc(&cp->quiet);
+kernel/task_checkpoint.c,804,0,0,0,	if (bad) {
+kernel/task_checkpoint.c,810,0,0,0,			if (!ckpt_wait(cp))
+kernel/task_checkpoint.c,819,0,4,0,		       atomic_read(&cp->newborn) || atomic_read(&cp->cloning)) {
+kernel/task_checkpoint.c,820,0,0,0,			if (!ckpt_wait(cp))
+kernel/task_checkpoint.c,823,0,0,0,		if (ckpt_validate_mm(cp->old_mm)) {
+kernel/task_checkpoint.c,829,0,0,0,			mmget(mm);
+kernel/task_checkpoint.c,840,0,0,0,	if (READ_ONCE(cp->phase) != PR_CKPT_RESTORING)
+kernel/task_checkpoint.c,848,0,0,0,	atomic_dec(&cp->reserved);
+kernel/task_checkpoint.c,863,0,0,0,	rseq_preempt(current);
+kernel/task_checkpoint.c,867,0,0,0,	current->blocked = entry->blocked;
+kernel/task_checkpoint.c,868,0,0,0,	clear_restore_sigmask();
+kernel/task_checkpoint.c,871,0,0,0,	if (arm64_ckpt_restore(&entry->arch)) {
+kernel/task_checkpoint.c,875,0,0,0,	atomic_inc(&cp->switched);
+kernel/task_checkpoint.c,879,0,0,0,			if (!ckpt_wait(cp))
+kernel/task_checkpoint.c,887,0,1,0,		bad = cp->phase != PR_CKPT_RESTORING || ckpt_group_pending(cp);
+kernel/task_checkpoint.c,887,0,2,0,		bad = cp->phase != PR_CKPT_RESTORING || ckpt_group_pending(cp);
+kernel/task_checkpoint.c,893,0,1,0,"			memcpy(current->sighand->action, cp->action, sizeof(cp->action));"
+kernel/task_checkpoint.c,899,0,0,0,		if (bad) {
+kernel/task_checkpoint.c,912,0,0,0,	clear_notify_signal();
+kernel/task_checkpoint.c,923,0,2,0,	if (READ_ONCE(cp->phase) == PR_CKPT_COLLECTING && signal_pending(current))
+kernel/task_checkpoint.c,923,0,4,0,	if (READ_ONCE(cp->phase) == PR_CKPT_COLLECTING && signal_pending(current))
+kernel/task_checkpoint.c,940,0,1,0,	if (!(current->signal->flags & SIGNAL_GROUP_EXIT) &&
+kernel/task_checkpoint.c,941,0,1,0,	    (cp->phase == PR_CKPT_ARMED || cp->phase == PR_CKPT_RESTORING)) {
+kernel/task_checkpoint.c,942,0,1,0,		if (cp->phase == PR_CKPT_ARMED) {
+kernel/task_checkpoint.c,947,0,0,0,			set_notify_signal(task);
+kernel/task_checkpoint.c,951,0,1,0,	if (restore) {
+kernel/task_checkpoint.c,969,0,1,0,	entry = current->checkpoint_entry;
+kernel/task_checkpoint.c,970,0,1,0,	if (entry && READ_ONCE(cp->phase) == PR_CKPT_RESTORING) {
+kernel/task_checkpoint.c,970,0,2,0,	if (entry && READ_ONCE(cp->phase) == PR_CKPT_RESTORING) {
+kernel/task_checkpoint.c,972,0,0,-,		if (restored)
+kernel/task_checkpoint.c,972,0,1,-,		if (restored)
+kernel/task_checkpoint.c,976,0,0,0,	if (!entry || READ_ONCE(cp->phase) != PR_CKPT_ARMED)
+kernel/task_checkpoint.c,978,0,0,0,	if (task_work_pending(current))
+kernel/task_checkpoint.c,980,0,0,0,	if (ckpt_empty_robust()) {
+kernel/task_checkpoint.c,981,0,0,-,"		if (!ckpt_detach(cp, CKPT_DROPPING, -EOPNOTSUPP))"
+kernel/task_checkpoint.c,981,0,1,-,"		if (!ckpt_detach(cp, CKPT_DROPPING, -EOPNOTSUPP))"
+kernel/task_checkpoint.c,986,0,1,0,	rseq_execve(current);
+kernel/task_checkpoint.c,990,0,1,0,	if (tid) {
+kernel/task_checkpoint.c,991,0,1,0,"		put_user(0, tid);"
+kernel/task_checkpoint.c,991,e0,2,0,"		put_user(0, tid);"
+kernel/task_checkpoint.c,999,0,0,0,	last = --cp->active == 0 && cp->phase == PR_CKPT_ARMED;
+kernel/task_checkpoint.c,999,0,2,0,	last = --cp->active == 0 && cp->phase == PR_CKPT_ARMED;
+kernel/task_checkpoint.c,999,0,3,0,	last = --cp->active == 0 && cp->phase == PR_CKPT_ARMED;
+kernel/task_checkpoint.c,1001,0,0,0,	if (restored)
+kernel/task_checkpoint.c,1004,0,0,0,	if (last) {
+kernel/task_checkpoint.c,1010,0,0,0,	clear_notify_signal();
+kernel/task_checkpoint.c,1011,0,1,0,"	wait_event_killable(cp->wait, READ_ONCE(cp->phase) != PR_CKPT_ARMED);"
+kernel/task_checkpoint.c,1015,0,0,0,		if (restored)
+kernel/task_checkpoint.c,1057,0,0,0,		if ((flags & (MAP_PRIVATE | MAP_ANONYMOUS)) !=
+kernel/task_checkpoint.c,1058,0,0,-,		    (MAP_PRIVATE | MAP_ANONYMOUS) || flags & ~allowed ||
+kernel/task_checkpoint.c,1058,0,1,-,		    (MAP_PRIVATE | MAP_ANONYMOUS) || flags & ~allowed ||
+kernel/task_checkpoint.c,1059,0,0,-,		    (long)regs->regs[4] != -1 || regs->regs[5] ||
+kernel/task_checkpoint.c,1059,0,1,-,		    (long)regs->regs[4] != -1 || regs->regs[5] ||
+kernel/task_checkpoint.c,1059,0,2,-,		    (long)regs->regs[4] != -1 || regs->regs[5] ||
+kernel/task_checkpoint.c,1059,0,3,-,		    (long)regs->regs[4] != -1 || regs->regs[5] ||
+kernel/task_checkpoint.c,1060,0,0,-,		    regs->regs[2] & ~(PROT_READ | PROT_WRITE | PROT_EXEC))
+kernel/task_checkpoint.c,1060,0,1,-,		    regs->regs[2] & ~(PROT_READ | PROT_WRITE | PROT_EXEC))
+kernel/task_checkpoint.c,1063,0,0,0,	if (nr == __NR_mprotect &&
+kernel/task_checkpoint.c,1064,0,0,-,	    regs->regs[2] & ~(PROT_READ | PROT_WRITE | PROT_EXEC))
+kernel/task_checkpoint.c,1064,0,1,-,	    regs->regs[2] & ~(PROT_READ | PROT_WRITE | PROT_EXEC))
+kernel/task_checkpoint.c,1067,0,0,0,		switch (regs->regs[2]) {
+kernel/task_checkpoint.c,1095,0,0,0,		switch (regs->regs[0]) {
+kernel/task_checkpoint_test.c,14,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags, 0, 0), 0);"
+kernel/task_checkpoint_test.c,15,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags | CLONE_CHILD_CLEARTID |"
+kernel/task_checkpoint_test.c,19,0,0,0,"			KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags & ~bit, 0, 0),"
+kernel/task_checkpoint_test.c,22,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags | CLONE_INTO_CGROUP, 0, 0),"
+kernel/task_checkpoint_test.c,24,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags | CLONE_NEWPID, 0, 0),"
+kernel/task_checkpoint_test.c,26,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags, SIGCHLD, 0), -EOPNOTSUPP);"
+kernel/task_checkpoint_test.c,27,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_clone_flags(flags, 0, 1), -EOPNOTSUPP);"
+kernel/task_checkpoint_test.c,32,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_WAIT | FUTEX_PRIVATE_FLAG), 0);"
+kernel/task_checkpoint_test.c,33,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_WAKE), 0);"
+kernel/task_checkpoint_test.c,34,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_CMP_REQUEUE), 0);"
+kernel/task_checkpoint_test.c,35,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_WAIT_BITSET |"
+kernel/task_checkpoint_test.c,37,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_LOCK_PI), -EOPNOTSUPP);"
+kernel/task_checkpoint_test.c,38,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_LOCK_PI2), -EOPNOTSUPP);"
+kernel/task_checkpoint_test.c,39,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(FUTEX_CMP_REQUEUE_PI), -EOPNOTSUPP);"
+kernel/task_checkpoint_test.c,40,0,0,0,"	KUNIT_EXPECT_EQ(test, task_ckpt_futex_command(0x1234), -EOPNOTSUPP);"

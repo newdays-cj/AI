@@ -1,0 +1,1 @@
+genhtml /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/coverage.info --output-directory /home/chenjun/workspace/sigabrt-mm-rollback-demo/tests/gcov/coverage_html --branch-coverage

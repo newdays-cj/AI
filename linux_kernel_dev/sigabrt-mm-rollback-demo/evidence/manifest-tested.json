@@ -1,0 +1,87 @@
+{
+  "archive_version": 2,
+  "commit": "de4fb9a1670f22cb3f164ae4016380447d6074ac",
+  "base_commit": "bf0f3291083ec9e086dc329b5d81fccdc21b10a2",
+  "commit_subject": "task: add experimental ARM64 thread-group checkpoint demo",
+  "patch": "patches/0001-task-add-experimental-ARM64-thread-group-checkpoint-.patch",
+  "patch_sha256": "828b824c127612565fff853583baade9c9f36c7874b98c791bb778489ccd1e4f",
+  "binary_origin": "preserved pre-commit build; committed source and recorded tested hashes match",
+  "kernel_files": {
+    "MAINTAINERS": "871084c8b1b45e5688795b8b921299f78ee2f1790a94b422e3a511a55fc7473b",
+    "Documentation/userspace-api/index.rst": "4442260415d1e35ef3ebdd82d630403ca3e826817dcf58ce1ebf8c3f11ddb8e7",
+    "arch/arm64/kernel/Makefile": "7ee1b99fdecf3721ddad501bdefb90200f100303b35659c926f370b1092cda0f",
+    "arch/arm64/kernel/signal.c": "5f9e798c7e86df21d2a6603a6a26fbaebc37a485bdcb8daba2abaf0efd1ae760",
+    "arch/arm64/kernel/syscall.c": "7abd8d69f4712b6ee6f6ce356ac2bb9cbe065c92b6a6cf995d43d6438c07a93f",
+    "arch/arm64/kernel/vdso.c": "6b227a0dba0ef139d8a2e65003bde1455705331754c8139eb78632e5ddd3b461",
+    "include/linux/sched.h": "9cde546daf00a81e5d82df49f1d0a0d1c4758f32c6b82b001f77dcc85adb5a78",
+    "include/linux/sched/signal.h": "b2e8a231e9e42451c1a1ca7d74fb66f4f272163b74434dc3187c516dfb868cbb",
+    "include/linux/signal_types.h": "aec5e5d62050390bbf4abbc996a9d358ddfe24e725cbfd53fe420041fa642c47",
+    "include/uapi/linux/prctl.h": "0af19abd10e3930c196f4101d7e5fcb06d6e4ecd5d379546238c2483f277e022",
+    "init/Kconfig": "29c6fb88e4506b469dc138839de0836905f75f6dd8a1592880b9aefbf5f034a6",
+    "kernel/Makefile": "d7bd637d0aae6f8c136523e685b6d876976636574e92e641d74696a8b9a81097",
+    "kernel/cgroup/cgroup.c": "091cb03e344dcbfcd17a013f2161013cff3cca147528d83f3a4ccb28f0f50eb5",
+    "kernel/cgroup/legacy_freezer.c": "4e97e33b2eb2924edec1cddcdc79f0348136748a34304cc55ba149a4b65a8810",
+    "kernel/exit.c": "a3fedbefd2c9e527a08ea68c05cbb582b2b8fcf1c63811616256a5c8bbb1643a",
+    "kernel/fork.c": "dfaf6adfce6c298b2b08cfb833f31622c118262ffd772a85b5d2781253db15e0",
+    "kernel/futex/syscalls.c": "06c723b67ea89cb27050e6aa93b4e590c950cfd35fb6a9671b80e2a48bd53669",
+    "kernel/ptrace.c": "2037e1791d55ebcde9e89760499a115142805d150af48df112ef86efb6b76210",
+    "kernel/signal.c": "c33cda186828798af8c8cda27f6a00cce2adddec60dbcb06f455c4ac2f1f036d",
+    "kernel/sys.c": "5e8174b1ac07b27ff2c90451ecbed7a91ab8fc390d88e32c390079aed24ed586",
+    "Documentation/userspace-api/task-checkpoint-demo.rst": "56ad48380f0c181191d7da4dbd452df0f577494750dab112044d9592af2d77f7",
+    "arch/arm64/include/asm/task_checkpoint.h": "d5cbcde41d76584987e812fbb318d0cb718062b15e8ec6eaeaa622533c484458",
+    "arch/arm64/kernel/task_checkpoint.c": "99ac35f47db7f0a06483644254b384e3a54ad9bfb3590b9e9e0714f76257f515",
+    "include/linux/task_checkpoint.h": "c024dfef2ade080d5ffd715bca082e46dbf1ba163d86e99b65f697b6618c634d",
+    "kernel/task_checkpoint.c": "2ea1d2496b93133190e4597aca0c4cf1a00a40b108ef3578a4b2e7fd1c09d352",
+    "kernel/task_checkpoint_test.c": "dfd94832cc9328dd8dd3fbd4fe6ebdf144b9346300593df17b28f42efa3283ff"
+  },
+  "test_sources": {
+    "tests/archive.py": "302676557ca63dd02638d2341fb49f825562ed2ed2cbdbb55e8ac8fefb1eb149",
+    "tests/build.py": "16e2e4d4f8d529b8c1fb6e1306014217d5c085efcb33f01e5cae9a40f42f744d",
+    "tests/demo.c": "51884ce69ca7c0af5746a6b968db41d7e89a324fc31e5c6120ff5b43d41bf8d2",
+    "tests/disabled.c": "9f0307da3b7481b4d2109dbcee0b83c856b91088ca32cbc47bafebd27ad447e4",
+    "tests/edges.c": "8d3ba67ef07caee65286089ba8cfbd6fdbaaf378908e833392c2aed4d65d0037",
+    "tests/external.c": "e14f5e656b8996c06899e82327ac5198ab69575ae6df045f094bd62a6e2bbc0b",
+    "tests/init.sh": "1b79e57ff80e961dd36be2ca0b5fa6b15a8abc8cce3625cdb033cfa834e6f541",
+    "tests/init_disabled.sh": "cfea406d9d47d365875945b759e3c3067192fdbc616f3fbfedbeff6e2e1ecd96",
+    "tests/run_qemu.py": "cf0c3f682914e66d24f6dd9bb96301b6e6a8da1d2e8b7158f4ab35be725c540d",
+    "tests/run_tests.sh": "d4a1c45094e4313e548fa4d8a6ea6048c109ba0932a50062a25fc08c740c8fca",
+    "tests/README.md": "eff62fa90734f0ff7bbc85a3e9928dbee91a843e8353cf976a40a8d760e284cd"
+  },
+  "binary_files": {
+    "Image": {
+      "sha256": "1755d146ed046c1524aefae0f59e7b1598a98a4766fde16491b723f35d543083",
+      "bytes": 47340032
+    },
+    "modules/task_checkpoint_test.ko": {
+      "sha256": "0026b564f509d396ef284b31dfb0423615fce3248499637266d6935bd34ae438",
+      "bytes": 320768
+    },
+    "config": {
+      "sha256": "7d4eeb52ced789c6fd320b3316b9106ca3d66bcb163bbc4530df5f60dd3c8197",
+      "bytes": 207540
+    },
+    "initramfs.cpio": {
+      "sha256": "43d16ffc5262befef7b9f4a0b51fc8085006ffd1deb4324accff7f430ecb5372",
+      "bytes": 8296040
+    },
+    "tests/checkpoint-demo": {
+      "sha256": "627c6d002944eca0716af7bb75bca69b0f816064c7ac5ad3d8e19b416ae713c5",
+      "bytes": 970296
+    },
+    "tests/checkpoint-edges": {
+      "sha256": "5dc15f65a864b7a2b098a74e6c7e60452bdbbf8d04410e42d04ba4c7a7ffdf7f",
+      "bytes": 943216
+    },
+    "tests/checkpoint-external": {
+      "sha256": "88ab52e96fce6aea56fef18e3617ded231aeec1ee93c14bb24f1baedf0f7d3bc",
+      "bytes": 842968
+    },
+    "tests/checkpoint-disabled": {
+      "sha256": "f6e2b31a8a7dca81ef8da2abb11a16b4643b525bbb2e767fa98f904b0a48f0e0",
+      "bytes": 921400
+    }
+  },
+  "tested_image": "1755d146ed046c1524aefae0f59e7b1598a98a4766fde16491b723f35d543083",
+  "tested_module": "0026b564f509d396ef284b31dfb0423615fce3248499637266d6935bd34ae438",
+  "tested_config": "7d4eeb52ced789c6fd320b3316b9106ca3d66bcb163bbc4530df5f60dd3c8197"
+}

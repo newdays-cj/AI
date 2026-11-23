@@ -1,0 +1,50 @@
+commit de4fb9a1670f22cb3f164ae4016380447d6074ac
+Author:     Chen Jun <newdays-cj@live.com>
+AuthorDate: Wed Nov 18 15:33:24 2026 +0800
+Commit:     Chen Jun <newdays-cj@live.com>
+CommitDate: Wed Nov 18 15:33:24 2026 +0800
+
+    task: add experimental ARM64 thread-group checkpoint demo
+    
+    Add a privileged, cooperative, one-shot checkpoint interface for
+    native ARM64 thread groups behind a default-off Kconfig option.
+    
+    Retain exiting original tasks so pthread joins can complete without
+    losing their identities. On a default SIGABRT, remove newly created
+    threads and restore the shared address space and original user contexts.
+    Coordinate fork, exit, signals, ptrace and cgroup operations during the
+    checkpoint lifecycle.
+    
+    Include KUnit admission tests and document the restricted resource model.
+    Validated with enabled and disabled ARM64 builds, KUnit, and QEMU
+    functional, fault-injection and lifecycle tests.
+    
+    Signed-off-by: Chen Jun <newdays-cj@live.com>
+
+ Documentation/userspace-api/index.rst              |    1 +
+ .../userspace-api/task-checkpoint-demo.rst         |   80 ++
+ MAINTAINERS                                        |    9 +
+ arch/arm64/include/asm/task_checkpoint.h           |   22 +
+ arch/arm64/kernel/Makefile                         |    5 +
+ arch/arm64/kernel/signal.c                         |   11 +-
+ arch/arm64/kernel/syscall.c                        |    5 +
+ arch/arm64/kernel/task_checkpoint.c                |   86 ++
+ arch/arm64/kernel/vdso.c                           |    9 +
+ include/linux/sched.h                              |    4 +
+ include/linux/sched/signal.h                       |    4 +
+ include/linux/signal_types.h                       |    3 +
+ include/linux/task_checkpoint.h                    |   86 ++
+ include/uapi/linux/prctl.h                         |   12 +
+ init/Kconfig                                       |   21 +
+ kernel/Makefile                                    |    7 +
+ kernel/cgroup/cgroup.c                             |   29 +-
+ kernel/cgroup/legacy_freezer.c                     |   13 +-
+ kernel/exit.c                                      |    8 +
+ kernel/fork.c                                      |   45 +-
+ kernel/futex/syscalls.c                            |    6 +-
+ kernel/ptrace.c                                    |   29 +-
+ kernel/signal.c                                    |   75 +-
+ kernel/sys.c                                       |    3 +
+ kernel/task_checkpoint.c                           | 1106 ++++++++++++++++++++
+ kernel/task_checkpoint_test.c                      |   55 +
+ 26 files changed, 1717 insertions(+), 17 deletions(-)

@@ -1,0 +1,407 @@
+File 'kernel/task_checkpoint_test.c'
+Lines executed:100.00% of 23
+Branches executed:100.00% of 34
+Taken at least once:55.88% of 34
+Calls executed:50.00% of 30
+Creating 'task_checkpoint_test.c.gcov'
+
+Lines executed:100.00% of 23
+
+File 'kernel/task_checkpoint.c'
+Lines executed:91.34% of 635
+Branches executed:95.62% of 594
+Taken at least once:65.66% of 594
+Calls executed:89.03% of 237
+Creating 'task_checkpoint.c.gcov'
+
+File 'arch/arm64/include/asm/current.h'
+Lines executed:100.00% of 4
+Branches executed:100.00% of 110
+Taken at least once:60.00% of 110
+Calls executed:95.35% of 43
+Creating 'current.h.gcov'
+
+File 'include/linux/task_work.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+No calls
+Creating 'task_work.h.gcov'
+
+File 'include/linux/sched.h'
+Lines executed:100.00% of 19
+Branches executed:82.61% of 46
+Taken at least once:45.65% of 46
+Calls executed:83.33% of 6
+Creating 'sched.h.gcov'
+
+File 'arch/arm64/include/asm/uaccess.h'
+Lines executed:88.89% of 9
+Branches executed:100.00% of 46
+Taken at least once:50.00% of 46
+Calls executed:100.00% of 13
+Creating 'uaccess.h.gcov'
+
+File 'include/linux/thread_bits.h'
+Lines executed:100.00% of 8
+Branches executed:48.72% of 78
+Taken at least once:25.64% of 78
+Calls executed:93.33% of 15
+Creating 'thread_bits.h.gcov'
+
+File 'include/asm-generic/bitops/generic-non-atomic.h'
+Lines executed:58.33% of 12
+No branches
+No calls
+Creating 'generic-non-atomic.h.gcov'
+
+File 'include/linux/bitops.h'
+Lines executed:0.00% of 3
+No branches
+No calls
+Creating 'bitops.h.gcov'
+
+File 'include/asm-generic/access_ok.h'
+Lines executed:100.00% of 5
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+No calls
+Creating 'access_ok.h.gcov'
+
+File 'include/linux/spinlock.h'
+Lines executed:100.00% of 16
+Branches executed:100.00% of 92
+Taken at least once:56.52% of 92
+Calls executed:96.63% of 89
+Creating 'spinlock.h.gcov'
+
+File 'include/linux/spinlock_api_smp.h'
+Lines executed:100.00% of 18
+Branches executed:100.00% of 52
+Taken at least once:53.85% of 52
+Calls executed:96.70% of 91
+Creating 'spinlock_api_smp.h.gcov'
+
+File 'arch/arm64/include/asm/irqflags.h'
+Lines executed:100.00% of 14
+No branches
+Calls executed:96.67% of 90
+Creating 'irqflags.h.gcov'
+
+File 'include/asm-generic/qspinlock.h'
+Lines executed:100.00% of 7
+Branches executed:100.00% of 52
+Taken at least once:53.85% of 52
+Calls executed:87.30% of 63
+Creating 'qspinlock.h.gcov'
+
+File 'include/linux/atomic/atomic-instrumented.h'
+Lines executed:100.00% of 56
+Branches executed:100.00% of 130
+Taken at least once:59.23% of 130
+Calls executed:89.06% of 64
+Creating 'atomic-instrumented.h.gcov'
+
+File 'include/linux/atomic/atomic-arch-fallback.h'
+Lines executed:89.55% of 67
+Branches executed:94.05% of 168
+Taken at least once:58.93% of 168
+Calls executed:88.31% of 77
+Creating 'atomic-arch-fallback.h.gcov'
+
+File 'arch/arm64/include/asm/cmpxchg.h'
+Lines executed:100.00% of 6
+Branches executed:93.94% of 66
+Taken at least once:60.61% of 66
+Calls executed:62.75% of 51
+Creating 'cmpxchg.h.gcov'
+
+File 'arch/arm64/include/asm/lse.h'
+Lines executed:100.00% of 2
+Branches executed:95.65% of 92
+Taken at least once:47.83% of 92
+Calls executed:63.77% of 138
+Creating 'lse.h.gcov'
+
+File 'arch/arm64/include/asm/alternative-macros.h'
+Lines executed:100.00% of 5
+Branches executed:95.65% of 92
+Taken at least once:47.83% of 92
+Calls executed:95.65% of 92
+Creating 'alternative-macros.h.gcov'
+
+File 'arch/arm64/include/asm/atomic_lse.h'
+Lines executed:0.00% of 18
+No branches
+Calls executed:0.00% of 46
+Creating 'atomic_lse.h.gcov'
+
+File 'arch/arm64/include/asm/atomic_ll_sc.h'
+Lines executed:100.00% of 8
+No branches
+Calls executed:95.65% of 46
+Creating 'atomic_ll_sc.h.gcov'
+
+File 'include/linux/sched/signal.h'
+Lines executed:100.00% of 24
+Branches executed:80.56% of 72
+Taken at least once:48.61% of 72
+Calls executed:85.00% of 20
+Creating 'signal.h.gcov'
+
+File 'include/asm-generic/bitops/instrumented-atomic.h'
+Lines executed:100.00% of 10
+Branches executed:83.33% of 24
+Taken at least once:45.83% of 24
+Calls executed:93.33% of 15
+Creating 'instrumented-atomic.h.gcov'
+
+File 'include/asm-generic/bitops/atomic.h'
+Lines executed:100.00% of 12
+Branches executed:83.33% of 24
+Taken at least once:45.83% of 24
+Calls executed:93.33% of 15
+Creating 'atomic.h.gcov'
+
+File 'include/linux/atomic/atomic-long.h'
+Lines executed:100.00% of 8
+Branches executed:85.71% of 28
+Taken at least once:46.43% of 28
+Calls executed:93.75% of 16
+Creating 'atomic-long.h.gcov'
+
+File 'arch/arm64/include/asm/atomic.h'
+Lines executed:100.00% of 10
+Branches executed:96.55% of 58
+Taken at least once:48.28% of 58
+Calls executed:66.67% of 84
+Creating 'atomic.h.gcov'
+
+File 'include/linux/sched/mm.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+Calls executed:100.00% of 2
+Creating 'mm.h.gcov'
+
+File 'include/linux/fortify-string.h'
+Lines executed:73.33% of 15
+Branches executed:92.86% of 28
+Taken at least once:46.43% of 28
+Calls executed:0.00% of 5
+Creating 'fortify-string.h.gcov'
+
+File 'include/linux/sched/task.h'
+Lines executed:100.00% of 15
+Branches executed:100.00% of 6
+Taken at least once:66.67% of 6
+Calls executed:100.00% of 7
+Creating 'task.h.gcov'
+
+File 'include/asm-generic/mmu_context.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+Calls executed:100.00% of 1
+Creating 'mmu_context.h.gcov'
+
+File 'arch/arm64/include/asm/mmu_context.h'
+Lines executed:46.67% of 15
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+Calls executed:50.00% of 4
+Creating 'mmu_context.h.gcov'
+
+File 'include/linux/mm_types.h'
+Lines executed:100.00% of 2
+No branches
+Calls executed:100.00% of 1
+Creating 'mm_types.h.gcov'
+
+File 'include/linux/signal.h'
+Lines executed:100.00% of 12
+Branches executed:77.78% of 18
+Taken at least once:38.89% of 18
+No calls
+Creating 'signal.h.gcov'
+
+File 'include/linux/err.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+No calls
+Creating 'err.h.gcov'
+
+File 'include/linux/delay.h'
+Lines executed:100.00% of 3
+No branches
+Calls executed:100.00% of 2
+Creating 'delay.h.gcov'
+
+File 'include/linux/pid.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+No calls
+Creating 'pid.h.gcov'
+
+File 'include/linux/slab.h'
+Lines executed:100.00% of 4
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+Calls executed:100.00% of 1
+Creating 'slab.h.gcov'
+
+File 'include/linux/refcount.h'
+Lines executed:90.00% of 40
+Branches executed:100.00% of 38
+Taken at least once:60.53% of 38
+Calls executed:64.29% of 14
+Creating 'refcount.h.gcov'
+
+File 'include/linux/list.h'
+Lines executed:100.00% of 5
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+Calls executed:100.00% of 1
+Creating 'list.h.gcov'
+
+File 'include/linux/rwlock_api_smp.h'
+Lines executed:100.00% of 8
+Branches executed:100.00% of 4
+Taken at least once:50.00% of 4
+Calls executed:100.00% of 5
+Creating 'rwlock_api_smp.h.gcov'
+
+File 'include/asm-generic/qrwlock.h'
+Lines executed:85.71% of 7
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+Calls executed:75.00% of 4
+Creating 'qrwlock.h.gcov'
+
+File 'include/linux/freezer.h'
+Lines executed:66.67% of 3
+Branches executed:66.67% of 6
+Taken at least once:33.33% of 6
+Calls executed:50.00% of 2
+Creating 'freezer.h.gcov'
+
+File 'arch/arm64/include/asm/jump_label.h'
+Lines executed:50.00% of 4
+Branches executed:100.00% of 8
+Taken at least once:50.00% of 8
+Calls executed:50.00% of 8
+Creating 'jump_label.h.gcov'
+
+File 'include/linux/cgroup.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+No calls
+Creating 'cgroup.h.gcov'
+
+File 'include/linux/mmap_lock.h'
+Lines executed:81.25% of 16
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+Calls executed:66.67% of 9
+Creating 'mmap_lock.h.gcov'
+
+File 'include/linux/jump_label.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 6
+Taken at least once:50.00% of 6
+Calls executed:66.67% of 9
+Creating 'jump_label.h.gcov'
+
+File 'include/linux/userfaultfd_k.h'
+Lines executed:100.00% of 2
+Branches executed:100.00% of 2
+Taken at least once:50.00% of 2
+No calls
+Creating 'userfaultfd_k.h.gcov'
+
+File 'include/linux/mm.h'
+Lines executed:100.00% of 2
+No branches
+Calls executed:100.00% of 1
+Creating 'mm.h.gcov'
+
+File 'include/linux/rcupdate.h'
+Lines executed:100.00% of 15
+Branches executed:100.00% of 4
+Taken at least once:100.00% of 4
+Calls executed:100.00% of 7
+Creating 'rcupdate.h.gcov'
+
+File 'include/linux/workqueue.h'
+Lines executed:100.00% of 4
+No branches
+Calls executed:100.00% of 1
+Creating 'workqueue.h.gcov'
+
+Lines executed:90.36% of 1162
+
+File 'arch/arm64/kernel/task_checkpoint.c'
+Lines executed:100.00% of 43
+Branches executed:100.00% of 32
+Taken at least once:56.25% of 32
+Calls executed:100.00% of 18
+Creating 'task_checkpoint.c.gcov'
+
+File 'arch/arm64/include/asm/current.h'
+Lines executed:100.00% of 4
+Branches executed:100.00% of 16
+Taken at least once:50.00% of 16
+Calls executed:100.00% of 6
+Creating 'current.h.gcov'
+
+File 'include/linux/sched/task_stack.h'
+Lines executed:100.00% of 2
+No branches
+Calls executed:100.00% of 1
+Creating 'task_stack.h.gcov'
+
+File 'arch/arm64/include/asm/ptrace.h'
+Lines executed:100.00% of 2
+No branches
+Calls executed:100.00% of 1
+Creating 'ptrace.h.gcov'
+
+File 'arch/arm64/include/asm/pointer_auth.h'
+Lines executed:57.14% of 7
+Branches executed:50.00% of 8
+Taken at least once:25.00% of 8
+Calls executed:27.27% of 11
+Creating 'pointer_auth.h.gcov'
+
+File 'arch/arm64/include/asm/cpufeature.h'
+Lines executed:78.95% of 19
+Branches executed:55.56% of 18
+Taken at least once:27.78% of 18
+Calls executed:75.00% of 8
+Creating 'cpufeature.h.gcov'
+
+File 'arch/arm64/include/asm/alternative-macros.h'
+Lines executed:75.00% of 8
+Branches executed:66.67% of 12
+Taken at least once:33.33% of 12
+Calls executed:100.00% of 4
+Creating 'alternative-macros.h.gcov'
+
+File 'include/asm-generic/bitops/generic-non-atomic.h'
+Lines executed:28.57% of 7
+Branches executed:0.00% of 4
+Taken at least once:0.00% of 4
+No calls
+Creating 'generic-non-atomic.h.gcov'
+
+File 'include/linux/thread_bits.h'
+Lines executed:100.00% of 2
+Branches executed:33.33% of 12
+Taken at least once:16.67% of 12
+No calls
+Creating 'thread_bits.h.gcov'
+
+Lines executed:85.11% of 94

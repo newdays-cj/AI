@@ -1,0 +1,6 @@
+[    0.283525][    T1] pci-host-generic 4010000000.pcie: Memory resource size exceeds max for 32 bits
+[    0.706076][    T1] integrity: Unable to open file: /etc/keys/x509_ima.der (-2)
+[    0.706123][    T1] integrity: Unable to open file: /etc/keys/x509_evm.der (-2)
+CKPT_DISABLED PASS
+CKPT_DISABLED_EXIT=0
+[    0.894007][  T147] reboot: Power down

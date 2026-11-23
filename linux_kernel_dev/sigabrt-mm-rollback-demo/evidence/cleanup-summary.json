@@ -1,0 +1,518 @@
+{
+  "root": "/home/chenjun/workspace/sigabrt-mm-rollback-demo",
+  "removed_file_or_link_count": 82,
+  "removed_logical_bytes": 41423574,
+  "removed": [
+    {
+      "path": ".config.old",
+      "bytes": 204902,
+      "sha256": "095c6e7aeb1cddc93029344ff8d3f832aa34ec752d0792aca3bfe856990d040a"
+    },
+    {
+      "path": ".config.disabled.old",
+      "bytes": 204920,
+      "sha256": "6075eb98571093dbaebbfa5d9e3d3b70f7b98b6c6f4f2702cca1326973a5a26e"
+    },
+    {
+      "path": "sources.tar.gz",
+      "bytes": 811828,
+      "sha256": "f3860e5ce16402b2d76a62ead967472ef5954b69d5a5fd332e6449cf928d32c2"
+    },
+    {
+      "path": "artifacts.tar.gz",
+      "bytes": 25479143,
+      "sha256": "f44402afd5fd49619a9365c24030b164e3ddec4a8ed1afa23521c66be74d3a4e"
+    },
+    {
+      "path": "SHA256SUMS",
+      "bytes": 955,
+      "sha256": "f09a690b884efdbe165873db20451768ad04b247173ffd2ed2bd6c37411d308a"
+    },
+    {
+      "path": "archive-verify.log",
+      "bytes": 393,
+      "sha256": "6dd868b177044dfed93ba9bdb26d87903a085cd37840c96d8883d4b1ec6283da"
+    },
+    {
+      "path": "history/pre-commit/manifest.json",
+      "bytes": 4997,
+      "sha256": "1079a7035e61d79aed5436031d864eb201db8e9a3e95f7841c6933bb192e513f"
+    },
+    {
+      "path": "history/pre-commit/task-checkpoint-demo.diff",
+      "bytes": 67305,
+      "sha256": "864f5e73fb3f2d64207dc5830158432da1c04bbba09d2573b62360901ef95634"
+    },
+    {
+      "path": "history/pre-commit/sources.tar.gz",
+      "bytes": 323692,
+      "sha256": "5596c40a5fb09f1ed731b6d7833ddc1f8c67fcfa05ed4abc9cf7fcbf1836e40e"
+    },
+    {
+      "path": "history/pre-commit/checkpatch.log",
+      "bytes": 201,
+      "sha256": "4da0fa4a419ee73a39a7958a7c4443cfe7775d618dee83e561cdfd527b91a7b3"
+    },
+    {
+      "path": "history/pre-commit/archive-check.log",
+      "bytes": 34,
+      "sha256": "afd8695f04ca6d2bc133b87856966be9d3ae7857942de3c32cfc1fd96054714c"
+    },
+    {
+      "path": "patches/0001-task-add-experimental-ARM64-thread-group-checkpoint-.patch",
+      "bytes": 69578,
+      "sha256": "828b824c127612565fff853583baade9c9f36c7874b98c791bb778489ccd1e4f"
+    },
+    {
+      "path": "kernel-kb/linux/home/chenjun/Git/OLK-6.6-2/kernel/overview.json",
+      "bytes": 334659,
+      "sha256": "599943324b830f33a34907834aac30b4e6047f1cb9ab4b1fd806fbdfb744ffad"
+    },
+    {
+      "path": "tests/checkpoint-demo",
+      "bytes": 970296,
+      "sha256": "627c6d002944eca0716af7bb75bca69b0f816064c7ac5ad3d8e19b416ae713c5"
+    },
+    {
+      "path": "tests/checkpoint-disabled",
+      "bytes": 921400,
+      "sha256": "f6e2b31a8a7dca81ef8da2abb11a16b4643b525bbb2e767fa98f904b0a48f0e0"
+    },
+    {
+      "path": "tests/checkpoint-edges",
+      "bytes": 943216,
+      "sha256": "5dc15f65a864b7a2b098a74e6c7e60452bdbbf8d04410e42d04ba4c7a7ffdf7f"
+    },
+    {
+      "path": "tests/checkpoint-external",
+      "bytes": 842968,
+      "sha256": "88ab52e96fce6aea56fef18e3617ded231aeec1ee93c14bb24f1baedf0f7d3bc"
+    },
+    {
+      "path": "tests/initramfs.cpio",
+      "bytes": 8296040,
+      "sha256": "43d16ffc5262befef7b9f4a0b51fc8085006ffd1deb4324accff7f430ecb5372"
+    },
+    {
+      "path": "tests/qemu_stress_100.log",
+      "bytes": 121126,
+      "sha256": "4cd6bcd869c095ef69503170da8145ff65083ca0334c79c3552d3eb76676e57a"
+    },
+    {
+      "path": "tests/__pycache__/build.cpython-312.pyc",
+      "bytes": 7371,
+      "sha256": "a113477b57aab9767f8b0935543ca60b8046a11be2bc0556c3f64bcf373c6e04"
+    },
+    {
+      "path": "tests/__pycache__/run_qemu.cpython-312.pyc",
+      "bytes": 10223,
+      "sha256": "604b8d3c747b0112f7e68f6e8bbb91533cb531e136bcf8b47f01f1f4f170f1c6"
+    },
+    {
+      "path": "tests/__pycache__/archive.cpython-312.pyc",
+      "bytes": 16505,
+      "sha256": "c1a43e992f3515ef25e5bc03022c85e4141e07815a59b9269a180a5d3eb5f2e6"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic.h.gcov",
+      "bytes": 14732,
+      "sha256": "875f2b21f8972e50bc00b4cdbb45bac4ba60873c82289792ca36dac8ca3e4440"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/lse.h.gcov",
+      "bytes": 8435,
+      "sha256": "c1bf93c08aa6f35f75ad27b56294d5959e4722104a444dc21c504b092ed2b8e2"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/jump_label.h.gcov",
+      "bytes": 26497,
+      "sha256": "4e2aff7aad397e200fabee372e7a692bb1f593deeb579d9304f289520ce32d26"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/signal.h.gcov",
+      "bytes": 22802,
+      "sha256": "6891ef32926f52a7561e7c0b9df28bd7d607d31b6519840c5b62bece9442b357"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/err.h.gcov",
+      "bytes": 5753,
+      "sha256": "ff6e5d25951f14f136b08eb5b95d5a0f6720d50d677585107f1f14f36fd98c1e"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/kernel",
+      "bytes": 34,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/kernel"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/userfaultfd_k.h.gcov",
+      "bytes": 15702,
+      "sha256": "a3cce12249e2c9ecdf97883dc13fea71ecc2dfb5b8a6aa589d0b08b4db1d53ea"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/qrwlock.h.gcov",
+      "bytes": 7054,
+      "sha256": "5291170d1001bfb4707b249fc2ddf8f13e249b290b11e2074b332f16bccdb1fd"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/bitops.h.gcov",
+      "bytes": 16277,
+      "sha256": "d837f5a3599d7a52ad8aa2fe29d7a6082a258ecd014fcd3b325c9a1ee300ec39"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/refcount.h.gcov",
+      "bytes": 25919,
+      "sha256": "b26dcf2d2dacc2d4915df9d586672a8ec0479baf4818b79049ed1877868b8f44"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/cgroup.h.gcov",
+      "bytes": 52027,
+      "sha256": "f8e32910dadba3ea980a4a676576d91d3b440da83e30ded0fb7f415caa24b430"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_work.h.gcov",
+      "bytes": 2555,
+      "sha256": "691066da27f80eff5ec21ed259fa0ceb99c4b467e4b9eb0c581a906cc1f793ed"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/current.h.gcov",
+      "bytes": 5365,
+      "sha256": "fe74e7b1314ac3b0ff4eb2143eb9be97b68ef88e6e7ea0ca2ae4742b98c961e4"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/workqueue.h.gcov",
+      "bytes": 39818,
+      "sha256": "69481a5713ef74160a2ab810c4bf7d3c388698378855c91d870ed41a4c64d9fe"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/mm.h.gcov",
+      "bytes": 213084,
+      "sha256": "fc75d293a8ad63e2002775b1cb819876fb3a6fd67750b71acbe0616c3b7dcb3a"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/thread_bits.h.gcov",
+      "bytes": 6768,
+      "sha256": "4ea18938a632336f911c3b1454702551c26ad4baa2590354543a788dc83b6a14"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint_test.c.gcov",
+      "bytes": 4954,
+      "sha256": "608c0b2a53a345bdb08c499c4d5c19d1f63372fb425789b1eae5f6e6ddd75b4f"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/mm_types.h.gcov",
+      "bytes": 71218,
+      "sha256": "30762d3af9e144a05c50bafaec3563a079c3a46864e3dcddbaf1c69ff3f11c2c"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/delay.h.gcov",
+      "bytes": 4393,
+      "sha256": "e3129c1d7ae9f46bd3a460ba0e4afbf3acf81e57f2fe04678c2afae3619822b5"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/list.h.gcov",
+      "bytes": 54572,
+      "sha256": "49d371d3e7580dd6126d8534731bbd34c3bb5f01501b16c83d3f905951d14941"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic_ll_sc.h.gcov",
+      "bytes": 17886,
+      "sha256": "9d780d49fdc9d01f081b8e33e686d171e0c6f2c6655518d48542cbc2c0421078"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/alternative-macros.h.gcov",
+      "bytes": 16216,
+      "sha256": "3898808f4ff96a9f01bfc47a974fb27b2cae0b1e88909d5379d5941089c74849"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic-instrumented.h.gcov",
+      "bytes": 220990,
+      "sha256": "387621a5fa950628b37e54f8aefa0fa5090ceacee6c738bb9a217a2d6c3edea0"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic-long.h.gcov",
+      "bytes": 76690,
+      "sha256": "b11eb96c527110908f82e41d0e18ee9ae3a0ad28eb0ee911beaa548f4772bb19"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/access_ok.h.gcov",
+      "bytes": 2735,
+      "sha256": "39af8a7d4801dc39dad0edbb0e687c8ab81db46d5cd90e15089d0fd0574755a3"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/include",
+      "bytes": 35,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/include"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/rwlock_api_smp.h.gcov",
+      "bytes": 13177,
+      "sha256": "18ebed432e44858fb452ff101d795c3425f66388375e3b140ed914f2dd1f9e56"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/fortify-string.h.gcov",
+      "bytes": 43729,
+      "sha256": "703a764caebfe9c06a14c2ab6056d7a57cfe33dbabcaac4e70f293964db392f0"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/spinlock.h.gcov",
+      "bytes": 31013,
+      "sha256": "4046575312b9d367ca12051c1e02162ad9351221c652c52277edac2026da2b9d"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/instrumented-atomic.h.gcov",
+      "bytes": 6168,
+      "sha256": "54c9001ed03234d27cfd840ff4b8c3b6618803d5c5d640dd964b080e49d1838d"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/sched.h.gcov",
+      "bytes": 122265,
+      "sha256": "138b6105cdabdf2bcfe0a345c33881c673f4e0b57fb2ac9859ea85f27dbd9101"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task.h.gcov",
+      "bytes": 11160,
+      "sha256": "b7d4d7aae0d83407fb08b72bbcef741689511977b00547f662db809951a41e80"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/pid.h.gcov",
+      "bytes": 10724,
+      "sha256": "993db749dd50a39d3f8190aebf2e20410781bb9a5b45062d8aaf26ec22138d3c"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic-arch-fallback.h.gcov",
+      "bytes": 208659,
+      "sha256": "140d4399e39e620b9b0b96e8277059d72d871a970453fc8c2cbc7316ac75deba"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/cmpxchg.h.gcov",
+      "bytes": 15527,
+      "sha256": "c3866872ca35100b8c2f10b30d0357b79a5d7753fff8d8eecaa0c06c6b586855"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/mmap_lock.h.gcov",
+      "bytes": 9123,
+      "sha256": "7d9f72e57d8e0c44b0766be239d09ff015e2f2e3387293320a871b15aee62ef6"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/uaccess.h.gcov",
+      "bytes": 25797,
+      "sha256": "5212cbb76c3cf5210e16ddf3ce3875a0eb8d1f3d33ec4caaec3ff3d4f83805a9"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/mmu_context.h.gcov",
+      "bytes": 13750,
+      "sha256": "93959640dd3d1a3ea383adb9dc86bb621175d6e5fee871c63432f4e57b7dcb4f"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/atomic_lse.h.gcov",
+      "bytes": 14944,
+      "sha256": "e268241ce854ed135f59b933363c1e6113e0e7fcf23ab5df8d7a8b2332c2f5d6"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/freezer.h.gcov",
+      "bytes": 5600,
+      "sha256": "1b27415395f80823cb6817bfb13720bae9d6e5dddd7973af7fa024c6ef75da9b"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/irqflags.h.gcov",
+      "bytes": 11018,
+      "sha256": "452e141d4d3b296fe850fb32ddaa74b6b3cf955a0d28bedfc4852bde8a1449c0"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/generic-non-atomic.h.gcov",
+      "bytes": 8477,
+      "sha256": "211f62e7ed72e2fc61e072e5fce87788e086f8856772537a9610fc431c2a8731"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/rcupdate.h.gcov",
+      "bytes": 59130,
+      "sha256": "f9282633d8c8d1161eb656d2c686a8efb8cf29dcae4207b77a566c4b9e64e61a"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint.c.gcov",
+      "bytes": 70753,
+      "sha256": "41ddc8ff3b2a4c6105a3bd9cbaeb404cb60fa8aff82d28ea71291b9135d3aa3f"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/slab.h.gcov",
+      "bytes": 39686,
+      "sha256": "09a316731364061661917195ce353f64cdf11d68bd803318d5a4aa649771efe6"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/qspinlock.h.gcov",
+      "bytes": 10480,
+      "sha256": "f32e1ad2b333862dde39c5ba39fcbf31397a0ac02274204999f398c5ff72e1de"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/arch",
+      "bytes": 32,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/arch"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/spinlock_api_smp.h.gcov",
+      "bytes": 12286,
+      "sha256": "56d2d2bcf0aa10abb25ad5931de9fe6fd533d18ec0c733c2e5ebda009e9ae9a3"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/kernel",
+      "bytes": 34,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/kernel"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/current.h.gcov",
+      "bytes": 1921,
+      "sha256": "9dc866db6de3883413c8885b018ca1067abc6c3744da3107685b82b1ef432927"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/pointer_auth.h.gcov",
+      "bytes": 8138,
+      "sha256": "7bc1ac4763d8366ef483fd8b5af6631dc23133ae5860528e6bb573f0b18927d8"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/thread_bits.h.gcov",
+      "bytes": 4435,
+      "sha256": "09ce841375718a5248fe419cbf8e4dc5b202980c3f5753d593c35498012a2bf9"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/ptrace.h.gcov",
+      "bytes": 17398,
+      "sha256": "dc96dfd3a0cf998623f6baeebe2bf43ae33643da4e6a71b7751398338ce55205"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/alternative-macros.h.gcov",
+      "bytes": 11667,
+      "sha256": "ba907794e0291dc2a6f87d84b3bbc8f21cd9e01f1346652545fd0bf339fdeac1"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/include",
+      "bytes": 35,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/include"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/cpufeature.h.gcov",
+      "bytes": 52236,
+      "sha256": "827f164a608ca979441bf14576197b01150a4d0cce759aa2df4981be118253a9"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/generic-non-atomic.h.gcov",
+      "bytes": 8627,
+      "sha256": "d98da1eec9eb4b19ddc3a4abdf386663e6fe8dcc933c162a1547e21d6eff7bf5"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/task_checkpoint.c.gcov",
+      "bytes": 5573,
+      "sha256": "9608bc36393331b3dd5ab6ecae8d013eb2f1788a5b3ac49976cae0a5a0f3e237"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/arch",
+      "bytes": 32,
+      "symlink_target": "/home/chenjun/Git/OLK-6.6-2/arch"
+    },
+    {
+      "path": "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/task_stack.h.gcov",
+      "bytes": 5717,
+      "sha256": "4c713e720255e1ea7232173a106dd6ae4933c3a0d72091fb4930ae55c2f76be4"
+    }
+  ],
+  "removed_empty_directories": [
+    "history/pre-commit",
+    "history",
+    "patches",
+    "kernel-kb/linux/home/chenjun/Git/OLK-6.6-2/kernel",
+    "kernel-kb/linux/home/chenjun/Git/OLK-6.6-2",
+    "kernel-kb/linux/home/chenjun/Git",
+    "kernel-kb/linux/home/chenjun",
+    "kernel-kb/linux/home",
+    "kernel-kb/linux",
+    "kernel-kb",
+    "tests/__pycache__",
+    "documents"
+  ],
+  "preserved_file_count": 80,
+  "preserved_sha256": {
+    "10-目录整理记录.md": "ad316881e6462b3299e7194ce9af90850eb043e2dea9ce059959f5eeefbadd77",
+    "02-现有方案与上游调研.md": "ce07c5de488b4c55d1382cdca7655f6e26db10eb00d01332991c62ab8a09f0c3",
+    "测试报告.md": "ba31bbcf9c5f4575dca8dad010f00f3b67400ea11dd1bf5bee11b6734c0faabb",
+    "03-架构分析.md": "1617c732ea96da1167fa4a66f60bf757dd8c1f25750fe5d10977c0eeaae8d674",
+    "09-提交归档记录.md": "e806293217a51b2274862ddf81bb30e556ac31e835875e0790b75ac1aa2bd91a",
+    "README.md": "7fb58fe4821fbb3e0fcec511db7ac2cd71b381ea07c73bf8c680cc809f61e156",
+    "01-需求描述.md": "70f6ae34f3979d2296bf1e06a932252747cf99f9a6e709febdc5ab62fee4f407",
+    "04-方案审核.md": "7fa00147f0c1a352439ed804cae43a7d9410ceba340642f184b4c6f087482a84",
+    "feature.config": "e576e7b58fa2b14b34318f57934a92fc57e3b966c7337381fdcad32d187b2a39",
+    ".config": "7d4eeb52ced789c6fd320b3316b9106ca3d66bcb163bbc4530df5f60dd3c8197",
+    "00-交付清单.md": "6aa0c7430b9750a1a9882bcc4faf44a8eb312dd61d36e72bdc36b51b2be2914f",
+    "07-自审结论.md": "136c9691d897c999954aed9172650ee13864c8ac4aac04cc44bf0fc5298490fe",
+    "覆盖率.md": "9ce9d8a6c726542fcf580cb750d4e5e237083d70ad93c13f6c7a7b756fba77fd",
+    "04-方案对比.md": "6d2265a9033724d1bc69b2b6e61faccb1cc11b20007ceacc364862539174154f",
+    "COMMIT.txt": "6b22bc0ca910d25bd64f6d5ba6923ec33d484157c54a6231c17dbf2823b1e64a",
+    "disabled.config": "38bb8b827fd795e5258321a6e0abffc8625fa3693c8e3ef54b04c2d48a3da27a",
+    "01-需求审核.md": "cd6a55ebc56fcaa6e7b9d183d94c6664fe2fafe43539a98071a86b97e0bee46f",
+    "02-调研审核.md": "a9a3616ab52c0bbe5e6f5595eba8b75b97818b406ea455ef9deb23c5126253fc",
+    "06-测试设计.md": "4f4cf65e85a872bccd6111af8b1cb491d0a9856a2cc2045acf0c0eccc8f881a1",
+    "05-设计审核.md": "c9e672603796962ea7357303256aee8d3b3217acf7364d87ae65c1ff57ea52ba",
+    "08-10-最终审核.md": "887343a8d19ab865cf0cf2ad438ea6b66c07617271a20cbdf12f212f0b2f4deb",
+    "05-实现方案.md": "508f43628f9cf349ec3cae045b53655fe7fcc337c69d1058f5c189cfa3f2740e",
+    ".config.disabled": "907a178f4948d9962825530198fd7324769df73529b5c18ba64d18832701389a",
+    "evidence/manifest-tested.json": "59994093efd9d636175358028f2e987659e8215ab80f435f659174dbe4e06ed1",
+    "evidence/patch-apply.log": "505d0eac814f6600a1c51de52ac405de3a096a1930a1c50cabe3621e80a76579",
+    "evidence/build-disabled.log": "21a2dd09e50b2f0b526c8a524555c3f9b5987c6e7553154ed214f1c38f95795a",
+    "evidence/checkpatch.log": "64f9f965bb4fc404644563fc2062de92e70369a788dacdfd28c5a790b6814e3c",
+    "evidence/build-enabled.log": "189e64c861e2f2ca4aba3cbe2fadc051103bdc13366ea14dc03e233f4753a19f",
+    "tests/qemu_output.log": "4cd6bcd869c095ef69503170da8145ff65083ca0334c79c3552d3eb76676e57a",
+    "tests/qemu_disabled.log": "eeef358713a60566ad107c08e420b01e5f03cccb2945d6e113d0bb6227c67801",
+    "tests/run_qemu.py": "15341680c5b586abd5acab6a4b20f36037cea334f387dc4ef54e45780c31fe32",
+    "tests/README.md": "2b22b2dd7cae94032b932603a1503f3f2442788f22a3580d467e36895f6e34c5",
+    "tests/edges.c": "8d3ba67ef07caee65286089ba8cfbd6fdbaaf378908e833392c2aed4d65d0037",
+    "tests/coverage.info": "123ed2517b9cd5beaca5b63643f58f8c8ec97680c7255969549ea241be07ce27",
+    "tests/run_tests.sh": "cc3248b7560a32fd5dce08fcd67c762157c15ff16d2aba6413f4f45cf5dfe2fa",
+    "tests/build.py": "9cd09b3b5e3d5ee76838884156505576ea866a2a970d741242ab451b5d2b208e",
+    "tests/disabled.c": "9f0307da3b7481b4d2109dbcee0b83c856b91088ca32cbc47bafebd27ad447e4",
+    "tests/external.c": "e14f5e656b8996c06899e82327ac5198ab69575ae6df045f094bd62a6e2bbc0b",
+    "tests/init_disabled.sh": "cfea406d9d47d365875945b759e3c3067192fdbc616f3fbfedbeff6e2e1ecd96",
+    "tests/demo.c": "51884ce69ca7c0af5746a6b968db41d7e89a324fc31e5c6120ff5b43d41bf8d2",
+    "tests/lcov.log": "feee3006b690f9b6e090a25e8f27c65342caaf68c6211da5235ec19293413f29",
+    "tests/init.sh": "1b79e57ff80e961dd36be2ca0b5fa6b15a8abc8cce3625cdb033cfa834e6f541",
+    "tests/函数覆盖明细.md": "1bd348f32f6109fb9e207a5cdd3617e1fbd761fca22666854d565978aea88847",
+    "tests/uncovered-branches.csv": "c2dd080a30fd8301afc511666faf623e618257b56cd36ffe2bc949ddf99da513",
+    "tests/coverage_summary.txt": "450a50bc97cca1680a58ecbe27817062c38450f54e04190c7fac847ad38b7a84",
+    "tests/gcov/coverage_html/cmd_line": "fe523abd89e850b2242b3b487c8f4ac4e17a28dd087260eead558027d92ae015",
+    "tests/gcov/coverage_html/ruby.png": "a2332ef8c44727042b0ab36628aaf562b0d5b0df43c6fa73c5191dfac50ec7be",
+    "tests/gcov/coverage_html/index-sort-b.html": "81ca6c3b0fda79c1a3c96a2c59818cfdce1aa7407183297f55e7e4718a70527f",
+    "tests/gcov/coverage_html/emerald.png": "8479273af3556e10f0feb96d8ac24fbd9615b0d887437c0f85f8ef6638e56b83",
+    "tests/gcov/coverage_html/gcov.css": "c635729294c2657053b05a52cc75256ea143447c56bd3958d55ad455032057a8",
+    "tests/gcov/coverage_html/updown.png": "a851165a175f4ca2649a4e30291192dd71131ea02a93cf46464953e74c1c5f0c",
+    "tests/gcov/coverage_html/index-sort-l.html": "56f7a7c35e9567ec539fe3b37060ee5c17e1d16b0ea1a5505d5d6c0ecfd7282a",
+    "tests/gcov/coverage_html/snow.png": "53c50fc490fcf2ad290819b05f8033b1cbdad698e230bdcbac63564942c34723",
+    "tests/gcov/coverage_html/amber.png": "dff576889b1ebdb619eeb69f12d503f7c431d5ff321838624b804ea5bda86fcb",
+    "tests/gcov/coverage_html/glass.png": "936a969e16ba5de4db2c9bcacd197b22a276e3d636335ba7f347da4009fc9cc5",
+    "tests/gcov/coverage_html/index.html": "4a2f1fb03bd1cd99d7975d11fc654d928f8ebd3204b207079fbd5e69d14986bd",
+    "tests/gcov/coverage_html/index-sort-f.html": "c1c13ed61367f606f00a60bb7b9bde8c7a2a44ca24d255e5573104572d65e000",
+    "tests/gcov/coverage_html/kernel/index-sort-b.html": "1d40eaad91250535892911540c3c300e15cc9d38a604a37d595bbd661efed1c2",
+    "tests/gcov/coverage_html/kernel/task_checkpoint.c.func-c.html": "58d3aff144307cc8b9aafc0a41632de2d1ad40b76b21b423b91fa15d356f1806",
+    "tests/gcov/coverage_html/kernel/task_checkpoint_test.c.gcov.html": "1b45c0f7df7ee4045447a47a277ef277bfd50417ed81c397a0974e80f2a1ea7d",
+    "tests/gcov/coverage_html/kernel/index-sort-l.html": "693e244051b932bff1edee64326ca62e991ac3c6acbb3ce234730f3f6aca6c45",
+    "tests/gcov/coverage_html/kernel/task_checkpoint.c.func.html": "cc61e3ff87beb5fac933b193d743a4a0678174d304d1669f91b7157434a44659",
+    "tests/gcov/coverage_html/kernel/task_checkpoint_test.c.func.html": "fd0b793347c6811cca571db7ba145a08e2638d8cb7a0be132e3cdaabf96400e9",
+    "tests/gcov/coverage_html/kernel/task_checkpoint_test.c.func-c.html": "e999b9c7b24be5f9522317f898e023deef23f2b7cf42040c930fc1e0aec49b8d",
+    "tests/gcov/coverage_html/kernel/task_checkpoint.c.gcov.html": "708b1de9a46f564cc395a321bd457c5006bec49297dbce06f18bbb2d18bb26c4",
+    "tests/gcov/coverage_html/kernel/index.html": "9654054a0af174a4eb4b1b0aa598dfed3987e824b7809a7b81532d109bfe3e76",
+    "tests/gcov/coverage_html/kernel/index-sort-f.html": "736164b5ae5da1bb2c4c6a9596bae1617e8989f0070a8b992f602bdf11392914",
+    "tests/gcov/coverage_html/arch/arm64/kernel/index-sort-b.html": "a0d18e53e11b4123357afb6d63387b37fbbb78798aa584d3d8b1561935a2f486",
+    "tests/gcov/coverage_html/arch/arm64/kernel/task_checkpoint.c.func-c.html": "f899afc34a837dfa9590742ffb6fd710c924688e5618785c4bff66ae43c02512",
+    "tests/gcov/coverage_html/arch/arm64/kernel/index-sort-l.html": "643600c123cd9df7e1089de287442ef377b8d0dc0d5fc00e08d287dafc89fdf7",
+    "tests/gcov/coverage_html/arch/arm64/kernel/task_checkpoint.c.func.html": "fadc932718f206a18aedd4bd3d79d05fabcde8f681179fa2d15ff83d26e3ac3e",
+    "tests/gcov/coverage_html/arch/arm64/kernel/task_checkpoint.c.gcov.html": "9c54b0bb57aa1278b985f3a720dae009ac2d0de26c002032b3536a3de74e5f78",
+    "tests/gcov/coverage_html/arch/arm64/kernel/index.html": "04b6bffc1d51d3d009b083fd26fb985bab4f42da6ff1f52aa745f0bea6b4400c",
+    "tests/gcov/coverage_html/arch/arm64/kernel/index-sort-f.html": "e73751abb9087ac94bc4dcff74c20279f8f49b7cf7583a0d93c2b74faedf76bd",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint.gcno": "6e653e59f880a04443b5615ead7e96485efd5e4644d8fb6a4afdf1bb844cd931",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint_test.gcda": "99017dbd23983c10c66a42af2458b547c867cfb04b7719b92e6ac5bd9235ee38",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint_test.gcno": "340d5617a4970e7bd58f7bb6c7462b207969dda7f42db4d6c89c6eefcc3f410b",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/kernel/task_checkpoint.gcda": "63a4add91d0699089c915182a155ce08d32e6729ff0cea3d5f1b43ad54d938da",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/task_checkpoint.gcno": "a5eca799867bb15708d1936e7d36a2b94dc0d145c8c9fbdeb15f27cf7f5f21ce",
+    "tests/gcov/home/chenjun/Git/OLK-6.6-2/arch/arm64/kernel/task_checkpoint.gcda": "0aaa04f3b10d78618eef9a3b0e3a883deb2af99ba3df8546deaeb9b7163f212f"
+  },
+  "preservation_check": "PASS",
+  "duplicate_qemu_log_sha256": "4cd6bcd869c095ef69503170da8145ff65083ca0334c79c3552d3eb76676e57a",
+  "test_c_sources_match_recorded_hashes": true,
+  "followed_symlinks_for_deletion": false
+}

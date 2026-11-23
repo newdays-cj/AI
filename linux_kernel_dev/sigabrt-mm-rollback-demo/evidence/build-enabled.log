@@ -1,0 +1,25 @@
+Using /home/chenjun/tools/qemu_arm64_defconfig as base
+Merging /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config
+Value of CONFIG_KUNIT is redefined by fragment /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config:
+Previous value: # CONFIG_KUNIT is not set
+New value: CONFIG_KUNIT=y
+
+Value of CONFIG_GCOV_KERNEL is redefined by fragment /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config:
+Previous value: # CONFIG_GCOV_KERNEL is not set
+New value: CONFIG_GCOV_KERNEL=y
+
+Value of CONFIG_NET_9P is redefined by fragment /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config:
+Previous value: CONFIG_NET_9P=m
+New value: CONFIG_NET_9P=y
+
+Value of CONFIG_NET_9P_VIRTIO is redefined by fragment /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config:
+Previous value: CONFIG_NET_9P_VIRTIO=m
+New value: CONFIG_NET_9P_VIRTIO=y
+
+Value of CONFIG_9P_FS is redefined by fragment /home/chenjun/workspace/sigabrt-mm-rollback-demo/feature.config:
+Previous value: CONFIG_9P_FS=m
+New value: CONFIG_9P_FS=y
+
+#
+# merged configuration written to /home/chenjun/workspace/sigabrt-mm-rollback-demo/.config (needs make)
+#
